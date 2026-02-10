@@ -6,6 +6,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Status: Pre-Production](https://img.shields.io/badge/Status-Pre--Production-orange)]()
 [![Game Design Phase](https://img.shields.io/badge/Phase-Game%20Design-brightgreen)]()
+[![CI Status](https://github.com/LaunchDay-Studio-Inc/Blueth-Farm/workflows/CI%20-%20Build%20and%20Test/badge.svg)](https://github.com/LaunchDay-Studio-Inc/Blueth-Farm/actions)
+[![Release](https://github.com/LaunchDay-Studio-Inc/Blueth-Farm/workflows/Release%20-%20Multi-Platform%20Build/badge.svg)](https://github.com/LaunchDay-Studio-Inc/Blueth-Farm/releases)
 
 ---
 
@@ -98,7 +100,17 @@ Comprehensive design documentation is available in the `/docs` folder:
 **Version:** Foundation (v0.1.0)  
 **Last Updated:** February 10, 2026
 
-We're currently in the **game design and planning phase**, establishing the project foundation with comprehensive documentation. Next steps include assembling the team and beginning prototype development.
+We're currently in the **game design and planning phase**, establishing the project foundation with comprehensive documentation and development infrastructure.
+
+### Recent Additions ✨
+
+- ✅ Complete Game Design Document
+- ✅ Finalized Art Direction  
+- ✅ Comprehensive Science Reference
+- ✅ Prototype Development Plan
+- ✅ **CI/CD Pipeline** - Automated testing, linting, and multi-platform builds
+- ✅ **Unit Testing Framework** - GUT (Godot Unit Test) integration with 6 test suites
+- ✅ **Export Presets** - Linux, Windows, macOS, and Web build configurations
 
 ### Roadmap
 
@@ -106,6 +118,7 @@ We're currently in the **game design and planning phase**, establishing the proj
 - [x] Finalize Art Direction
 - [x] Compile Science Reference
 - [x] Create Prototype Plan
+- [x] Set up CI/CD and automated testing
 - [ ] Assemble development team
 - [ ] Begin Milestone 1: Foundation prototype
 - [ ] Secure scientific advisors
