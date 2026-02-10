@@ -295,3 +295,47 @@ func load_save_data(data: Dictionary) -> void:
 				tile.plant_health = tile_save.plant_health
 				tile.sediment_carbon = tile_save.sediment_carbon
 				tile.biomass_carbon = tile_save.biomass_carbon
+
+
+
+func damage_plant(tile_pos: Vector2i, damage_amount: float) -> void:
+var tile = get_tile_at(tile_pos)
+if not tile or not tile.is_planted:
+return
+tile.plant_health = max(0.0, tile.plant_health - damage_amount)
+if tile.plant_health <= 0.0:
+remove_dead_plant(tile_pos)
+else:
+print("Plant damaged at ", tile_pos)
+
+
+func remove_dead_plant(tile_pos: Vector2i) -> void:
+var tile = get_tile_at(tile_pos)
+if not tile or not tile.is_planted:
+return
+var species_key = tile.planted_species
+var biomass = tile.biomass_carbon
+if biomass > 0:
+CarbonManager.remove_plant_carbon(species_key, tile.growth_stage)
+var sediment = tile.sediment_carbon
+if sediment > 0:
+tile.sediment_carbon = sediment * 0.5
+tile.is_planted = false
+tile.planted_species = ""
+tile.growth_stage = 0
+tile.growth_timer = 0.0
+tile.plant_health = 1.0
+tile.biomass_carbon = 0.0
+EcosystemManager.unregister_planted_species(species_key)
+print("Plant removed at ", tile_pos)
+
+
+func regress_growth_stage(tile_pos: Vector2i) -> void:
+var tile = get_tile_at(tile_pos)
+if not tile or not tile.is_planted or tile.growth_stage <= 0:
+return
+var old_stage = tile.growth_stage
+tile.growth_stage -= 1
+CarbonManager.remove_plant_carbon(tile.planted_species, old_stage)
+CarbonManager.add_plant_carbon(tile.planted_species, tile.growth_stage, 1)
+print("Plant regressed at ", tile_pos)

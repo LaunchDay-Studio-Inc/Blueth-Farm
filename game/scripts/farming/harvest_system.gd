@@ -4,6 +4,7 @@ extends Node
 
 signal harvest_completed(tile_pos: Vector2i, items: Dictionary)
 signal seeds_collected(tile_pos: Vector2i, species_key: String, quantity: int)
+signal plant_harvested(tile_pos: Vector2i, species: String, growth_stage: int)
 
 @export var tile_map_manager: TileMapManager
 @export var player_inventory: Node
@@ -97,7 +98,8 @@ func harvest_plant(tile_pos: Vector2i) -> Dictionary:
 	harvest_result.success = true
 	harvest_result.species = species_key
 	
-	# Emit signal
+	# Emit signals
+	plant_harvested.emit(tile_pos, species_key, growth_stage)
 	harvest_completed.emit(tile_pos, harvest_result.items)
 	
 	print("Harvested ", species_key, " at ", tile_pos, ": ", harvest_quantity, " items, ", seed_quantity, " seeds")

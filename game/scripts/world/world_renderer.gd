@@ -43,6 +43,20 @@ func _draw() -> void:
 			# Get tile color
 			var color = tile_map_manager.get_tile_color(tile_pos)
 			
+			# Apply damage visual feedback
+			var tile = tile_map_manager.get_tile_at(tile_pos)
+			if tile and tile.is_planted:
+				# Damaged plants appear darker/desaturated
+				if tile.plant_health < 1.0:
+					var damage_factor = tile.plant_health
+					color = color.darkened(0.3 * (1.0 - damage_factor))
+					# Also desaturate
+					var gray = (color.r + color.g + color.b) / 3.0
+					var desat_amount = 0.5 * (1.0 - damage_factor)
+					color.r = lerp(color.r, gray, desat_amount)
+					color.g = lerp(color.g, gray, desat_amount)
+					color.b = lerp(color.b, gray, desat_amount)
+			
 			# Draw isometric diamond
 			_draw_isometric_tile(screen_pos, color)
 			
