@@ -180,6 +180,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Inspired by real blue carbon scientists, coastal communities, and the incredible biodiversity of our oceans. This game is dedicated to everyone working to restore and protect our coasts.
 
+### Audio Attribution
+
+Current placeholder audio files are procedurally generated for development purposes:
+- **Ocean Ambient Loop** (`ocean_waves.wav`) - Procedurally generated using sine wave synthesis
+- **Planting SFX** (`plant.wav`) - Procedurally generated soft plop/splash sound
+- **UI Click SFX** (`ui_click.wav`) - Procedurally generated click sound
+- **Calm Theme Music** (`calm_theme.wav`) - Procedurally generated chord progression (C-F-Am-G)
+
+All placeholder audio files are CC0 (Public Domain) and will be replaced with professionally produced audio for the final release.
+
 ---
 
 **🌊 Every coast has a story. Let's write yours.**

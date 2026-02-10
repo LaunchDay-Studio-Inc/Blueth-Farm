@@ -91,6 +91,18 @@ func _create_ambient_players() -> void:
 		add_child(player)
 		ambient_players[layer] = player
 
+		# Load ocean waves ambient immediately
+		if layer == "ocean_waves":
+			var stream = load("res://assets/audio/ambient/ocean_waves.wav")
+			if stream:
+				player.stream = stream
+				player.volume_db = linear_to_db(ambient_layer_volumes[layer])
+				# Loop the ambient sound
+				if stream is AudioStreamWAV:
+					stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
+				player.play()
+				print("Loaded ocean ambient audio")
+
 
 func set_master_volume(volume: float) -> void:
 	"""Set master volume (0.0 - 1.0)"""
@@ -127,18 +139,30 @@ func _apply_volume_settings() -> void:
 func play_music(track_name: String, crossfade: bool = true) -> void:
 	"""Play a music track with optional crossfade"""
 	print("Playing music: ", track_name)
-	
-	# For now, just print - actual audio files would be loaded here
-	# var stream = load("res://assets/audio/music/" + track_name + ".ogg")
-	# if stream == null:
-	#     print("Music track not found: ", track_name)
-	#     return
-	
+
+	# Try to load the music track (support both .wav and .ogg)
+	var stream = null
+	var wav_path = "res://assets/audio/music/" + track_name + ".wav"
+	var ogg_path = "res://assets/audio/music/" + track_name + ".ogg"
+
+	if ResourceLoader.exists(wav_path):
+		stream = load(wav_path)
+	elif ResourceLoader.exists(ogg_path):
+		stream = load(ogg_path)
+
+	if stream == null:
+		print("Music track not found: ", track_name)
+		return
+
+	# Set loop mode for music
+	if stream is AudioStreamWAV:
+		stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
+
 	if crossfade and current_music.playing:
-		_crossfade_music(null)  # Would pass actual stream
+		_crossfade_music(stream)
 	else:
 		current_music.stop()
-		# current_music.stream = stream
+		current_music.stream = stream
 		current_music.play()
 		music_changed.emit(track_name)
 
@@ -172,13 +196,23 @@ func play_sfx(sfx_name: String, volume: float = 1.0) -> void:
 	player.bus = "SFX"
 	player.volume_db = linear_to_db(volume)
 	add_child(player)
-	
-	# Would load actual sound here
-	# var stream = load("res://assets/audio/sfx/" + sfx_name + ".wav")
-	# if stream:
-	#     player.stream = stream
-	#     player.play()
-	
+
+	# Try to load the sound effect (support both .wav and .ogg)
+	var stream = null
+	var wav_path = "res://assets/audio/sfx/" + sfx_name + ".wav"
+	var ogg_path = "res://assets/audio/sfx/" + sfx_name + ".ogg"
+
+	if ResourceLoader.exists(wav_path):
+		stream = load(wav_path)
+	elif ResourceLoader.exists(ogg_path):
+		stream = load(ogg_path)
+
+	if stream:
+		player.stream = stream
+		player.play()
+	else:
+		print("SFX not found: ", sfx_name)
+
 	# Clean up when finished
 	player.finished.connect(func(): player.queue_free())
 

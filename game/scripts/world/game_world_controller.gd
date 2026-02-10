@@ -33,6 +33,10 @@ func _ready() -> void:
 	# Connect all system signals
 	_connect_signals()
 
+	# Start calm background music
+	if AudioManager and AudioManager.has_method("play_music"):
+		AudioManager.play_music("calm_theme", false)
+
 	# Give player some starting seeds (will be replaced by tutorial)
 	if player and player.has_node("PlayerInventory"):
 		var inventory = player.get_node("PlayerInventory")
