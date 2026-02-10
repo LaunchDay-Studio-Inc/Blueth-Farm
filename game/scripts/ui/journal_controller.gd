@@ -182,7 +182,9 @@ func _load_journal_entries() -> void:
 		var entry_data = load(entry_path) as Resource
 		if entry_data:
 			# Create a JournalEntry for the system
-			var journal_entry = _journal_system.JournalEntry.new()
+			# Access inner class via script
+			var JournalEntryClass = _journal_system.get_script().JournalEntry
+			var journal_entry = JournalEntryClass.new()
 			journal_entry.entry_id = entry_data.entry_id
 			journal_entry.title = entry_data.title
 			journal_entry.content = entry_data.content
