@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="NPCData" load_steps=2 format=3 uid="uid://d2m8n4p7k9qwx"]
+
+[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="1_npc_data"]
+
+[resource]
+script = ExtResource("1_npc_data")
+npc_id = "old_salt"
+display_name = "Old Salt"
+role = "Fisherman & Tutorial Guide"
+description = "A weathered fisherman who's worked these waters for fifty years. He remembers when the bay was full of life and is cautiously hopeful about your restoration work."
+location_zone = "shallows"
+schedule = {6: "dock", 12: "beach", 18: "dock", 22: "home"}
+portrait_color = Color(0.4, 0.5, 0.6)
+gift_preferences = {"fish": 3, "shells": 2, "seaweed": 1, "trash": -2}
+initial_friendship = 10
+associated_quests = ["meet_old_salt", "first_planting", "water_quality"]
+dialogue_trees = {
+	"intro": {
+		"text": "Well now, you must be Dr. Voss's grandkid. She talked about you. Said you'd come here to carry on her work. I'm Old Salt—been fishing these waters longer than you've been alive. Your grandmother was a good woman, had big dreams for this coastline. Maybe you can make 'em real.",
+		"choices": []
+	},
+	"daily_spring": {
+		"text": "Good morning! Spring's the best time for planting seagrass. The water's warming up, and everything's coming back to life. Just like the old days.",
+		"choices": []
+	},
+	"daily_summer": {
+		"text": "Hot day, eh? The fish are running deep to stay cool. Summer storms'll be coming soon—make sure your young plants are well-established.",
+		"choices": []
+	},
+	"friendship_20": {
+		"text": "You know, I wasn't sure about all this restoration business at first. But I'm starting to see more fish around your plantings. Reminds me of how it used to be, forty years back. Your grandmother would be proud.",
+		"choices": []
+	}
+}

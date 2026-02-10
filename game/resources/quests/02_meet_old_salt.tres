@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3 uid="uid://d8m3k7n2p9qvt"]
+
+[ext_resource type="Script" path="res://scripts/npcs/quest_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+quest_id = "meet_old_salt"
+title = "The Old Timer"
+description = "Find Old Salt at the dock and introduce yourself. He knew your grandmother well."
+objectives = [
+	{"type": "visit_npc", "npc_id": "old_salt", "complete": false}
+]
+reward_gold = 0
+reward_research_points = 5
+reward_items = {"eelgrass_seed": 10}
+is_story_quest = true
+required_year = 1
+given_by_npc = "old_salt"
+prerequisite_quests = ["welcome_home"]

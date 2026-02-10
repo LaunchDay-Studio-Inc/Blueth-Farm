@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3 uid="uid://d5n8m3k7p2qwx"]
+
+[ext_resource type="Script" path="res://scripts/npcs/quest_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+quest_id = "carbon_first"
+title = "Carbon Counter"
+description = "Sequester your first tonne of CO₂. This milestone proves that blue carbon restoration works!"
+objectives = [
+	{"type": "carbon_goal", "amount": 1.0, "current": 0.0, "complete": false}
+]
+reward_gold = 200
+reward_research_points = 20
+reward_journal_entry = "numbers_dont_lie"
+reward_unlocks = "carbon_credits"
+is_story_quest = true
+required_year = 1
+prerequisite_quests = ["first_planting"]

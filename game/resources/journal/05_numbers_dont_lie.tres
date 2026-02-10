@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=2 format=3 uid="uid://d8n2m7k4p9qwx"]
+
+[ext_resource type="Script" path="res://scripts/npcs/journal_entry_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = "numbers_dont_lie"
+title = "The Numbers Don't Lie"
+content = "November 8th, 2003
+
+I received the verification today. Official certification for my first carbon credit sale.
+
+Ten years of restoration work. Five hectares of established seagrass meadow. The calculations checked out: 6.9 tonnes of CO₂ sequestered annually. At current market rates, that's real money. Not enough to retire on, but enough to buy seeds for next year's planting. Enough to prove this can be economically viable, not just ecologically important.
+
+I keep reading the certification letter over and over. Not because of the money—though that helps—but because of what it represents. Someone, somewhere, looked at my muddy restoration plots and saw value. Quantifiable, certified value in the carbon locked away beneath my feet.
+
+For so long, coastal ecosystems have been treated as wastelands. Swamps to be drained. Marshes to be filled. Seagrass beds to be dredged away for marinas and development. Nobody calculated the value of what we were destroying because nobody had a price tag for clean water, storm protection, fish nurseries, or carbon storage.
+
+Now we do. And the numbers are staggering.
+
+The seagrass meadow I've restored? It's worth more for carbon sequestration than the land would be worth for development. The salt marsh I'm planting next spring? It'll store more carbon per acre than a similar-sized terrestrial forest, and it'll protect the shoreline during storms. That protection alone could save millions in infrastructure damage.
+
+But here's what really keeps me up at night, in the good way: if this works here, it can work anywhere. Every degraded coastline could be restored. Every coastal community could become carbon-negative while rebuilding their fisheries and protecting their shores.
+
+We're not just planting seagrass. We're proving a new economic model. One where restoring nature isn't charity—it's sound investment.
+
+The numbers don't lie, and they're telling a story of hope."
+unlock_condition = "carbon_1"
+research_point_bonus = 5
+unlocks = "hint:carbon_credits"

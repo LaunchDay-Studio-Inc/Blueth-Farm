@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="NPCData" load_steps=2 format=3 uid="uid://b9p3k7m4n8qvt"]
+
+[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="1_npc_data"]
+
+[resource]
+script = ExtResource("1_npc_data")
+npc_id = "mayor_hayes"
+display_name = "Mayor Hayes"
+role = "Town Mayor & Political Partner"
+description = "The pragmatic mayor of the coastal town. Initially skeptical of restoration efforts, but open to being convinced by results and economic benefits."
+location_zone = "shallows"
+schedule = {9: "town_hall", 13: "restaurant", 17: "town_hall"}
+portrait_color = Color(0.5, 0.4, 0.35)
+gift_preferences = {"carbon_credits": 3, "town_revenue": 2, "fish": 1, "trash": -3}
+initial_friendship = 5
+associated_quests = ["mayor_meeting", "town_hall", "carbon_credits", "big_storm"]
+dialogue_trees = {
+	"intro": {
+		"text": "So you're taking over the old Voss property. Look, I respect what your grandmother tried to do, but this town needs jobs and tax revenue, not... experiments. Show me this 'blue carbon' thing can bring real economic benefits, and we'll talk.",
+		"choices": []
+	},
+	"daily_skeptical": {
+		"text": "Still planting seaweed? The fishing industry is struggling, and you're worried about grass underwater. I hope you know what you're doing.",
+		"choices": []
+	},
+	"friendship_40": {
+		"text": "I'll admit, I was wrong to doubt you. Those carbon credit sales are bringing money into town, and Old Salt says the fish are coming back. Maybe there's something to this restoration work after all.",
+		"choices": []
+	},
+	"post_storm": {
+		"text": "After that storm... the damage reports came in. Your restored areas protected the shoreline—we would've lost the dock without those ecosystems. You've made a believer out of me. What do you need from the town to keep this going?",
+		"choices": []
+	}
+}

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="NPCData" load_steps=2 format=3 uid="uid://c8m4k9p3n7qvw"]
+
+[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="1_npc_data"]
+
+[resource]
+script = ExtResource("1_npc_data")
+npc_id = "elder_tide"
+display_name = "Elder Tide"
+role = "Indigenous Elder & Cultural Guide"
+description = "An indigenous elder whose people have stewarded these coastal lands for thousands of years. Shares traditional ecological knowledge and cultural perspectives."
+location_zone = "shallows"
+schedule = {7: "sacred_grove", 11: "beach", 16: "sacred_grove"}
+portrait_color = Color(0.55, 0.45, 0.35)
+gift_preferences = {"native_seeds": 3, "traditional_tools": 2, "shells": 2}
+initial_friendship = 10
+associated_quests = ["elders_wisdom", "traditional_knowledge", "sacred_sites"]
+dialogue_trees = {
+	"intro": {
+		"text": "Welcome, child. Your grandmother came to me many years ago, seeking to understand how my ancestors cared for this land. She listened with an open heart. I see that same willingness to learn in your eyes. The land remembers those who tend it with respect.",
+		"choices": []
+	},
+	"daily_wisdom": {
+		"text": "The eelgrass returns because you work with the tide, not against it. This is old knowledge—my people managed these shores for ten thousand years. The salmon, the shellfish, the birds... they all depend on balance.",
+		"choices": []
+	},
+	"friendship_20": {
+		"text": "Let me teach you about the seasonal calendar my people kept. We knew when to harvest, when to let the land rest, when to use fire to renew the marshes. This knowledge kept the coast abundant for countless generations.",
+		"choices": []
+	},
+	"friendship_60": {
+		"text": "You are becoming a true steward of this place. That word—steward—it means more than owner. It means responsibility to future generations. Your grandmother understood this. Now you do too.",
+		"choices": []
+	}
+}

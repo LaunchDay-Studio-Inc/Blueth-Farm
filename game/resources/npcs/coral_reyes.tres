@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="NPCData" load_steps=2 format=3 uid="uid://d7n2m8k4p9qwx"]
+
+[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="1_npc_data"]
+
+[resource]
+script = ExtResource("1_npc_data")
+npc_id = "coral_reyes"
+display_name = "Coral Reyes"
+role = "Environmental Activist"
+description = "A passionate young activist organizing the community around climate action. She sees your restoration work as part of a larger movement."
+location_zone = "shallows"
+schedule = {10: "community_center", 15: "beach", 19: "community_center"}
+portrait_color = Color(0.85, 0.4, 0.45)
+gift_preferences = {"restoration_photos": 3, "volunteer_signups": 2, "native_seeds": 2}
+initial_friendship = 20
+associated_quests = ["community_organizing", "awareness_campaign", "community_center"]
+dialogue_trees = {
+	"intro": {
+		"text": "Oh my gosh, you're Dr. Voss's grandkid! I loved her talks at the community college. She inspired me to study environmental science. I'm Coral—I organize beach cleanups and climate awareness events. We should totally collaborate!",
+		"choices": []
+	},
+	"daily_enthusiastic": {
+		"text": "The restoration work you're doing is AMAZING! I've been posting about it on social media. People are so inspired. We got fifteen new volunteers for next month's beach cleanup!",
+		"choices": []
+	},
+	"friendship_60": {
+		"text": "You've shown people that one person CAN make a difference. The community is rallying around this. Your grandmother planted more than just seagrass—she planted hope. And you're making it grow.",
+		"choices": []
+	}
+}

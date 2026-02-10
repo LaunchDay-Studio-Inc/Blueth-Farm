@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=2 format=3 uid="uid://c7k4n9m2p8qvx"]
+
+[ext_resource type="Script" path="res://scripts/npcs/journal_entry_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = "roots_run_deep"
+title = "Roots Run Deep"
+content = "April 3rd, 2011
+
+I'm writing this from a small boat in the mangrove forests of Belize, where I've come to study restoration techniques. The humidity is oppressive, the mosquitos are biblical, and I've never been happier.
+
+Look at these trees! Red mangroves with their iconic prop roots creating a labyrinth of wooden arches that protect the shore. Black mangroves with their pneumatophores—breathing roots—poking up through the mud like a forest of snorkels. Each tree is an engineering marvel, perfectly adapted to live with one foot in salt water and one in air.
+
+But it's what's happening beneath the surface that astounds me. I helped the local researchers collect sediment cores today. The carbon density is incredible—some cores showed 5 meters of nearly pure organic matter. Five meters! That's thousands of years of carbon storage, locked away by these magnificent trees.
+
+The lead researcher, Dr. Morales, explained something that made me rethink everything. 'The roots go deeper than you see,' she said, holding up a core sample. 'Deeper than the mud. They go into the culture, the economy, the identity of coastal communities. When you remove mangroves, you don't just lose trees. You lose storm protection. Fish nurseries. Water filtration. Timber. Medicine. A way of life.'
+
+She's right. I've been so focused on the carbon numbers that I've sometimes forgotten that these ecosystems are more than data points. They're living systems that support human communities just as much as they support fish and birds.
+
+I'm bringing mangrove propagules back home. Our estuary isn't tropical, but there are species that might survive in the warmer microclimate near the power plant outfall. It'll be experimental, pushing the northern range limit, but that's what climate change demands—we need to help species migrate, adapt, evolve.
+
+Tonight I sat in a small boat at sunset, surrounded by mangrove roots and the sound of fish jumping. A white ibis landed nearby, utterly unconcerned by my presence. This is what abundance looks like. This is what we're working toward.
+
+The roots run deep. Not just in the mud, but in hope."
+unlock_condition = "first_mangrove_planted"
+research_point_bonus = 5
+unlocks = "hint:mangrove_zones"

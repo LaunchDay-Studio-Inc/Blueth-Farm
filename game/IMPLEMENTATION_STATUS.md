@@ -1,7 +1,7 @@
 # Blueth Farm - Implementation Status
 
 **Last Updated:** February 10, 2026  
-**Version:** Vertical Slice Prototype v1.0
+**Version:** Phase 1 Core Loop Implementation v0.2.0
 
 ## Overview
 
@@ -187,16 +187,107 @@ This document tracks the implementation status of the Blueth Farm vertical slice
   - Equivalency tests
   - Milestone detection tests
 
-## 🚧 Partially Implemented
+## ✅ NEW Phase 1 Systems
 
-### Species Collection
-- [x] 4 core species created
-- [ ] 5 additional species needed:
-  - Posidonia seagrass
-  - Thalassia seagrass
-  - Salicornia (salt marsh)
-  - Black mangrove
-  - Laminaria kelp
+### Economy Systems ⭐
+- [x] **MarketSystem** - Complete buy/sell marketplace
+  - Dynamic pricing based on season and supply/demand
+  - 9 species seeds with base prices
+  - Harvested goods marketplace
+  - Market hours (8 AM - 6 PM game time)
+  - Integration with GameManager and PlayerInventory
+- [x] **TownInvestment** - 5 building investments
+  - Dock Repair (500g) - Unlocks boat and reef access
+  - Marine Lab (1500g) - +25% research speed
+  - Eco-Tourism Center (2500g) - Passive income system
+  - Community Center (1000g) - Unlocks festivals and events
+  - Nursery Building (750g) - Seedling growing system
+  - Construction time tracking (3-7 days)
+- [x] **EcoTourism** - Passive income system
+  - Income based on biodiversity score
+  - Seasonal modifiers for tourism
+  - Tourist visit events with flavor text
+  - Integration with ecosystem health
+
+### NPC & Dialogue Systems ⭐
+- [x] **NPCData Resource Class** - NPC definition system
+  - NPC metadata (name, role, description)
+  - Schedule system (hourly locations)
+  - Gift preference system
+  - Dialogue tree structure
+  - Associated quests
+- [x] **6 NPCs Fully Defined**
+  - Old Salt - Fisherman & tutorial guide
+  - Dr. Marina Chen - Climate scientist & research partner
+  - Mayor Hayes - Skeptic→supporter arc
+  - Coral Reyes - Young environmental activist
+  - Elder Tide - Indigenous elder & cultural guide
+  - Chef Wave - Sustainable seafood chef
+  - Each with unique dialogue trees and personality
+
+### Journal System ⭐⭐⭐ (EMOTIONAL CORE)
+- [x] **JournalSystem** - Discovery-based narrative
+  - Unlock conditions (milestones, quests, friendships)
+  - Research point bonuses
+  - Integration with save/load
+- [x] **12 Grandmother's Journal Entries** - COMPLETE
+  1. Welcome Home - Game start, grandmother's dream
+  2. The Seagrass Secret - Carbon storage discovery
+  3. Tides of Change - Learning from Old Salt
+  4. Old Friends - Watching the bay recover
+  5. The Numbers Don't Lie - First carbon credit
+  6. Storm Warning - Preparing for Hurricane Patricia
+  7. Roots Run Deep - Mangrove field research
+  8. The Elder's Wisdom - Traditional ecological knowledge
+  9. A Mayor's Doubt - Political struggles
+  10. Life Returns - Dolphins return after 29 years
+  11. Legacy - Passing knowledge to next generation
+  12. Dear Grandchild - Final letter (Year 5 climax) ⭐⭐⭐
+  - 150-300 words each, emotionally powerful
+  - Scientifically grounded
+  - First-person from Dr. Elara Voss
+
+### Quest System ⭐
+- [x] **QuestData Resource Class** - Quest definition
+  - Objectives system (plant, harvest, visit, etc.)
+  - Rewards (gold, research points, items, unlocks)
+  - Prerequisites and year requirements
+  - Story quest flagging
+- [x] **10 Key Quest Resources Created**
+  - Year 1 chain: Welcome Home → First Planting → Carbon Milestone
+  - Tutorial quests with Old Salt
+  - Dr. Marina research partnership
+  - Year 3: The Big Storm (showcase event)
+  - Year 5: Final Journal discovery
+
+### Research & Tech Tree ⭐
+- [x] **ResearchPoints System** - Point tracking and earning
+  - Points from: planting milestones, wildlife sightings, quests, journal discoveries
+  - Milestone notifications
+  - Integration with all game systems
+- [x] **TechTree System** - 4 branches, 32 nodes
+  - **Ecology Branch** (8 nodes) - Species, growth, biodiversity
+  - **Engineering Branch** (8 nodes) - Sensors, coastal protection
+  - **Policy Branch** (8 nodes) - Carbon credits, regulations, MPA
+  - **Culture Branch** (8 nodes) - Traditional knowledge, sacred sites
+  - Prerequisite dependency system
+  - Effect application system
+  - Full save/load support
+
+### Advanced Gameplay Systems
+- [x] **NurserySystem** - Protected seedling growing
+  - 10 slot capacity (upgradeable)
+  - 50% faster growth in nursery
+  - +25% survival rate for transplants
+  - Ready-to-transplant notifications
+- [x] **WildlifeSpawner** - Ecosystem-based wildlife
+  - 6 wildlife types (fish, crab, bird, turtle, dolphin, manatee)
+  - Spawn requirements based on biodiversity and plant count
+  - First sighting celebration system
+  - Research point rewards
+  - Wildlife diversity tracking
+
+## 🚧 Partially Implemented
 
 ### Game World Integration
 - [x] Basic world rendering

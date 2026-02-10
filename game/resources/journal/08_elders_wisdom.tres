@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=2 format=3 uid="uid://d4m8k7n3p9qwt"]
+
+[ext_resource type="Script" path="res://scripts/npcs/journal_entry_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = "elders_wisdom"
+title = "The Elder's Wisdom"
+content = "August 17th, 2013
+
+Today I sat with Elder Joseph Tide in the sacred grove above the beach, and he taught me about fire.
+
+Not wildfire—controlled burning, the kind his ancestors used for ten thousand years to manage the coastal prairies and salt marshes. I've read about it in the literature: traditional ecological knowledge, indigenous land management practices. But reading is one thing. Listening to someone whose family has maintained these practices across countless generations is something else entirely.
+
+'My grandmother's grandmother told her,' he explained, his weathered hands gesturing across the landscape, 'that the marsh grasses grow stronger after fire. The ash feeds the soil. The burn clears the old growth and makes room for new. But you must burn at the right time—late summer, when the plants have seeded but before the fall rains. You must burn in the right pattern—small fires, controlled, with wind from the sea.'
+
+I asked him about the science of it. He smiled patiently, the way you smile at someone asking whether the sun will rise tomorrow.
+
+'Your science is young,' he said. 'Good science, but young. My people have been the scientists of this coast for a hundred centuries. We observed, we experimented, we passed down what worked. That's science too, isn't it?'
+
+He's absolutely right. What we call 'traditional ecological knowledge' is the world's longest-running ecological study. Thousands of years of careful observation, hypothesis testing, and knowledge transfer. My Ph.D. took five years. His education in coastal stewardship has been continuous across more generations than I can count.
+
+He showed me the calendar stone his ancestors used—marking the seasons not just by solstices but by biological indicators. When the glasswort flowers. When the salmon run. When to harvest, when to plant, when to let the land rest.
+
+'The land doesn't belong to us,' he said as we watched the sun set over the bay. 'We belong to the land. We're just temporary caretakers, holding it in trust for the ones who come after. Your grandmother understood that. I think you're beginning to understand it too.'
+
+I left with seeds he'd saved—native species I'd never heard of, each with generations of adaptation to this specific coastline. And I left with humility, reminded that the newest discoveries are often the oldest wisdom, waiting to be heard."
+unlock_condition = "friendship_20_elder_tide"
+research_point_bonus = 10
+unlocks = "recipe:traditional_practices"

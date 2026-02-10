@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3 uid="uid://c8n3m7k4p9qxt"]
+
+[ext_resource type="Script" path="res://scripts/npcs/quest_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+quest_id = "first_storm"
+title = "The Tempest"
+description = "A storm is approaching. Prepare your restoration plots and see how they withstand nature's fury."
+objectives = [
+	{"type": "survive_storm", "complete": false}
+]
+reward_gold = 100
+reward_research_points = 10
+reward_journal_entry = "storm_warning"
+is_story_quest = true
+required_year = 1
+auto_triggered = true

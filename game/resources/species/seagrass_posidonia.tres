@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="SpeciesData" load_steps=2 format=3 uid="uid://c2b4n8x9k5mla"]
+
+[ext_resource type="Script" path="res://scripts/species_data.gd" id="1_species_data"]
+
+[resource]
+script = ExtResource("1_species_data")
+species_name = "Neptune Grass"
+scientific_name = "Posidonia oceanica"
+description = "Mediterranean endemic seagrass with exceptional longevity. Forms ancient meadows that can be thousands of years old and store vast amounts of carbon in deep sediments."
+codex_entry = "Posidonia oceanica meadows are among the oldest living organisms on Earth, with some clones over 100,000 years old. This seagrass grows extremely slowly but creates biodiversity hotspots and carbon sinks of exceptional value. Its dense root mats trap sediment up to 2 meters deep."
+zone = "shallows"
+preferred_depth_min = 1.0
+preferred_depth_max = 35.0
+preferred_salinity = 37.0
+salinity_tolerance = 4.0
+preferred_substrate = "sand"
+growth_stages = 5
+days_per_stage = Array[int]([14, 28, 42, 56, 70])
+carbon_per_day = Array[float]([0.0001, 0.0007, 0.0013, 0.0021, 0.0034])
+sediment_carbon_rate = 0.0004
+biodiversity_bonus = 1.5
+coastal_protection = 0.4
+base_color = Color(0.3, 0.55, 0.4)
+can_spread = true
+spread_chance = 0.01

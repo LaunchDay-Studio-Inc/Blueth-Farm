@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="NPCData" load_steps=2 format=3 uid="uid://b5n7m2k8p4qxt"]
+
+[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="1_npc_data"]
+
+[resource]
+script = ExtResource("1_npc_data")
+npc_id = "chef_wave"
+display_name = "Chef Wave"
+role = "Sustainable Seafood Chef"
+description = "An innovative chef passionate about sustainable, locally-sourced seafood. Creates market demand for your harvested items and teaches about the connection between healthy ecosystems and food."
+location_zone = "shallows"
+schedule = {11: "restaurant", 15: "market", 20: "restaurant"}
+portrait_color = Color(0.7, 0.6, 0.4)
+gift_preferences = {"rare_ingredients": 3, "recipes": 2, "fresh_fish": 2, "kelp": 2}
+initial_friendship = 12
+associated_quests = ["sustainable_seafood", "market_demand", "culinary_tour"]
+dialogue_trees = {
+	"intro": {
+		"text": "Hey there! You must be the one restoring the bay. I'm Chef Wave—I run the restaurant on the wharf. Your grandmother used to bring me the most incredible kelp and sea vegetables. Sustainable, local ingredients are my passion. Let's work together!",
+		"choices": []
+	},
+	"daily_cooking": {
+		"text": "The seaweed you harvested last week was PERFECT for my new dish. Customers love knowing their food comes from a restored ecosystem. It's not just sustainable—it's regenerative. That's the future of cuisine!",
+		"choices": []
+	},
+	"friendship_40": {
+		"text": "I've been thinking... what if we created an 'ocean-to-table' menu that changes with the seasons? Everything sourced from your restored habitats, harvested sustainably. We could teach people that healthy oceans mean delicious food.",
+		"choices": []
+	}
+}

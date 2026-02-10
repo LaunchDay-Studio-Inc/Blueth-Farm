@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3 uid="uid://b9k4m7n3p8qwx"]
+
+[ext_resource type="Script" path="res://scripts/npcs/quest_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+quest_id = "first_planting"
+title = "Seeds of Hope"
+description = "Plant your first eelgrass seeds in the shallow water. This is the beginning of your restoration work."
+objectives = [
+	{"type": "plant", "species": "eelgrass", "count": 5, "current": 0, "complete": false}
+]
+reward_gold = 100
+reward_research_points = 15
+reward_journal_entry = "seagrass_secret"
+is_story_quest = true
+required_year = 1
+given_by_npc = "old_salt"
+prerequisite_quests = ["meet_old_salt"]
