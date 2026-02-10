@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7j8k3lm4npqr"]
+[gd_scene load_steps=12 format=3 uid="uid://c7j8k3lm4npqr"]
 
 [ext_resource type="PackedScene" uid="uid://byvmfjh5xnbcq" path="res://scenes/entities/player.tscn" id="1_player"]
 [ext_resource type="Script" path="res://scripts/world/tile_map_manager.gd" id="2_tilemap"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b8k3m7n2p5qvj" path="res://scenes/ui/journal_ui.tscn" id="9_journal_ui"]
 [ext_resource type="PackedScene" uid="uid://cqw8x5y9z4abc" path="res://scenes/ui/codex_ui.tscn" id="10_codex_ui"]
 [ext_resource type="PackedScene" uid="uid://tech_tree_ui_blueth" path="res://scenes/ui/tech_tree_ui.tscn" id="11_tech_tree_ui"]
+[ext_resource type="PackedScene" uid="uid://b2vhq8xp5nk7w" path="res://scenes/ui/settings_menu.tscn" id="12_settings"]
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("7_controller")
@@ -72,6 +73,8 @@ script = ExtResource("8_journal_system")
 [node name="CodexUI" parent="." instance=ExtResource("10_codex_ui")]
 
 [node name="TechTreeUI" parent="." instance=ExtResource("11_tech_tree_ui")]
+
+[node name="SettingsMenu" parent="." instance=ExtResource("12_settings")]
 
 [node name="WeatherSystem" type="Node" parent="."]
 script = preload("res://scripts/world/weather_system.gd")

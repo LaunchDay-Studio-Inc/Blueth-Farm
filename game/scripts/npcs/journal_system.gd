@@ -91,7 +91,11 @@ func check_unlock_condition(condition: String) -> bool:
 			var target_level = int(parts[1])
 			var npc_id = parts[2]
 			# Check with RelationshipSystem
-			# TODO: Implement when RelationshipSystem is integrated
+			var rel_system = get_node_or_null("/root/GameWorld/RelationshipSystem")
+			if not rel_system:
+				rel_system = get_tree().get_first_node_in_group("relationship_system")
+			if rel_system and rel_system.has_method("get_relationship"):
+				return rel_system.get_relationship(npc_id) >= target_level
 			return false
 	
 	if condition.begins_with("wildlife_"):

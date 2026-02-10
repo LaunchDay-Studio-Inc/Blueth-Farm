@@ -46,10 +46,12 @@ func _on_resume_pressed() -> void:
 
 
 func _on_save_pressed() -> void:
-	print("Saving game...")
 	SaveManager.save_game(1)
-	# Show save confirmation
-	print("Game saved!")
+	
+	# Show save confirmation to player
+	var notification_system = get_node_or_null("/root/GameWorld/NotificationSystem")
+	if notification_system and notification_system.has_method("show_notification"):
+		notification_system.show_notification("💾 Game saved successfully!", 4)  # BUILDING type for general confirmations
 
 
 func _on_settings_pressed() -> void:

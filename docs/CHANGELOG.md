@@ -9,6 +9,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.2.1] - 2026-02-10
+
+### Fixed
+
+#### UI Integration
+- **Settings Menu Integration**: Wired up settings button in pause menu to open the settings UI panel instead of showing stub message
+- **Settings Menu Integration**: Wired up settings button in main menu to open the settings UI panel instead of showing stub message  
+- **Save Confirmation UX**: Added player-visible notification when saving game from pause menu (replaces console-only feedback)
+
+#### System Integration
+- **Weather Notifications**: Connected `WeatherSystem.storm_started` and `WeatherSystem.storm_ended` signals to NotificationSystem to show storm alerts to players
+- **Journal System**: Integrated RelationshipSystem into journal unlock conditions - friendship-based entries now properly check NPC relationship levels
+
+### Technical
+- Added SettingsMenu scene instance to game_world.tscn
+- Added SettingsMenu scene instance to main_menu.tscn
+- Implemented storm notification handlers in NotificationSystem
+- Replaced TODO stub in journal_system.gd with actual RelationshipSystem.get_relationship() call
+
+---
+
 ## [0.2.0] - 2026-02-10
 
 ### 🌊 Phase 1: Core Loop & Award-Critical Systems
