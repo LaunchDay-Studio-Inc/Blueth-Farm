@@ -327,20 +327,22 @@ func _update_quickslot_highlight(slot_index: int, slot_ui: PanelContainer) -> vo
 	
 	var slot_style := slot_ui.get_theme_stylebox("panel") as StyleBoxFlat
 	if slot_style:
+		var cloned_style := slot_style.duplicate() as StyleBoxFlat
 		if current_tool == slot_tool and current_tool != -1:
 			# Highlight equipped tool
-			slot_style.border_color = QUICKSLOT_HIGHLIGHT_COLOR
-			slot_style.border_width_left = 4
-			slot_style.border_width_right = 4
-			slot_style.border_width_top = 4
-			slot_style.border_width_bottom = 4
+			cloned_style.border_color = QUICKSLOT_HIGHLIGHT_COLOR
+			cloned_style.border_width_left = 4
+			cloned_style.border_width_right = 4
+			cloned_style.border_width_top = 4
+			cloned_style.border_width_bottom = 4
 		else:
 			# Normal border
-			slot_style.border_color = BORDER_COLOR
-			slot_style.border_width_left = 2
-			slot_style.border_width_right = 2
-			slot_style.border_width_top = 2
-			slot_style.border_width_bottom = 2
+			cloned_style.border_color = BORDER_COLOR
+			cloned_style.border_width_left = 2
+			cloned_style.border_width_right = 2
+			cloned_style.border_width_top = 2
+			cloned_style.border_width_bottom = 2
+		slot_ui.add_theme_stylebox_override("panel", cloned_style)
 
 
 ## Gets the category of an item based on its type
@@ -466,7 +468,9 @@ func _on_slot_mouse_entered(slot_ui: PanelContainer) -> void:
 	# Show hover effect
 	var slot_style := slot_ui.get_theme_stylebox("panel") as StyleBoxFlat
 	if slot_style:
-		slot_style.bg_color = SLOT_HOVER_COLOR
+		var cloned_style := slot_style.duplicate() as StyleBoxFlat
+		cloned_style.bg_color = SLOT_HOVER_COLOR
+		slot_ui.add_theme_stylebox_override("panel", cloned_style)
 	
 	# Show tooltip
 	_show_tooltip(slot_ui)
@@ -477,7 +481,9 @@ func _on_slot_mouse_exited(slot_ui: PanelContainer) -> void:
 	# Remove hover effect
 	var slot_style := slot_ui.get_theme_stylebox("panel") as StyleBoxFlat
 	if slot_style:
-		slot_style.bg_color = SLOT_EMPTY_COLOR
+		var cloned_style := slot_style.duplicate() as StyleBoxFlat
+		cloned_style.bg_color = SLOT_EMPTY_COLOR
+		slot_ui.add_theme_stylebox_override("panel", cloned_style)
 	
 	# Hide tooltip
 	_hide_tooltip()
