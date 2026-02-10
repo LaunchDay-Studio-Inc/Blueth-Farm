@@ -124,6 +124,7 @@ func show_market() -> void:
 		visible = true
 		market_closed_overlay.visible = true
 		_close_other_uis()
+		_refresh_display()  # Refresh even when closed to show current state
 		return
 	
 	visible = true

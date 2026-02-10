@@ -50,10 +50,13 @@ var current_season: String = "spring"
 
 func _ready() -> void:
 	# Connect to TimeManager for hour/season updates
-	if TimeManager:
+	if TimeManager and TimeManager.has_signal("time_tick"):
 		TimeManager.time_tick.connect(_on_time_tick)
+	if TimeManager and TimeManager.has_signal("season_changed"):
 		TimeManager.season_changed.connect(_on_season_changed)
-		# Initialize market state based on current time
+	
+	# Initialize market state based on current time
+	if TimeManager:
 		var current_hour = TimeManager.current_hour
 		is_market_open = current_hour >= MARKET_OPEN_HOUR and current_hour < MARKET_CLOSE_HOUR
 		# Initialize season
