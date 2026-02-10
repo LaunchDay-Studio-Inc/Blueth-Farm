@@ -35,8 +35,8 @@ func _ready() -> void:
 	inventory.queue_free()
 
 
+## Test adding items to inventory
 func test_add_item() -> void:
-	"""Test adding items to inventory"""
 	print("\n[TEST] Add Item")
 	
 	inventory.clear_inventory()
@@ -53,8 +53,8 @@ func test_add_item() -> void:
 	})
 
 
+## Test removing items from inventory
 func test_remove_item() -> void:
-	"""Test removing items from inventory"""
 	print("\n[TEST] Remove Item")
 	
 	inventory.clear_inventory()
@@ -73,8 +73,8 @@ func test_remove_item() -> void:
 	})
 
 
+## Test checking if inventory has items
 func test_has_item() -> void:
-	"""Test checking if inventory has items"""
 	print("\n[TEST] Has Item")
 	
 	inventory.clear_inventory()
@@ -94,8 +94,8 @@ func test_has_item() -> void:
 	})
 
 
+## Test getting item count across multiple slots
 func test_get_item_count() -> void:
-	"""Test getting item count across multiple slots"""
 	print("\n[TEST] Get Item Count")
 	
 	inventory.clear_inventory()
@@ -113,8 +113,8 @@ func test_get_item_count() -> void:
 	})
 
 
+## Test item stacking behavior
 func test_stacking() -> void:
-	"""Test item stacking behavior"""
 	print("\n[TEST] Item Stacking")
 	
 	inventory.clear_inventory()
@@ -137,8 +137,8 @@ func test_stacking() -> void:
 	})
 
 
+## Test inventory full behavior
 func test_inventory_full() -> void:
-	"""Test inventory full behavior"""
 	print("\n[TEST] Inventory Full")
 	
 	inventory.clear_inventory()
@@ -160,8 +160,8 @@ func test_inventory_full() -> void:
 	})
 
 
+## Test getting all items as a dictionary
 func test_get_all_items() -> void:
-	"""Test getting all items as a dictionary"""
 	print("\n[TEST] Get All Items")
 	
 	inventory.clear_inventory()
@@ -186,8 +186,8 @@ func test_get_all_items() -> void:
 	})
 
 
+## Test loading inventory from saved data
 func test_load_inventory() -> void:
-	"""Test loading inventory from saved data"""
 	print("\n[TEST] Load Inventory")
 	
 	inventory.clear_inventory()
@@ -214,8 +214,8 @@ func test_load_inventory() -> void:
 	})
 
 
+## Test clearing inventory
 func test_clear_inventory() -> void:
-	"""Test clearing inventory"""
 	print("\n[TEST] Clear Inventory")
 	
 	inventory.add_item("test_item", 50)
@@ -232,15 +232,15 @@ func test_clear_inventory() -> void:
 	})
 
 
+## Print test results summary
 func print_results() -> void:
-	"""Print test results summary"""
 	print("\n=== Test Results ===")
 	
 	var passed_count = 0
 	var total_count = test_results.size()
 	
 	for result in test_results:
-		var status = "✓ PASS" if result.passed else "✗ FAIL"
+		var status = "[PASS]" if result.passed else "[FAIL]"
 		print("%s - %s" % [status, result.name])
 		if not result.passed:
 			print("  Expected: %s" % result.expected)
@@ -252,6 +252,6 @@ func print_results() -> void:
 	print("\n%d/%d tests passed" % [passed_count, total_count])
 	
 	if passed_count == total_count:
-		print("✓ All tests passed!")
+		print("[SUCCESS] All tests passed!")
 	else:
-		print("✗ Some tests failed")
+		print("[FAILURE] Some tests failed")
