@@ -5,7 +5,6 @@
 
 # Exported builds
 export/
-export_presets.cfg
 
 # Mono-specific ignores
 .mono/
