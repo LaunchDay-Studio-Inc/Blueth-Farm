@@ -13,7 +13,7 @@ enum QuestState {
 
 var quest_definitions: Dictionary = {}
 var active_quests: Dictionary = {}
-var completed_quests: Array = []
+var completed_quests: Dictionary = {}  # Changed to Dictionary to store full quest data
 var failed_quests: Array = []
 
 func register_quest(quest_data: Dictionary) -> void:
@@ -97,7 +97,7 @@ func complete_quest(quest_id: String) -> void:
 	
 	_grant_rewards(quest["rewards"])
 	
-	completed_quests.append(quest_id)
+	completed_quests[quest_id] = quest  # Store the full quest data
 	active_quests.erase(quest_id)
 	
 	quest_completed.emit(quest_id)
@@ -141,14 +141,10 @@ func get_active_quests() -> Array:
 ## Get completed quests with full details
 func get_completed_quests() -> Array:
 	var quest_array: Array = []
-	for quest_id in completed_quests:
-		var quest_data = {
-			"quest_id": quest_id,
-			"title": quest_definitions.get(quest_id, {}).get("title", "Unknown Quest"),
-			"description": quest_definitions.get(quest_id, {}).get("description", ""),
-			"state": QuestState.COMPLETED
-		}
-		quest_array.append(quest_data)
+	for quest_id in completed_quests.keys():
+		var quest = completed_quests[quest_id].duplicate()
+		quest["quest_id"] = quest_id
+		quest_array.append(quest)
 	return quest_array
 
 ## Get a specific quest by ID (active or completed)
@@ -161,14 +157,9 @@ func get_quest(quest_id: String) -> Dictionary:
 	
 	# Check if quest is completed
 	if completed_quests.has(quest_id):
-		return {
-			"quest_id": quest_id,
-			"title": quest_definitions.get(quest_id, {}).get("title", "Unknown Quest"),
-			"description": quest_definitions.get(quest_id, {}).get("description", ""),
-			"rewards": quest_definitions.get(quest_id, {}).get("rewards", {}),
-			"state": QuestState.COMPLETED,
-			"objectives": []
-		}
+		var quest = completed_quests[quest_id].duplicate()
+		quest["quest_id"] = quest_id
+		return quest
 	
 	# Quest not found or not started
 	return {}

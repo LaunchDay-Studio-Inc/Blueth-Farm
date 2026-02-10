@@ -110,11 +110,32 @@ func _input(event: InputEvent) -> void:
 
 
 func toggle_visibility() -> void:
-	visible = not visible
 	if visible:
-		update_research_points_display()
-		update_all_nodes()
-		update_branch_statuses()
+		hide_tech_tree()
+	else:
+		show_tech_tree()
+
+
+func show_tech_tree() -> void:
+	"""Show the tech tree UI"""
+	visible = true
+	
+	# Notify UI State Manager
+	if has_node("/root/UIStateManager"):
+		get_node("/root/UIStateManager").open_panel("tech_tree")
+	
+	update_research_points_display()
+	update_all_nodes()
+	update_branch_statuses()
+
+
+func hide_tech_tree() -> void:
+	"""Hide the tech tree UI"""
+	visible = false
+	
+	# Notify UI State Manager
+	if has_node("/root/UIStateManager"):
+		get_node("/root/UIStateManager").close_panel()
 
 
 func setup_branch_nodes() -> void:
@@ -439,7 +460,7 @@ func _on_popup_close_pressed() -> void:
 
 func _on_close_pressed() -> void:
 	"""Close the tech tree UI"""
-	visible = false
+	hide_tech_tree()
 
 
 func _on_research_points_changed(new_total: int, delta: int) -> void:
