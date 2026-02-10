@@ -16,6 +16,7 @@
 8. [VFX & Particle Systems](#vfx--particle-systems)
 9. [Lighting Design](#lighting-design)
 10. [Seasonal Visual Changes](#seasonal-visual-changes)
+11. [Cross-Discipline Cohesion](#cross-discipline-cohesion)
 
 ---
 
@@ -45,6 +46,13 @@ The visual style of Blueth Farm sits at the intersection of:
 3. **Wildlife Character:** Animals have personality and presence
 4. **Water Excellence:** Water is a star character — must be beautiful and dynamic
 5. **UI Integration:** Interface elements feel organic, not overlaid
+
+### Key Visual Goals
+- **Hopeful Restoration:** Visuals move clearly from degraded to thriving, reinforcing player impact.
+- **Readable at a Glance:** Silhouettes, UI hierarchy, and tile readability stay clear even when dense with detail.
+- **Scientific Warmth:** Real species and habitats shown with approachable, hand-crafted charm.
+- **Water as Hero:** Every scene keeps water quality, reflections, and motion as a primary focal point.
+- **Cozy Utility:** Interfaces and tools look inviting and practical, never cold or clinical.
 
 ---
 
@@ -136,6 +144,13 @@ The color palette shifts from **degraded grays and browns** in the opening to **
 - Bioluminescent accents (cyan, green)
 - Mysterious, spacious feeling
 
+### Biome Palette Cheat Sheet
+- **Shallows:** `#6CC4A1` turquoise, `#A8D8C9` seafoam, `#C4A57B` wet sand, `#FFD700` sunrise gold, `#2F5233` kelp green accents
+- **Mudflats:** `#8B6F47` mudflat brown, `#A68A5C` sediment, `#8FBC8F` salt marsh green, `#FFB84D` warm amber light, `#546E7A` storm gray for overcast
+- **Estuary:** `#4A7C59` mangrove canopy, `#6B9D6E` seagrass, `#37474F` thunder cloud shadows, `#A8CDAF` coastal sage highlights, `#6CC4A1` water glints
+- **Reef Edge:** `#2E5E8C` ocean blue, `#4A90B8` cerulean, `#2F5233` kelp green, `#6CC4A1` turquoise rim light, `#E0F7FA` lightning flash for sparkle
+- **Deep:** `#1A3A52` deep navy, `#2E5E8C` ocean blue, `#37474F` thunder cloud, `#A8D8C9` subtle bioluminescent glow, `#E0F7FA` accents
+
 ---
 
 ## Reference & Inspiration
@@ -200,6 +215,13 @@ The color palette shifts from **degraded grays and browns** in the opening to **
 - Winslow Homer seascapes (dramatic ocean moments)
 - Impressionist coastal paintings (Monet, Renoir — light and atmosphere)
 - Watercolor botanical illustrations (soft, organic feel)
+
+### Moodboard Snapshot
+- **Water & Atmosphere:** Spiritfarer water rendering, Hokusai wave forms, and National Geographic coastal photography for light, spray, and clarity cues.
+- **Habitats by Biome:** Shallow seagrass meadows (Alba: A Wildlife Adventure vibe), muddy marsh channels with cordgrass (Winslow Homer tonal range), and kelp forests with Eastward-style layering.
+- **UI & Tools:** Field journal sketch motifs, weathered wood frames, watercolor infill; compass roses and rope knots as recurring anchors.
+- **Characters & Wildlife:** Warm, approachable faces (Spiritfarer), practical coastal attire, species drawn like field-guide plates with gentle personality.
+- **Palette Progression:** Early-game desaturation from storm grays/browns → late-game saturation from turquoise/kelp greens and golden hour light.
 
 ---
 
@@ -1010,6 +1032,13 @@ Each season transforms the coast, providing variety and reinforcing the passage 
 **UI:**
 - `ui_{element}_{state}.png`
 - Example: `ui_button_hover.png`
+
+## Cross-Discipline Cohesion
+- **Gameplay:** Art communicates mechanics (tide height, growth stages, carbon progress) with readable silhouettes, tile clarity, and state changes.
+- **UX/UI:** UI motifs echo environmental materials (rope, wood, parchment) while maintaining accessibility contrast and clear hierarchy.
+- **Narrative:** Character and biome visuals reflect story beats (from degraded to restored), and NPC attire matches their role and environment.
+- **Audio & VFX:** Water, wind, and wildlife VFX pair with corresponding audio layers; particle intensity respects performance budgets and clarity.
+- **Technical:** Palette and asset specs align with texture budgets, LOD, and batching guidelines to keep performance targets achievable.
 
 ---
 
