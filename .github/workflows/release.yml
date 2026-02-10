@@ -1,0 +1,259 @@
+name: Release - Multi-Platform Build
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  GODOT_VERSION: "4.3"
+  EXPORT_NAME: blueth-farm
+
+jobs:
+  export-linux:
+    name: Export Linux
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Godot templates
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+
+      - name: Import project
+        working-directory: game
+        run: |
+          godot --headless --editor --quit || echo "Import complete"
+
+      - name: Export Linux build
+        working-directory: game
+        run: |
+          mkdir -p export/linux
+          godot --headless --export-release "Linux/X11" export/linux/${EXPORT_NAME}.x86_64
+
+      - name: Create Linux archive
+        working-directory: game/export/linux
+        run: |
+          chmod +x ${EXPORT_NAME}.x86_64
+          tar -czvf ${EXPORT_NAME}-linux-x86_64.tar.gz ${EXPORT_NAME}.x86_64 ${EXPORT_NAME}.pck
+
+      - name: Upload Linux artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-x86_64
+          path: game/export/linux/*.tar.gz
+
+  export-windows:
+    name: Export Windows
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Godot templates
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+
+      - name: Import project
+        working-directory: game
+        run: |
+          godot --headless --editor --quit || echo "Import complete"
+
+      - name: Export Windows build
+        working-directory: game
+        run: |
+          mkdir -p export/windows
+          godot --headless --export-release "Windows Desktop" export/windows/${EXPORT_NAME}.exe
+
+      - name: Create Windows archive
+        working-directory: game/export/windows
+        run: |
+          apt-get update && apt-get install -y zip
+          zip -r ${EXPORT_NAME}-windows-x86_64.zip ${EXPORT_NAME}.exe ${EXPORT_NAME}.pck
+
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-x86_64
+          path: game/export/windows/*.zip
+
+  export-macos:
+    name: Export macOS
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Godot templates
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+
+      - name: Import project
+        working-directory: game
+        run: |
+          godot --headless --editor --quit || echo "Import complete"
+
+      - name: Export macOS build
+        working-directory: game
+        run: |
+          mkdir -p export/macos
+          godot --headless --export-release "macOS" export/macos/${EXPORT_NAME}.zip
+
+      - name: Upload macOS artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-universal
+          path: game/export/macos/*.zip
+
+  export-web:
+    name: Export Web (HTML5)
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Godot templates
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+
+      - name: Import project
+        working-directory: game
+        run: |
+          godot --headless --editor --quit || echo "Import complete"
+
+      - name: Export Web build
+        working-directory: game
+        run: |
+          mkdir -p export/web
+          godot --headless --export-release "Web" export/web/index.html
+
+      - name: Create Web archive
+        working-directory: game/export/web
+        run: |
+          apt-get update && apt-get install -y zip
+          zip -r ${EXPORT_NAME}-web.zip .
+
+      - name: Upload Web artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-html5
+          path: game/export/web/*.zip
+
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: [export-linux, export-windows, export-macos, export-web]
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: List artifacts
+        run: |
+          echo "Downloaded artifacts:"
+          ls -R artifacts/
+
+      - name: Extract version from tag
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "Version: ${VERSION}"
+
+      - name: Generate release notes
+        id: release_notes
+        run: |
+          VERSION=${{ steps.version.outputs.version }}
+          cat > release_notes.md << EOF
+          # Blueth Farm ${VERSION}
+          
+          ## 🌊 Release Notes
+          
+          This release includes builds for Linux, Windows, macOS, and Web platforms.
+          
+          ### Installation
+          
+          **Linux:**
+          1. Download \`blueth-farm-linux-x86_64.tar.gz\`
+          2. Extract: \`tar -xzvf blueth-farm-linux-x86_64.tar.gz\`
+          3. Run: \`./blueth-farm.x86_64\`
+          
+          **Windows:**
+          1. Download \`blueth-farm-windows-x86_64.zip\`
+          2. Extract the ZIP file
+          3. Run \`blueth-farm.exe\`
+          
+          **macOS:**
+          1. Download \`blueth-farm-macos-universal.zip\`
+          2. Extract the ZIP file
+          3. Run the app (you may need to allow it in Security & Privacy settings)
+          
+          **Web:**
+          1. Download \`blueth-farm-web.zip\`
+          2. Extract and host on a web server, or
+          3. Play online (if hosted)
+          
+          ### What's Included
+          
+          - 🌱 Coastal ecosystem restoration gameplay
+          - 📊 Carbon tracking and climate impact visualization
+          - 🦀 Dynamic ecosystem and biodiversity management
+          - 🏘️ Community relationships and town development
+          - 🔬 Research and technology progression
+          
+          ### Requirements
+          
+          - **Linux:** Ubuntu 20.04+ or equivalent (x86_64)
+          - **Windows:** Windows 10+ (x86_64)
+          - **macOS:** macOS 10.13+ (Universal binary - Intel & Apple Silicon)
+          - **Web:** Modern browser with WebGL 2.0 support
+          
+          ---
+          
+          💙 A portion of sales funds real coastal restoration projects.
+          
+          **Report issues:** https://github.com/LaunchDay-Studio-Inc/Blueth-Farm/issues
+          EOF
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Blueth Farm ${{ steps.version.outputs.version }}
+          body_path: release_notes.md
+          files: |
+            artifacts/linux-x86_64/*.tar.gz
+            artifacts/windows-x86_64/*.zip
+            artifacts/macos-universal/*.zip
+            artifacts/web-html5/*.zip
+          draft: false
+          prerelease: ${{ contains(steps.version.outputs.version, 'alpha') || contains(steps.version.outputs.version, 'beta') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release Summary
+        run: |
+          echo "🎉 Release ${{ steps.version.outputs.version }} created successfully!"
+          echo "📦 Artifacts:"
+          echo "  - Linux (x86_64)"
+          echo "  - Windows (x86_64)"
+          echo "  - macOS (Universal)"
+          echo "  - Web (HTML5)"

@@ -60,17 +60,38 @@ Thank you for your interest in contributing to Blueth Farm! We're building a gam
 
 ### Setting Up Development Environment
 
-*(This section will be expanded when prototype development begins)*
-
 **For Code Contributors:**
-```bash
-# Clone the repository
-git clone https://github.com/LaunchDay-Studio-Inc/Blueth-Farm.git
-cd Blueth-Farm
 
-# Development setup instructions coming soon
-# (Godot installation, project setup, etc.)
-```
+1. **Install Godot 4.3+**
+   - Download from [godotengine.org](https://godotengine.org/download)
+   - Or use package manager: `sudo snap install godot --classic` (Linux)
+
+2. **Clone the repository**
+   ```bash
+   git clone https://github.com/LaunchDay-Studio-Inc/Blueth-Farm.git
+   cd Blueth-Farm
+   ```
+
+3. **Open the project**
+   - Launch Godot
+   - Click "Import"
+   - Navigate to `Blueth-Farm/game/project.godot`
+   - Click "Import & Edit"
+
+4. **Install development tools (optional)**
+   ```bash
+   # For linting and formatting
+   pip install gdtoolkit
+   
+   # Verify installation
+   gdlint --version
+   gdformat --version
+   ```
+
+5. **Enable GUT testing addon**
+   - In Godot, go to Project → Project Settings → Plugins
+   - Enable the "Gut" plugin
+   - Tests are in `game/tests/` directory
 
 ## 📋 Contribution Workflow
 
@@ -93,6 +114,7 @@ git checkout -b fix/bug-description
 - Follow existing code style and conventions
 - Test your changes thoroughly
 - Update documentation if needed
+- Ensure CI checks pass before requesting review
 
 ### 3. Commit Your Changes
 
@@ -146,6 +168,55 @@ Then create a Pull Request on GitHub:
 4. Fill out the PR template
 5. Submit for review
 
+## 🔄 CI/CD Pipeline
+
+Every pull request and commit to `main`/`develop` automatically runs through our CI/CD pipeline.
+
+### Automated Checks
+
+1. **GDScript Linting** - Code quality and style validation
+2. **Project Validation** - Godot project structure verification  
+3. **Unit Tests** - Automated testing with GUT framework
+4. **Build Test** - Verify export pipeline works
+
+### Running Checks Locally
+
+Before pushing, you can run these checks locally:
+
+**Linting:**
+```bash
+cd game
+gdlint scripts/**/*.gd
+gdformat --check scripts/**/*.gd
+```
+
+**Formatting (auto-fix):**
+```bash
+cd game
+gdformat scripts/**/*.gd
+```
+
+**Unit Tests:**
+```bash
+cd game
+godot --headless --script addons/gut/gut_cmdln.gd -gconfig=.gutconfig.json -gexit
+```
+
+**Test Export:**
+```bash
+cd game
+godot --headless --export-release "Linux/X11" export/linux/test-build.x86_64
+```
+
+### CI Status
+
+- ✅ **All checks must pass** before merging to `main`
+- ⚠️ **Linting warnings** are acceptable initially but should be addressed
+- ❌ **Test failures** must be fixed before merge
+- 🔨 **Build failures** indicate export configuration issues
+
+View pipeline status at: https://github.com/LaunchDay-Studio-Inc/Blueth-Farm/actions
+
 ## ✅ Pull Request Guidelines
 
 ### PR Title Format
@@ -181,6 +252,8 @@ Add screenshots for visual changes
 - [ ] Documentation updated
 - [ ] No new warnings generated
 - [ ] Scientific accuracy verified (if applicable)
+- [ ] CI pipeline passes (linting, tests, build)
+- [ ] Unit tests added/updated for new features
 ```
 
 ## 🎨 Code Style Guidelines
