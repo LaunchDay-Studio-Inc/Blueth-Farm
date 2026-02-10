@@ -155,6 +155,17 @@ This document tracks the implementation status of the Blueth Farm vertical slice
   - Return to Main Menu
   - Quit Game
   - Process mode handling
+- [x] **Carbon Dashboard** - Comprehensive carbon tracking UI ⭐
+  - Toggle with Tab key (input action: toggle_carbon_dashboard)
+  - Total CO₂ sequestered with animated counter
+  - Daily sequestration rate with trend indicators
+  - Biomass vs. Sediment breakdown visualization
+  - 28-day historical graph with Line2D
+  - Real-world equivalencies display
+  - Carbon credits trading interface
+  - Ecosystem health monitoring
+  - Live updates from CarbonManager
+  - Mutual UI exclusion with other panels
 
 ### Save/Load System
 - [x] **JSON Serialization** - Complete save system
@@ -319,7 +330,17 @@ This document tracks the implementation status of the Blueth Farm vertical slice
 - [ ] Tech tree UI
 
 ### Additional UI
-- [ ] Carbon Dashboard with graphs
+- [x] **Carbon Dashboard** - Complete carbon sequestration dashboard ⭐
+  - Live updates via CarbonManager.carbon_updated signal
+  - Animated counter with Tween transitions
+  - Daily rate with trend arrows (↑/↓/→)
+  - Biomass vs. Sediment breakdown with progress bars
+  - Historical graph (28-day carbon sequestration)
+  - Real-world equivalencies (cars, flights, trees)
+  - Carbon credits section with sell functionality
+  - Ecosystem health bar with dynamic coloring
+  - Toggle with Tab key
+  - Art Direction color palette integration
 - [ ] Inventory UI with drag-drop
 - [ ] Tool Radial menu
 - [ ] Codex UI for species discovery
@@ -380,7 +401,7 @@ The game is currently in a **playable prototype state** with the following funct
 2. **Implement basic NPC system** (at least Old Salt for tutorial)
 3. **Create Year 1 quest chain** (first planting, carbon milestone)
 4. **Add market system** (buy/sell seeds and goods)
-5. **Implement carbon dashboard UI** (graphs and detailed stats)
+5. ~~**Implement carbon dashboard UI**~~ ✅ **COMPLETE** (graphs and detailed stats)
 6. **Create inventory UI** (visual grid, drag-drop)
 7. **Add visual effects** (planting animation, growth transitions)
 8. **Implement tech tree basics** (first research branch)
@@ -400,14 +421,15 @@ game/
 │   └── ui/
 │       ├── main_menu.tscn    [✓] Title screen
 │       ├── hud.tscn          [✓] In-game HUD
-│       └── pause_menu.tscn   [✓] Pause overlay
+│       ├── pause_menu.tscn   [✓] Pause overlay
+│       └── carbon_dashboard.tscn [✓] Carbon Dashboard UI
 ├── scripts/
 │   ├── autoloads/            [✓] All 6 managers complete
 │   ├── player/               [✓] All 3 player scripts
 │   ├── world/                [✓] 4 world scripts (tilemap, renderer, weather, controller)
 │   ├── farming/              [✓] All 3 farming systems
 │   ├── npcs/                 [✓] 3 core NPC systems
-│   ├── ui/                   [✓] 3 UI controllers
+│   ├── ui/                   [✓] 4 UI controllers (HUD, pause, main menu, carbon dashboard)
 │   └── species_data.gd       [✓] Species resource class
 ├── resources/
 │   └── species/              [✓] 4 species defined
