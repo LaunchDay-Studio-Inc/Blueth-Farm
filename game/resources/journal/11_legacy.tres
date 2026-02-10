@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=2 format=3 uid="uid://d7m4k8n9p3qwx"]
+
+[ext_resource type="Script" path="res://scripts/npcs/journal_entry_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = "legacy"
+title = "Legacy"
+content = "December 20th, 2021
+
+Year 30 of restoration.
+
+Marina Chen—my former graduate student, now Dr. Chen—defended her Ph.D. today. Her dissertation was on long-term carbon dynamics in restored coastal ecosystems, using my plots as her primary study site. Thirty years of data, meticulously collected, now forming the foundation of her career.
+
+I sat in the back of the auditorium during her defense, trying not to cry (failing, obviously). She showed time-series maps of the bay: 1991, bare and degraded. 2001, small patches of recovery. 2011, expanding meadows. 2021, a transformed coastline. The data tells a story of patient, persistent regeneration.
+
+But what struck me most was her acknowledgments section. She thanked me, of course. But she also thanked Old Jack, who taught her to read the tides. Elder Joseph, who shared traditional planting calendars. The fishing cooperative, who provided boat access. The school teachers who brought children to learn. The mayor's office, eventually, for the protected area designation.
+
+This work was never just mine. It's been a community effort from the beginning, even when I was too stubborn to fully acknowledge it.
+
+After the defense, Marina asked me what I wanted my legacy to be. I thought about it for a long time.
+
+Not the papers, though I'm proud of them. Not the carbon credits, though they've proven the economic model. Not even the restored ecosystems, magnificent as they are.
+
+My legacy is in the people. The students who went on to restoration work worldwide. The fishermen's children who grew up seeing abundance return. The community that learned to value coastal ecosystems not despite their economic needs, but because of them.
+
+Marina is continuing this work. So are a dozen other former students. So are community members who've learned to plant, monitor, and protect. The knowledge isn't locked away in my head anymore—it's distributed, growing, evolving.
+
+I'm 68 years old now. My knees hurt when I wade in the cold water. My hands shake when I write. I won't be doing this work forever.
+
+But the work will continue. That's what legacy means—planting seeds you won't see mature, teaching students who will surpass you, building foundations for others to build upon.
+
+The bay doesn't need me anymore. It needs the next generation. And they're ready."
+unlock_condition = "year_3"
+research_point_bonus = 10
+unlocks = "hint:knowledge_transfer"

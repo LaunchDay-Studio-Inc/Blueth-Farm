@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=2 format=3 uid="uid://c9p3k8m2n7qvt"]
+
+[ext_resource type="Script" path="res://scripts/npcs/journal_entry_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = "old_friends"
+title = "Old Friends"
+content = "September 22nd, 1999
+
+Old Jack brought his grandson to see the meadow today. The boy's maybe ten years old, all wide eyes and questions. Jack hasn't said much about my work over the years—approval isn't his style—but bringing the boy here felt like something more than words.
+
+We stood at the edge of my restoration plot, now three years established. What was once bare sand is now a waving meadow of eelgrass, each blade dancing in the current like underwater wheat. Jack was quiet for a long time, just watching.
+
+Then he started talking, and I listened like he'd listened to me all those years ago.
+
+He told stories I'd never heard. About how, when he was that boy's age, this whole bay was green with eelgrass. How you could see the schools of young fish so thick they darkened the water. How the water was so clear you could count the stones on the bottom twenty feet down. How his father would bring home bushel baskets of scallops from a single afternoon's work.
+
+'That was before the dredging,' he said. 'Before the runoff from those new developments inland. Before the water turned murky and the grass died back. I watched it happen over twenty years, Doc. Watched it all fade away like a slow sunset.'
+
+His voice got rough. 'Been fishing these waters fifty years. Seen it empty out season by season. Started thinking my grandson wouldn't have nothing to inherit but memories of abundance.'
+
+He put his weathered hand on the boy's shoulder. 'But look here, boy. Look what the Doc's done. This is what it used to look like. This is what it can be again.'
+
+The boy asked if the fish would come back. Jack looked at me, and I saw something I'd never seen in his skeptical old eyes: hope.
+
+'Yes,' I told him. 'If we keep planting, the fish will come back. The scallops. The crabs. All of it. This is how ecosystems heal—one small patch at a time, until the patches connect and become whole again.'
+
+Sometimes the best validation doesn't come from peer review. It comes from an old fisherman bringing his grandson to see a future worth fighting for."
+unlock_condition = "friendship_20_old_salt"
+research_point_bonus = 5
+unlocks = ""

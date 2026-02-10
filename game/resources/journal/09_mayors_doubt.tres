@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=2 format=3 uid="uid://b9n3k8m7p2qvw"]
+
+[ext_resource type="Script" path="res://scripts/npcs/journal_entry_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = "mayors_doubt"
+title = "A Mayor's Doubt"
+content = "February 28th, 2015
+
+The town hall meeting tonight was brutal.
+
+Mayor Hayes called it to discuss the proposed Marine Protected Area designation for our bay. I presented my data: restored ecosystems, returning fish populations, carbon sequestration rates, storm protection benefits. Twenty years of work distilled into charts and graphs.
+
+The fishing fleet representatives were there in force. I don't blame them—they're scared. Their industry has been declining for decades, and they see new regulations as another nail in the coffin. They don't see that the regulations might be what saves them.
+
+The mayor asked pointed questions. 'Dr. Voss, we appreciate your passion, but this town runs on fishing and tourism. You're asking us to restrict access to traditional fishing grounds. You're asking us to turn down a marina development that would bring in tax revenue. For what? Seaweed?'
+
+I kept my composure, barely. I explained, again, that the restored ecosystems ARE the future of fishing and tourism. That protecting the nursery habitats now means healthy fish populations later. That the marina would destroy more value than it creates.
+
+He wasn't convinced. 'The numbers you're showing—carbon credits, ecosystem services—those are theoretical. The marina is real money, real jobs. I have a responsibility to this community's economic future.'
+
+After the meeting, I sat in my truck in the parking lot and cried. Twenty years of science, dismissed as 'theoretical.' Twenty years of relationship-building, undermined by short-term economic thinking.
+
+But then something happened. Old Jack knocked on my window. Behind him stood a dozen other fishermen, young and old. 'Don't mind the showboating in there,' he said. 'Most of us know you're right. We've seen the fish come back around your plots. We've seen how the storm damage was less where you've been planting. Give us time to bring the others around.'
+
+Tomorrow I'll write another letter to the mayor. I'll present more data. I'll keep trying. Because the alternative—giving up—means watching this bay die slowly while everyone argues about quarterly profits.
+
+Sometimes the hardest part of restoration isn't the science. It's convincing people that the future is worth the investment."
+unlock_condition = "quest_mayor_meeting"
+research_point_bonus = 5
+unlocks = ""

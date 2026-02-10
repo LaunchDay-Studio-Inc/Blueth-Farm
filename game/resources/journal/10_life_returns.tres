@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=2 format=3 uid="uid://c5k9m2n7p4qxt"]
+
+[ext_resource type="Script" path="res://scripts/npcs/journal_entry_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = "life_returns"
+title = "Life Returns"
+content = "June 14th, 2018
+
+They came back.
+
+I was out checking the seagrass beds this morning when I saw them: a pod of bottlenose dolphins, five or six individuals, weaving through the restored meadow. I stood waist-deep in the water, absolutely tranquil, watching them hunt.
+
+You could see their strategy—using the seagrass as a tool, chasing fish into the dense patches where escape is harder. Ancient hunting technique, passed down through dolphin generations. I've read about it in papers, but seeing it in person? Breathtaking.
+
+I remembered the last time I saw dolphins in this bay. It was 1989, before the seagrass died back. I was a newly-minted Ph.D., full of theories and ambition. A pod swam by while I was collecting samples, and I remember thinking: this is what healthy looks like.
+
+Then they disappeared. Twenty-nine years. Nearly three decades without dolphins in this bay.
+
+But they remember. Somehow, across generations, dolphins pass down knowledge of good feeding grounds. The seagrass returned, the fish returned, and now—finally—the dolphins have returned.
+
+I called the university, barely coherent with excitement. They're sending a research team next week to document it. This is scientific proof that complete ecosystem restoration is possible. Not just the plants, not just the fish, but the full trophic web, all the way up to the charismatic megafauna that capture human imagination.
+
+But the science, as important as it is, isn't why I'm crying while I write this.
+
+They came back because the ecosystem is healthy again. Because what we've built here—through decades of patient work—is real, functional, alive. Because loss isn't permanent if we're willing to do the work of restoration.
+
+I've spent my whole career fighting entropy, fighting the degradation that seems so inevitable. Today, watching those dolphins, I remembered why. Life wants to return. Ecosystems want to heal. We just have to give them the chance.
+
+The dolphins are back. That's not data. That's not a grant proposal. That's hope, swimming through the water in sleek gray forms.
+
+Everything else flows from that."
+unlock_condition = "wildlife_dolphin"
+research_point_bonus = 10
+unlocks = "celebration:dolphin_return"

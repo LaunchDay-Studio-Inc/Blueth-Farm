@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=2 format=3 uid="uid://b7k4m9p2n8qxt"]
+
+[ext_resource type="Script" path="res://scripts/npcs/journal_entry_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = "tides_of_change"
+title = "Tides of Change"
+content = "June 3rd, 1997
+
+I lost my entire spring planting last night.
+
+I woke to find the tide had come up higher than I'd calculated—spring tide during a new moon, amplified by storm surge. The tender eelgrass shoots I'd planted so carefully were ripped out, scattered across the beach like broken promises.
+
+I sat on the dock and cried. A full year of work. Gone in one night.
+
+Old Jack found me there at dawn. That grizzled fisherman doesn't say much, but he sat down beside me and watched the water. Finally, he spoke: 'Doc, you're fighting the tide. That's a battle you'll always lose. Work WITH the tide, and it becomes your ally.'
+
+He taught me something my Ph.D. never covered. The traditional knowledge passed down through generations of people who lived by the ocean's rhythm. He showed me the tidal calendar his grandfather kept, the lunar phases marked for planting and harvesting. He explained how you read the signs—the behavior of the gulls, the height of the foam line, the color of the water at different depths.
+
+'Seagrass knows when to grow,' he said. 'Plant during neap tides when the water's gentle. Avoid the spring tides when the moon pulls hardest. The old ways have reasons.'
+
+I went back to my books with new humility. Sure enough, the scientific literature supported everything he'd told me, just in different words. Tidal stress. Hydrodynamic forces. Lunar periodicity. We'd quantified and renamed the wisdom that coastal communities had known for millennia.
+
+I replanted my plot last week, this time at the right phase of the moon, at the right stage of the tide. The shoots are holding strong.
+
+Science gives us understanding, but wisdom—real wisdom—comes from listening to those who've lived with the ocean for generations. I won't forget that lesson again."
+unlock_condition = "tide_survived"
+research_point_bonus = 5
+unlocks = "hint:tidal_planting"

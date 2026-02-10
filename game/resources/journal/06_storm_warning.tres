@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=2 format=3 uid="uid://b5m9k3n8p2qvw"]
+
+[ext_resource type="Script" path="res://scripts/npcs/journal_entry_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = "storm_warning"
+title = "Storm Warning"
+content = "October 12th, 2008
+
+Hurricane Patricia is coming. Category 3, they say. Landfall expected in thirty-six hours.
+
+The whole town is boarding up, evacuating inland. The mayor's office called to make sure I'd gotten the warning. Of course I have. You can feel it in the air, taste it in the salt wind. Every bird has fled. The ocean has that peculiar flatness that comes before violence.
+
+I'm staying. Not out of stubbornness—well, not entirely—but because I need to witness this. I need to document what happens to my restoration plots during a major storm event. The scientists at the university think I'm crazy, but they don't understand. This is the real test.
+
+I keep thinking about the storm of 2005. Hurricane Rachel. Before I'd planted anything, before the seagrass had returned. That storm ate thirty feet of shoreline in one night. The old dock was destroyed. Two houses were condemned due to undermining. The town spent three million dollars on emergency repairs.
+
+But I've done the reading. Intact coastal ecosystems can reduce wave energy by 50-90%. Seagrass meadows dissipate wave action. Mangrove roots create living breakwaters. Salt marshes absorb surge like a sponge. The science is sound.
+
+Tomorrow I'll know if that science holds up against nature's fury.
+
+I've secured everything I can. My data is backed up off-site. I've marked my restoration plots with buoys that should survive. I've taken 'before' photographs of every planted area. Whatever happens, we'll learn from it.
+
+If you're reading this, then I survived to write again. But tonight, standing on this dock with the storm coming, I feel very small against the power of the ocean. I'm reminded that we don't control nature. We work with it or we get swept aside.
+
+The barometer is falling. The wind is rising. Tomorrow, we'll see what twelve years of restoration can withstand."
+unlock_condition = "storm_survived"
+research_point_bonus = 5
+unlocks = ""

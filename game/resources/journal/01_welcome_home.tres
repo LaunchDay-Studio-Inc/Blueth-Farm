@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=2 format=3 uid="uid://c2n8m4k7p9qwx"]
+
+[ext_resource type="Script" path="res://scripts/npcs/journal_entry_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = "welcome_home"
+title = "Welcome Home"
+content = "My dearest grandchild,
+
+If you're reading this, it means I'm gone, and you've come to this special place I've called home for thirty years. Look around you—this weathered dock, these tidal flats, this bay that changes with each breath of the ocean. It may not look like much now, but I see what it could become. What it once was.
+
+When I first arrived here as a young marine biologist, this coastline was dying. Seagrass meadows reduced to bare sand. Salt marshes eroding into the sea. The old fishermen told stories of abundance—of waters so thick with fish you could walk on their backs, of oyster reefs that protected the shore from every storm. I listened to those stories and thought: what if we could bring it back?
+
+They said I was crazy. A woman scientist with big dreams and no funding. But I had something more powerful than money—I had curiosity, determination, and the willingness to get my hands dirty. Literally. I spent decades on my knees in the mud, planting, measuring, failing, learning.
+
+This property, this work, this dream—it's all yours now. The data is in the filing cabinets. The seeds are in the cold storage. The knowledge is in these journals. But most importantly, the possibility is still here, waiting in the soil and the salt water.
+
+You don't have to be a scientist to restore an ecosystem. You just have to care enough to try.
+
+The ocean is waiting. The tides are patient. And I believe in you.
+
+With all my love and hope,
+Grandmother Elara"
+unlock_condition = "game_start"
+research_point_bonus = 10
+unlocks = "hint:journal_locations"

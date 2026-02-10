@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=2 format=3 uid="uid://b3n8k7m2p9qvw"]
+
+[ext_resource type="Script" path="res://scripts/npcs/journal_entry_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = "dear_grandchild"
+title = "Dear Grandchild"
+content = "My dearest grandchild,
+
+If you've found this final entry, then you've done what I hoped you would. You've continued the work. You've learned to read the tides, to plant with the seasons, to see the invisible connections that make ecosystems whole. You've made mistakes and learned from them. You've persisted when others doubted.
+
+You've restored more than an ecosystem. You've restored hope.
+
+I'm writing this in what will likely be my last spring. The cancer has spread, and the doctors have run out of options. I'm not afraid—I've had a full life, and I've seen more miracles than most people dream of. But I am grateful for the time I've had, and I'm grateful that this work will continue through you.
+
+There's something I need to tell you about love.
+
+I never married. Never had children of my own. Some people thought that was sad—that I gave up 'normal' life for my work. But they didn't understand. My work WAS my love story.
+
+I fell in love with this bay the first time I saw it. I loved every blade of seagrass I planted, every tide I measured, every storm I weathered. I loved the dolphins when they returned. I loved the students I taught and the community I became part of. I loved the slow, patient work of healing a broken ecosystem, knowing I'd never see it fully mature.
+
+That's what I want you to understand: loving the world doesn't mean being naive about its problems. It means looking directly at the damage we've done—the climate changed, the ecosystems destroyed, the species driven extinct—and choosing to fight for healing anyway. Not because success is guaranteed, but because the work itself is an act of love.
+
+You're doing that work now. Every seed you plant is an act of love. Every difficult conversation with a skeptic. Every data point recorded. Every small victory celebrated. Every setback overcome. It's all love, made manifest in mud and salt water and stubborn hope.
+
+The world needs more of that love. Desperately. The climate crisis can feel overwhelming—and it IS overwhelming if you try to solve it alone. But you're not alone. You're part of a global community of restorers, scientists, activists, and dreamers who refuse to give up on this beautiful, broken world.
+
+I won't be here to see the bay in another thirty years. But I can imagine it. Thriving seagrass meadows. Healthy fish populations. Dolphins and turtles and all the life that abundance supports. Carbon sequestered. Storms buffered. Communities sustained.
+
+You'll see that future. You'll build it. And someday, when you're old like me, you'll pass this work to someone else, and the love will continue.
+
+Thank you for coming home. Thank you for caring. Thank you for being exactly who you are.
+
+I'm so proud of you. And I love you more than all the carbon in all the oceans.
+
+Never stop planting seeds, my dear one. The tide is rising, and we rise with it.
+
+With all my love, forever and always,
+Grandmother Elara
+
+P.S. - There's a bottle of champagne in the back of the cold storage unit. It's been there for twenty years, waiting for the day when the bay is fully restored. When you think that day has come—when the dolphins are permanent residents and the meadows stretch as far as you can see—pop that cork. Drink to the ocean, to the future, and to the stubborn fools who believe broken things can be healed.
+
+You've earned it."
+unlock_condition = "year_5"
+research_point_bonus = 20
+unlocks = "achievement:grandmothers_legacy"
