@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="SpeciesData" load_steps=2 format=3 uid="uid://c9m5k2p8h4qwt"]
+
+[ext_resource type="Script" path="res://scripts/species_data.gd" id="1_species_data"]
+
+[resource]
+script = ExtResource("1_species_data")
+species_name = "Black Mangrove"
+scientific_name = "Avicennia germinans"
+description = "Salt-excreting mangrove with specialized breathing roots. Occupies mid to high intertidal zones in tropical estuaries."
+codex_entry = "Black mangroves have evolved remarkable adaptations to saltwater environments. They excrete excess salt through specialized glands on their leaves, leaving visible salt crystals. Their pneumatophores—vertical breathing roots—project above the sediment to allow oxygen exchange in waterlogged soil. Fast-growing and hardy, they're often the first mangrove colonizer of new areas."
+zone = "estuary"
+preferred_depth_min = 0.0
+preferred_depth_max = 1.5
+preferred_salinity = 30.0
+salinity_tolerance = 25.0
+preferred_substrate = "mud"
+growth_stages = 5
+days_per_stage = Array[int]([14, 28, 56, 84, 112])
+carbon_per_day = Array[float]([0.0002, 0.0008, 0.0015, 0.0024, 0.0034])
+sediment_carbon_rate = 0.0005
+biodiversity_bonus = 1.4
+coastal_protection = 0.7
+base_color = Color(0.25, 0.45, 0.28)
+can_spread = true
+spread_chance = 0.04

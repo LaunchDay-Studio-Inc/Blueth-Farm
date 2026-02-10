@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="SpeciesData" load_steps=2 format=3 uid="uid://b8n4q7m3k2pxt"]
+
+[ext_resource type="Script" path="res://scripts/species_data.gd" id="1_species_data"]
+
+[resource]
+script = ExtResource("1_species_data")
+species_name = "Oarweed"
+scientific_name = "Laminaria"
+description = "Edible kelp species found in cooler Atlantic and Pacific waters. Shorter than giant kelp but highly productive and harvestable for food."
+codex_entry = "Laminaria, known as kombu in Asian cuisine, is a genus of brown algae cultivated for food and alginates. Unlike giant kelp, it grows to modest heights (1-3m) but forms dense underwater forests that support diverse marine life. Its fast growth and edibility make it valuable both ecologically and economically. The holdfasts attach to rocky substrate, and the blades sway with ocean currents."
+zone = "reef_edge"
+preferred_depth_min = 5.0
+preferred_depth_max = 30.0
+preferred_salinity = 33.0
+salinity_tolerance = 5.0
+preferred_substrate = "rocky"
+growth_stages = 5
+days_per_stage = Array[int]([7, 14, 21, 28, 35])
+carbon_per_day = Array[float]([0.0001, 0.0005, 0.001, 0.0018, 0.0022])
+sediment_carbon_rate = 0.0001
+biodiversity_bonus = 1.3
+coastal_protection = 0.25
+base_color = Color(0.4, 0.35, 0.25)
+can_spread = false
+spread_chance = 0.0

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="SpeciesData" load_steps=2 format=3 uid="uid://d4k7p3w8m2nxv"]
+
+[ext_resource type="Script" path="res://scripts/species_data.gd" id="1_species_data"]
+
+[resource]
+script = ExtResource("1_species_data")
+species_name = "Glasswort"
+scientific_name = "Salicornia"
+description = "Succulent halophyte thriving in extreme salinity. Found in high salt marsh zones and salt pans. Edible and commercially valuable."
+codex_entry = "Glasswort's fleshy, jointed stems are adapted to extract fresh water from saltwater and store it in specialized cells. These remarkable plants can tolerate salinities that would kill most vegetation. Beyond carbon storage, they're edible with a salty, crunchy texture prized by chefs. Their presence indicates healthy high marsh zones."
+zone = "mudflats"
+preferred_depth_min = 0.0
+preferred_depth_max = 0.5
+preferred_salinity = 35.0
+salinity_tolerance = 20.0
+preferred_substrate = "mud"
+growth_stages = 5
+days_per_stage = Array[int]([5, 12, 20, 28, 35])
+carbon_per_day = Array[float]([0.0001, 0.0004, 0.0008, 0.0013, 0.002])
+sediment_carbon_rate = 0.00025
+biodiversity_bonus = 1.1
+coastal_protection = 0.2
+base_color = Color(0.55, 0.65, 0.3)
+can_spread = true
+spread_chance = 0.08

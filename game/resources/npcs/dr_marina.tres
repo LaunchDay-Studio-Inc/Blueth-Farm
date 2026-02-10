@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="NPCData" load_steps=2 format=3 uid="uid://c5k8m3n7p2qrt"]
+
+[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="1_npc_data"]
+
+[resource]
+script = ExtResource("1_npc_data")
+npc_id = "dr_marina"
+display_name = "Dr. Marina Chen"
+role = "Climate Scientist & Research Partner"
+description = "A marine ecologist who studied under your grandmother. She runs the field station and helps you understand the science behind blue carbon restoration."
+location_zone = "shallows"
+schedule = {8: "lab", 14: "beach", 20: "lab"}
+portrait_color = Color(0.3, 0.6, 0.7)
+gift_preferences = {"data_samples": 3, "rare_seeds": 2, "research_notes": 2, "junk": -2}
+initial_friendship = 15
+associated_quests = ["meet_scientist", "marine_lab", "research_points"]
+dialogue_trees = {
+	"intro": {
+		"text": "You're here! Dr. Voss told me so much about you. I'm Marina Chen—I did my post-doc with your grandmother. Her work on blue carbon sequestration was revolutionary. Now we have a chance to prove it works at scale. I'll help you with the science side of things.",
+		"choices": []
+	},
+	"daily_research": {
+		"text": "The latest data from your plantings is fascinating! The carbon sequestration rates are matching our models. Keep planting diverse species—biodiversity is key to ecosystem resilience.",
+		"choices": []
+	},
+	"friendship_40": {
+		"text": "I've been analyzing your ecosystem data. You're creating something special here—a model for coastal restoration that could be replicated worldwide. Your grandmother always said this bay could be a living laboratory. She was right.",
+		"choices": []
+	}
+}
