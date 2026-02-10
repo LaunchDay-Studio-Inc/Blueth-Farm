@@ -34,8 +34,17 @@ func process_growth(tile_pos: Vector2i, tile_data: TileMapManager.TileData, spec
 	if not tile_data.is_planted:
 		return
 	
+	# Check plant health - damaged plants grow slower or not at all
+	if tile_data.plant_health < 0.3:
+		# Severely damaged plants cannot grow
+		return
+	
 	# Calculate growth rate multiplier
 	var growth_rate = calculate_growth_rate(tile_pos)
+	
+	# Apply health penalty to growth rate
+	var health_modifier = tile_data.plant_health
+	growth_rate *= health_modifier
 	
 	# Increment growth timer (in days, modified by growth rate)
 	tile_data.growth_timer += growth_rate

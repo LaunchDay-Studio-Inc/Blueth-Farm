@@ -8,6 +8,17 @@ extends Node
 @onready var harvest_system = $HarvestSystem
 @onready var player = $Player
 @onready var world_renderer = $WorldRenderer
+@onready var weather_system = $WeatherSystem
+@onready var nursery_system = $NurserySystem
+@onready var quest_system = $QuestSystem
+@onready var journal_system = $JournalSystem
+@onready var tutorial_system = $TutorialSystem
+@onready var year_progression_system = $YearProgressionSystem
+@onready var notification_system = $NotificationSystem
+@onready var market_system = $MarketSystem
+@onready var town_investment_system = $TownInvestmentSystem
+@onready var eco_tourism_system = $EcoTourismSystem
+@onready var tech_tree = $TechTree
 
 var current_species_to_plant: String = "seagrass_zostera"
 var species_resources: Dictionary = {}
@@ -19,9 +30,8 @@ func _ready() -> void:
 	# Load species resources
 	_load_species()
 	
-	# Connect signals
-	if tile_map_manager:
-		tile_map_manager.tile_clicked.connect(_on_tile_clicked)
+	# Connect all system signals
+	_connect_signals()
 	
 	# Give player some starting seeds
 	if player and player.has_node("PlayerInventory"):
@@ -48,6 +58,160 @@ func _load_species() -> void:
 				var key = species.get_resource_key()
 				species_resources[key] = species
 				print("Loaded species: ", species.species_name, " (", key, ")")
+
+
+func _connect_signals() -> void:
+	"""Connect signals between all game systems"""
+	print("Connecting game system signals...")
+	
+	# TileMapManager signals
+	if tile_map_manager:
+		tile_map_manager.tile_clicked.connect(_on_tile_clicked)
+	
+	# PlantingSystem signals
+	if planting_system:
+		# Connect to QuestSystem for plant objectives
+		if quest_system and planting_system.has_signal("plant_placed"):
+			planting_system.plant_placed.connect(_on_plant_placed)
+		
+		# Connect to JournalSystem for unlock conditions
+		if journal_system and planting_system.has_signal("plant_placed"):
+			planting_system.plant_placed.connect(journal_system._check_unlock_conditions)
+	
+	# HarvestSystem signals
+	if harvest_system:
+		# Connect to QuestSystem for harvest objectives
+		if quest_system and harvest_system.has_signal("plant_harvested"):
+			harvest_system.plant_harvested.connect(_on_plant_harvested)
+		
+		# Connect to JournalSystem for unlock conditions
+		if journal_system and harvest_system.has_signal("plant_harvested"):
+			harvest_system.plant_harvested.connect(journal_system._check_unlock_conditions)
+	
+	# CarbonManager signals
+	if CarbonManager.has_signal("carbon_updated"):
+		# Connect to QuestSystem for carbon objectives
+		if quest_system:
+			CarbonManager.carbon_updated.connect(_on_carbon_updated)
+		
+		# Connect to JournalSystem for carbon milestones
+		if journal_system:
+			CarbonManager.carbon_updated.connect(journal_system._check_unlock_conditions)
+	
+	# WeatherSystem signals
+	if weather_system:
+		if weather_system.has_signal("storm_started"):
+			weather_system.storm_started.connect(_on_storm_started)
+		if weather_system.has_signal("storm_ended"):
+			weather_system.storm_ended.connect(_on_storm_ended)
+	
+	# TimeManager signals - these connect to multiple systems
+	if TimeManager.has_signal("day_changed"):
+		# Note: GrowthSystem, MarketSystem, EcoTourismSystem, etc. connect directly in their _ready()
+		pass
+	
+	# QuestSystem signals
+	if quest_system and quest_system.has_signal("quest_completed"):
+		quest_system.quest_completed.connect(_on_quest_completed)
+	
+	# JournalSystem signals
+	if journal_system and journal_system.has_signal("entry_discovered"):
+		journal_system.entry_discovered.connect(_on_journal_entry_discovered)
+	
+	# TutorialSystem signals
+	if tutorial_system:
+		if tutorial_system.has_signal("tutorial_step_completed"):
+			tutorial_system.tutorial_step_completed.connect(_on_tutorial_step_completed)
+	
+	# TechTree signals
+	if tech_tree and tech_tree.has_signal("research_completed"):
+		tech_tree.research_completed.connect(_on_research_completed)
+	
+	# TownInvestmentSystem signals
+	if town_investment_system and town_investment_system.has_signal("building_completed"):
+		town_investment_system.building_completed.connect(_on_building_completed)
+	
+	print("All game system signals connected")
+
+
+# Signal handlers
+func _on_plant_placed(tile_pos: Vector2i, species: String) -> void:
+	"""Handle plant placed for quest updates"""
+	if quest_system:
+		quest_system.update_objective("plant", species, 1)
+
+
+func _on_plant_harvested(tile_pos: Vector2i, species: String, growth_stage: int) -> void:
+	"""Handle plant harvested for quest updates"""
+	if quest_system:
+		quest_system.update_objective("harvest", species, 1)
+
+
+func _on_carbon_updated(total_carbon: float) -> void:
+	"""Handle carbon updates for quest objectives"""
+	if quest_system:
+		quest_system.update_objective("carbon", "total", total_carbon)
+
+
+func _on_storm_started() -> void:
+	"""Handle storm started - show warning notification"""
+	if notification_system:
+		notification_system.show_notification(
+			"⚠️ Storm Warning! Your ecosystems will help protect the coast.",
+			notification_system.NotificationType.WARNING
+		)
+
+
+func _on_storm_ended(damage_prevented: float) -> void:
+	"""Handle storm ended - show results notification"""
+	if notification_system:
+		var carbon_prevented = damage_prevented / 100.0  # Convert to tonnes
+		notification_system.show_notification(
+			"Storm passed! Your ecosystems prevented %.1f tonnes of CO₂ release." % carbon_prevented,
+			notification_system.NotificationType.CARBON
+		)
+	
+	# Request renderer update to show damage
+	if world_renderer:
+		world_renderer.queue_redraw()
+
+
+func _on_quest_completed(quest_id: String) -> void:
+	"""Handle quest completion notification"""
+	if notification_system:
+		notification_system.show_notification(
+			"Quest completed!",
+			notification_system.NotificationType.GOLD
+		)
+
+
+func _on_journal_entry_discovered(entry_id: String) -> void:
+	"""Handle journal entry discovered - already handled by NotificationSystem"""
+	pass
+
+
+func _on_tutorial_step_completed(step_id: String) -> void:
+	"""Handle tutorial step completion"""
+	print("Tutorial step completed: ", step_id)
+
+
+func _on_research_completed(node_id: String) -> void:
+	"""Handle research completion notification"""
+	if notification_system:
+		notification_system.show_notification(
+			"Research completed!",
+			notification_system.NotificationType.RESEARCH
+		)
+
+
+func _on_building_completed(building_id: String) -> void:
+	"""Handle building completion notification"""
+	if notification_system:
+		notification_system.show_notification(
+			"Building completed!",
+			notification_system.NotificationType.BUILDING
+		)
+
 
 
 func _on_tile_clicked(tile_pos: Vector2i) -> void:

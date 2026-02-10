@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7j8k3lm4npqr"]
+[gd_scene load_steps=21 format=3 uid="uid://c7j8k3lm4npqr"]
 
 [ext_resource type="PackedScene" uid="uid://byvmfjh5xnbcq" path="res://scenes/entities/player.tscn" id="1_player"]
 [ext_resource type="Script" path="res://scripts/world/tile_map_manager.gd" id="2_tilemap"]
@@ -12,6 +12,15 @@
 [ext_resource type="PackedScene" uid="uid://cqw8x5y9z4abc" path="res://scenes/ui/codex_ui.tscn" id="10_codex_ui"]
 [ext_resource type="PackedScene" uid="uid://tech_tree_ui_blueth" path="res://scenes/ui/tech_tree_ui.tscn" id="11_tech_tree_ui"]
 [ext_resource type="PackedScene" uid="uid://b2vhq8xp5nk7w" path="res://scenes/ui/settings_menu.tscn" id="12_settings"]
+[ext_resource type="PackedScene" uid="uid://nursery_ui_scene" path="res://scenes/ui/nursery_ui.tscn" id="13_nursery_ui"]
+[ext_resource type="PackedScene" uid="uid://quest_log_scene" path="res://scenes/ui/quest_log.tscn" id="14_quest_log"]
+[ext_resource type="PackedScene" uid="uid://town_investment_ui" path="res://scenes/ui/town_investment_ui.tscn" id="15_town_ui"]
+[ext_resource type="PackedScene" uid="uid://carbon_dashboard_ui" path="res://scenes/ui/carbon_dashboard.tscn" id="16_carbon_ui"]
+[ext_resource type="Script" path="res://scripts/farming/nursery_system.gd" id="17_nursery"]
+[ext_resource type="Script" path="res://scripts/npcs/quest_system.gd" id="18_quest"]
+[ext_resource type="Script" path="res://scripts/progression/tutorial_system.gd" id="19_tutorial"]
+[ext_resource type="Script" path="res://scripts/progression/year_progression.gd" id="20_year"]
+[ext_resource type="Script" path="res://scripts/ui/notification_system.gd" id="21_notification"]
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("7_controller")
@@ -78,3 +87,38 @@ script = ExtResource("8_journal_system")
 
 [node name="WeatherSystem" type="Node" parent="."]
 script = preload("res://scripts/world/weather_system.gd")
+
+[node name="NurserySystem" type="Node" parent="." groups=["nursery_system"]]
+script = ExtResource("17_nursery")
+
+[node name="QuestSystem" type="Node" parent="." groups=["quest_system"]]
+script = ExtResource("18_quest")
+
+[node name="TutorialSystem" type="Node" parent="."]
+script = ExtResource("19_tutorial")
+
+[node name="YearProgressionSystem" type="Node" parent="."]
+script = ExtResource("20_year")
+
+[node name="NotificationSystem" type="Node" parent="."]
+script = ExtResource("21_notification")
+
+[node name="MarketSystem" type="Node" parent="."]
+script = preload("res://scripts/economy/market_system.gd")
+
+[node name="TownInvestmentSystem" type="Node" parent="."]
+script = preload("res://scripts/economy/town_investment.gd")
+
+[node name="EcoTourismSystem" type="Node" parent="."]
+script = preload("res://scripts/economy/eco_tourism.gd")
+
+[node name="TechTree" type="Node" parent="."]
+script = preload("res://scripts/research/tech_tree.gd")
+
+[node name="NurseryUI" parent="." instance=ExtResource("13_nursery_ui")]
+
+[node name="QuestLog" parent="." instance=ExtResource("14_quest_log")]
+
+[node name="TownInvestmentUI" parent="." instance=ExtResource("15_town_ui")]
+
+[node name="CarbonDashboard" parent="." instance=ExtResource("16_carbon_ui")]
