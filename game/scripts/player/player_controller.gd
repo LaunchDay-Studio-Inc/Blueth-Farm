@@ -110,7 +110,4 @@ func stop_movement() -> void:
 	_target_velocity = Vector2.ZERO
 
 
-## Sets the player's movement speed
-func set_movement_speed(speed: float) -> void:
-	# Note: This would require making MOVE_SPEED a variable instead of const
-	push_warning("set_movement_speed called but MOVE_SPEED is const")
+

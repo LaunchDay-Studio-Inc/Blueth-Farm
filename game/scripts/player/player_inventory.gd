@@ -29,12 +29,12 @@ class InventorySlot:
 	
 	func add(amount: int) -> int:
 		var space_available := max_stack - quantity
-		var amount_to_add := mini(amount, space_available)
+		var amount_to_add := min(amount, space_available)
 		quantity += amount_to_add
 		return amount_to_add
 	
 	func remove(amount: int) -> int:
-		var amount_to_remove := mini(amount, quantity)
+		var amount_to_remove := min(amount, quantity)
 		quantity -= amount_to_remove
 		if quantity <= 0:
 			clear()
