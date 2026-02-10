@@ -163,7 +163,7 @@ func _on_storm_started() -> void:
 func _on_storm_ended(damage_prevented: float) -> void:
 	"""Called when a storm ends"""
 	if damage_prevented > 0:
-		show_notification("🌊 Storm ended. Ecosystem protection prevented %.1f damage!" % damage_prevented, NotificationType.GROWTH)
+		show_notification("🌊 Storm ended. Ecosystem protection prevented %.0f%% damage!" % damage_prevented, NotificationType.GROWTH)
 	else:
 		show_notification("🌊 Storm has passed.", NotificationType.GROWTH)
 
