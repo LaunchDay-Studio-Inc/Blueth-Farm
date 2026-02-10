@@ -6,6 +6,7 @@ var quest_system: Node
 var quest_bridge: Node
 var mock_tile_manager: Node
 var mock_weather_system: Node
+var mock_carbon_manager: Node
 
 
 func before_each():
@@ -41,6 +42,20 @@ signal storm_ended(damage_prevented: float)
 	mock_weather_system.set_script(weather_script)
 	add_child_autofree(mock_weather_system)
 	
+	# Create mock CarbonManager as autoload (if not already present)
+	if not Engine.has_singleton("CarbonManager"):
+		mock_carbon_manager = Node.new()
+		mock_carbon_manager.name = "CarbonManager"
+		var carbon_script = GDScript.new()
+		carbon_script.source_code = """
+extends Node
+signal carbon_updated(total_co2: float, daily_rate: float)
+"""
+		carbon_script.reload()
+		mock_carbon_manager.set_script(carbon_script)
+		# Add as child so it's accessible in tests
+		get_tree().root.add_child(mock_carbon_manager)
+	
 	# Create QuestEventBridge
 	quest_bridge = Node.new()
 	quest_bridge.set_script(load("res://scripts/npcs/quest_event_bridge.gd"))
@@ -49,6 +64,14 @@ signal storm_ended(damage_prevented: float)
 	
 	# Wait for bridge to initialize
 	await wait_frames(2)
+
+
+func after_each():
+	"""Clean up after each test"""
+	# Remove mock CarbonManager if we created it
+	if mock_carbon_manager and is_instance_valid(mock_carbon_manager):
+		mock_carbon_manager.queue_free()
+		mock_carbon_manager = null
 
 
 func test_quest_resources_loaded():
@@ -165,7 +188,7 @@ func test_carbon_goal_update():
 				"type": "carbon_goal",
 				"amount": 5.0,
 				"description": "Sequester 5 tonnes CO2",
-				"target": 5
+				"target": 1
 			}
 		],
 		"rewards": {"gold": 100}
@@ -173,16 +196,20 @@ func test_carbon_goal_update():
 	quest_system.register_quest(test_quest)
 	quest_system.start_quest("test_carbon_quest")
 	
-	# Test with CarbonManager if available
-	if CarbonManager and CarbonManager.has_signal("carbon_updated"):
+	# Get CarbonManager (either real or mocked)
+	var carbon_mgr = get_node_or_null("/root/CarbonManager")
+	if not carbon_mgr:
+		carbon_mgr = mock_carbon_manager
+	
+	if carbon_mgr and carbon_mgr.has_signal("carbon_updated"):
 		# Simulate carbon update below threshold
-		CarbonManager.carbon_updated.emit(3.0, 0.5)
+		carbon_mgr.carbon_updated.emit(3.0, 0.5)
 		await wait_frames(1)
 		
 		assert_false(quest_system.is_quest_completed("test_carbon_quest"), "Should not complete quest below threshold")
 		
 		# Simulate carbon update above threshold
-		CarbonManager.carbon_updated.emit(6.0, 0.5)
+		carbon_mgr.carbon_updated.emit(6.0, 0.5)
 		await wait_frames(1)
 		
 		assert_true(quest_system.is_quest_completed("test_carbon_quest"), "Should complete quest when threshold reached")

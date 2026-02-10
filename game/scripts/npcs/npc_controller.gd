@@ -73,9 +73,7 @@ func _start_interaction() -> void:
 	interaction_started.emit(npc_data.npc_id)
 	
 	# Notify QuestEventBridge about this interaction
-	var quest_bridge = get_tree().get_first_node_in_group("quest_event_bridge")
-	if not quest_bridge:
-		quest_bridge = get_node_or_null("/root/GameWorld/QuestEventBridge")
+	var quest_bridge = _get_quest_bridge()
 	if quest_bridge and quest_bridge.has_method("set_last_npc_talked_to"):
 		quest_bridge.set_last_npc_talked_to(npc_data.npc_id)
 	
@@ -289,3 +287,11 @@ func _check_quest_dialogue() -> Dictionary:
 				return npc_data.dialogue_trees[dialogue_key]
 	
 	return {}
+
+
+func _get_quest_bridge() -> Node:
+	"""Helper to get QuestEventBridge node"""
+	var quest_bridge = get_tree().get_first_node_in_group("quest_event_bridge")
+	if not quest_bridge:
+		quest_bridge = get_node_or_null("/root/GameWorld/QuestEventBridge")
+	return quest_bridge

@@ -101,13 +101,9 @@ func _generate_objective_description(objective: Dictionary) -> String:
 	
 	match type:
 		"plant":
-			var species = objective.get("species", "plants")
-			var count = objective.get("count", 1)
-			return "Plant %d %s" % [count, species]
+			return _generate_count_objective_description("Plant", objective)
 		"harvest":
-			var species = objective.get("species", "plants")
-			var count = objective.get("count", 1)
-			return "Harvest %d %s" % [count, species]
+			return _generate_count_objective_description("Harvest", objective)
 		"visit_npc":
 			var npc_id = objective.get("npc_id", "NPC")
 			return "Visit %s" % npc_id.replace("_", " ").capitalize()
@@ -129,6 +125,13 @@ func _generate_objective_description(objective: Dictionary) -> String:
 			return objective.get("description", "Complete objective")
 
 
+func _generate_count_objective_description(action: String, objective: Dictionary) -> String:
+	"""Helper to generate descriptions for count-based objectives"""
+	var species = objective.get("species", "plants")
+	var count = objective.get("count", 1)
+	return "%s %d %s" % [action, count, species]
+
+
 func _get_objective_target(objective: Dictionary) -> int:
 	"""Get the target/count for an objective"""
 	var type = objective.get("type", "")
@@ -141,9 +144,9 @@ func _get_objective_target(objective: Dictionary) -> int:
 	if type in ["visit_npc", "survive_storm", "explore", "discover"]:
 		return 1
 	
-	# For carbon goals, we'll use the amount directly (quest system will handle float)
+	# For carbon goals, return 1 (we'll check the actual amount in the handler)
 	if type == "carbon_goal":
-		return int(objective.get("amount", 1.0))
+		return 1
 	
 	return 1
 
@@ -239,8 +242,8 @@ func _on_tile_planted(tile_pos: Vector2i, species: String) -> void:
 			
 			if obj_def.get("type") == "plant":
 				var target_species = obj_def.get("species", "")
-				# Match if species matches or if target is empty (any species)
-				if target_species.is_empty() or species.contains(target_species) or target_species.contains(species):
+				# Match if species matches exactly or if target is empty (any species)
+				if target_species.is_empty() or target_species == species:
 					quest_system.update_objective(quest_id, i, 1)
 					print("Quest objective updated: ", quest_id, " - planted ", species)
 
