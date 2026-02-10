@@ -129,6 +129,50 @@ func get_active_quest(quest_id: String) -> Dictionary:
 func get_all_active_quests() -> Dictionary:
 	return active_quests.duplicate()
 
+## Get active quests as an array (UI-friendly format)
+func get_active_quests() -> Array:
+	var quest_array: Array = []
+	for quest_id in active_quests.keys():
+		var quest = active_quests[quest_id].duplicate()
+		quest["quest_id"] = quest_id
+		quest_array.append(quest)
+	return quest_array
+
+## Get completed quests with full details
+func get_completed_quests() -> Array:
+	var quest_array: Array = []
+	for quest_id in completed_quests:
+		var quest_data = {
+			"quest_id": quest_id,
+			"title": quest_definitions.get(quest_id, {}).get("title", "Unknown Quest"),
+			"description": quest_definitions.get(quest_id, {}).get("description", ""),
+			"state": QuestState.COMPLETED
+		}
+		quest_array.append(quest_data)
+	return quest_array
+
+## Get a specific quest by ID (active or completed)
+func get_quest(quest_id: String) -> Dictionary:
+	# Check if quest is active
+	if active_quests.has(quest_id):
+		var quest = active_quests[quest_id].duplicate()
+		quest["quest_id"] = quest_id
+		return quest
+	
+	# Check if quest is completed
+	if completed_quests.has(quest_id):
+		return {
+			"quest_id": quest_id,
+			"title": quest_definitions.get(quest_id, {}).get("title", "Unknown Quest"),
+			"description": quest_definitions.get(quest_id, {}).get("description", ""),
+			"rewards": quest_definitions.get(quest_id, {}).get("rewards", {}),
+			"state": QuestState.COMPLETED,
+			"objectives": []
+		}
+	
+	# Quest not found or not started
+	return {}
+
 func is_quest_completed(quest_id: String) -> bool:
 	return completed_quests.has(quest_id)
 
