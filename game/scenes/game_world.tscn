@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7j8k3lm4npqr"]
+[gd_scene load_steps=9 format=3 uid="uid://c7j8k3lm4npqr"]
 
 [ext_resource type="PackedScene" uid="uid://byvmfjh5xnbcq" path="res://scenes/entities/player.tscn" id="1_player"]
 [ext_resource type="Script" path="res://scripts/world/tile_map_manager.gd" id="2_tilemap"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cvt8h5kn2x9wp" path="res://scenes/ui/inventory_ui.tscn" id="5_inventory"]
 [ext_resource type="PackedScene" uid="uid://bs5jd8h3m9k2p" path="res://scenes/ui/market_ui.tscn" id="6_market"]
 [ext_resource type="Script" path="res://scripts/world/game_world_controller.gd" id="7_controller"]
+[ext_resource type="Script" path="res://scripts/npcs/journal_system.gd" id="8_journal_system"]
+[ext_resource type="PackedScene" uid="uid://b8k3m7n2p5qvj" path="res://scenes/ui/journal_ui.tscn" id="9_journal_ui"]
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("7_controller")
@@ -59,6 +61,11 @@ zoom = Vector2(1.5, 1.5)
 [node name="InventoryUI" parent="." instance=ExtResource("5_inventory")]
 
 [node name="MarketUI" parent="." instance=ExtResource("6_market")]
+
+[node name="JournalSystem" type="Node" parent="." groups=["journal_system"]]
+script = ExtResource("8_journal_system")
+
+[node name="JournalUI" parent="." instance=ExtResource("9_journal_ui")]
 
 [node name="WeatherSystem" type="Node" parent="."]
 script = preload("res://scripts/world/weather_system.gd")
