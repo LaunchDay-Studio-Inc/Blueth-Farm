@@ -57,10 +57,14 @@ func plant_species(tile_pos: Vector2i, species_key: String) -> bool:
 	if tile_map_manager.plant_species(tile_pos, species_key):
 		# Show planting effect (placeholder for future particle effects)
 		_show_planting_effect(tile_pos)
-		
+
+		# Play planting sound effect
+		if AudioManager and AudioManager.has_method("play_sfx"):
+			AudioManager.play_sfx("plant")
+
 		# Emit success signal
 		plant_placed.emit(tile_pos, species_key)
-		
+
 		print("Successfully planted ", species_key, " at ", tile_pos)
 		return true
 	

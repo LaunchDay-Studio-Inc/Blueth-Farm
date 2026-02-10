@@ -12,7 +12,14 @@ func _ready() -> void:
 	load_game_button.pressed.connect(_on_load_game_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
-	
+
+	# Add UI click sounds to all buttons
+	if AudioManager and AudioManager.has_method("play_sfx"):
+		new_game_button.pressed.connect(func(): AudioManager.play_sfx("ui_click"), CONNECT_DEFERRED)
+		load_game_button.pressed.connect(func(): AudioManager.play_sfx("ui_click"), CONNECT_DEFERRED)
+		settings_button.pressed.connect(func(): AudioManager.play_sfx("ui_click"), CONNECT_DEFERRED)
+		quit_button.pressed.connect(func(): AudioManager.play_sfx("ui_click"), CONNECT_DEFERRED)
+
 	# Check if saves exist
 	load_game_button.disabled = SaveManager.get_all_save_info().is_empty()
 
