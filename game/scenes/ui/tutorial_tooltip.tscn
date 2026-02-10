@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://tutorial_tooltip_ui_001"]
+
+[ext_resource type="Script" path="res://scripts/ui/tutorial_tooltip_controller.gd" id="1_controller"]
+
+[node name="TutorialTooltip" type="CanvasLayer" groups=["tutorial_tooltip"]]
+layer = 50
+script = ExtResource("1_controller")
+
+[node name="TooltipPanel" type="PanelContainer" parent="."]
+visible = false
+offset_left = 20.0
+offset_top = 100.0
+offset_right = 420.0
+offset_bottom = 200.0
+
+[node name="MarginContainer" type="MarginContainer" parent="TooltipPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TooltipPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TooltipPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="IconLabel" type="Label" parent="TooltipPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "🌊"
+
+[node name="TitleLabel" type="Label" parent="TooltipPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tutorial Step"
+
+[node name="MessageLabel" type="Label" parent="TooltipPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tutorial instructions go here..."
+autowrap_mode = 2
+
+[node name="SkipButton" type="Button" parent="TooltipPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Skip Tutorial"
+
+[connection signal="pressed" from="TooltipPanel/MarginContainer/VBoxContainer/SkipButton" to="." method="_on_skip_pressed"]
