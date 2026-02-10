@@ -1,0 +1,304 @@
+[gd_scene load_steps=2 format=3 uid="uid://tech_tree_ui_blueth"]
+
+[ext_resource type="Script" path="res://scripts/ui/tech_tree_controller.gd" id="1_techtree"]
+
+[node name="TechTreeUI" type="CanvasLayer"]
+layer = 10
+visible = false
+script = ExtResource("1_techtree")
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="MainPanel" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="HBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TechTreeTitle" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "🔬 Research & Technology Tree"
+
+[node name="ResearchPointsDisplay" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/Header/ResearchPointsDisplay"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Research Points"
+horizontal_alignment = 1
+
+[node name="Points" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/Header/ResearchPointsDisplay"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="MainPanel/MarginContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "X"
+
+[node name="Separator1" type="HSeparator" parent="MainPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TreeContainer" type="ScrollContainer" parent="MainPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 2
+
+[node name="TreePanel" type="Control" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer"]
+custom_minimum_size = Vector2(1600, 1000)
+layout_mode = 2
+
+[node name="BranchColumns" type="HBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="EcologyBranch" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="BranchHeader" type="PanelContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/EcologyBranch"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="HeaderContent" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/EcologyBranch/BranchHeader"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/EcologyBranch/BranchHeader/HeaderContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "🌿 Ecology"
+horizontal_alignment = 1
+
+[node name="Status" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/EcologyBranch/BranchHeader/HeaderContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "✓ Unlocked"
+horizontal_alignment = 1
+
+[node name="NodesContainer" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/EcologyBranch"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="EngineeringBranch" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="BranchHeader" type="PanelContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/EngineeringBranch"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="HeaderContent" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/EngineeringBranch/BranchHeader"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/EngineeringBranch/BranchHeader/HeaderContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "⚙️ Engineering"
+horizontal_alignment = 1
+
+[node name="Status" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/EngineeringBranch/BranchHeader/HeaderContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "🔒 Requires: Marine Lab"
+horizontal_alignment = 1
+
+[node name="NodesContainer" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/EngineeringBranch"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="PolicyBranch" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="BranchHeader" type="PanelContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/PolicyBranch"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="HeaderContent" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/PolicyBranch/BranchHeader"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/PolicyBranch/BranchHeader/HeaderContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "📜 Policy"
+horizontal_alignment = 1
+
+[node name="Status" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/PolicyBranch/BranchHeader/HeaderContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "🔒 Requires: Mayor Hayes 40+"
+horizontal_alignment = 1
+
+[node name="NodesContainer" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/PolicyBranch"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="CultureBranch" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="BranchHeader" type="PanelContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/CultureBranch"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="HeaderContent" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/CultureBranch/BranchHeader"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/CultureBranch/BranchHeader/HeaderContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "🎨 Culture"
+horizontal_alignment = 1
+
+[node name="Status" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/CultureBranch/BranchHeader/HeaderContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "🔒 Requires: Elder Tide 20+"
+horizontal_alignment = 1
+
+[node name="NodesContainer" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TreeContainer/TreePanel/BranchColumns/CultureBranch"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="DetailPopup" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DetailPopup"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DetailPopup/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Header" type="HBoxContainer" parent="DetailPopup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NodeName" type="Label" parent="DetailPopup/MarginContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "Research Node"
+
+[node name="PopupCloseButton" type="Button" parent="DetailPopup/MarginContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "X"
+
+[node name="Separator" type="HSeparator" parent="DetailPopup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DetailPopup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DetailsContent" type="VBoxContainer" parent="DetailPopup/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Description" type="Label" parent="DetailPopup/MarginContainer/VBoxContainer/ScrollContainer/DetailsContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Node description goes here"
+autowrap_mode = 3
+
+[node name="CostLabel" type="Label" parent="DetailPopup/MarginContainer/VBoxContainer/ScrollContainer/DetailsContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Cost: 0 Research Points"
+
+[node name="EffectLabel" type="Label" parent="DetailPopup/MarginContainer/VBoxContainer/ScrollContainer/DetailsContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Effect: None"
+autowrap_mode = 3
+
+[node name="PrerequisitesLabel" type="Label" parent="DetailPopup/MarginContainer/VBoxContainer/ScrollContainer/DetailsContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Prerequisites: None"
+autowrap_mode = 3
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="DetailPopup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ResearchButton" type="Button" parent="DetailPopup/MarginContainer/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "🔬 Research (Cost: 0)"
+
+[node name="CancelButton" type="Button" parent="DetailPopup/MarginContainer/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Cancel"
