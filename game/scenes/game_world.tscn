@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7j8k3lm4npqr"]
+[gd_scene load_steps=7 format=3 uid="uid://c7j8k3lm4npqr"]
 
 [ext_resource type="PackedScene" uid="uid://byvmfjh5xnbcq" path="res://scenes/entities/player.tscn" id="1_player"]
 [ext_resource type="Script" path="res://scripts/world/tile_map_manager.gd" id="2_tilemap"]
 [ext_resource type="PackedScene" uid="uid://cq8rm4tn5uvwx" path="res://scenes/ui/hud.tscn" id="3_hud"]
 [ext_resource type="PackedScene" uid="uid://bx9cy8dz0e1fg" path="res://scenes/ui/pause_menu.tscn" id="4_pause"]
 [ext_resource type="PackedScene" uid="uid://cvt8h5kn2x9wp" path="res://scenes/ui/inventory_ui.tscn" id="5_inventory"]
-[ext_resource type="Script" path="res://scripts/world/game_world_controller.gd" id="6_controller"]
+[ext_resource type="PackedScene" uid="uid://bs5jd8h3m9k2p" path="res://scenes/ui/market_ui.tscn" id="6_market"]
+[ext_resource type="Script" path="res://scripts/world/game_world_controller.gd" id="7_controller"]
 
 [node name="GameWorld" type="Node2D"]
-script = ExtResource("6_controller")
+script = ExtResource("7_controller")
 
 [node name="TileMapManager" type="Node" parent="."]
 script = ExtResource("2_tilemap")
@@ -56,6 +57,8 @@ zoom = Vector2(1.5, 1.5)
 [node name="PauseMenu" parent="." instance=ExtResource("4_pause")]
 
 [node name="InventoryUI" parent="." instance=ExtResource("5_inventory")]
+
+[node name="MarketUI" parent="." instance=ExtResource("6_market")]
 
 [node name="WeatherSystem" type="Node" parent="."]
 script = preload("res://scripts/world/weather_system.gd")
