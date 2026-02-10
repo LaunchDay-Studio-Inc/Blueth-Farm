@@ -13,6 +13,8 @@ jobs:
   export-linux:
     name: Export Linux
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     container:
       image: barichello/godot-ci:4.3
     steps:
@@ -50,6 +52,8 @@ jobs:
   export-windows:
     name: Export Windows
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     container:
       image: barichello/godot-ci:4.3
     steps:
@@ -87,6 +91,8 @@ jobs:
   export-macos:
     name: Export macOS
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     container:
       image: barichello/godot-ci:4.3
     steps:
@@ -118,6 +124,8 @@ jobs:
   export-web:
     name: Export Web (HTML5)
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     container:
       image: barichello/godot-ci:4.3
     steps:
