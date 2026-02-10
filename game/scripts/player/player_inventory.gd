@@ -214,3 +214,32 @@ func swap_slots(index_a: int, index_b: int) -> bool:
 	
 	inventory_changed.emit()
 	return true
+
+
+## Gets all items and their quantities as a dictionary
+## Returns: Dictionary with item types as keys and quantities as values
+func get_all_items() -> Dictionary:
+	var items := {}
+	
+	for slot in _inventory:
+		if not slot.is_empty():
+			if items.has(slot.item_type):
+				items[slot.item_type] += slot.quantity
+			else:
+				items[slot.item_type] = slot.quantity
+	
+	return items
+
+
+## Loads inventory from saved data
+## Data format: Dictionary with item types as keys and quantities as values
+func load_inventory(data: Dictionary) -> void:
+	# Clear existing inventory
+	clear_inventory()
+	
+	# Add items from data
+	for item_type in data.keys():
+		var quantity: int = data[item_type]
+		add_item(item_type, quantity)
+	
+	inventory_changed.emit()

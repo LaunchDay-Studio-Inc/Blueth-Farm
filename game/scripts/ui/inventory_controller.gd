@@ -117,7 +117,11 @@ func toggle_inventory() -> void:
 ## Shows the inventory
 func show_inventory() -> void:
 	visible = true
-	_close_other_uis()
+	
+	# Integrate with UIStateManager
+	if has_node("/root/UIStateManager"):
+		get_node("/root/UIStateManager").open_panel("inventory")
+	
 	_refresh_display()
 
 
@@ -125,14 +129,10 @@ func show_inventory() -> void:
 func hide_inventory() -> void:
 	visible = false
 	tooltip_panel.hide()
-
-
-## Closes other UI panels for mutual exclusion
-func _close_other_uis() -> void:
-	# Close pause menu if open
-	var pause_menu = get_node_or_null("/root/GameWorld/PauseMenu")
-	if pause_menu and pause_menu.visible:
-		pause_menu.hide_pause_menu()
+	
+	# Integrate with UIStateManager
+	if has_node("/root/UIStateManager"):
+		get_node("/root/UIStateManager").close_panel()
 
 
 ## Applies art direction styling to UI elements
