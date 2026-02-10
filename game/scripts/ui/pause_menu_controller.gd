@@ -53,8 +53,13 @@ func _on_save_pressed() -> void:
 
 
 func _on_settings_pressed() -> void:
-	print("Settings not yet implemented")
-	# TODO: Open settings menu
+	# Open settings menu
+	var settings_menu = get_node_or_null("/root/GameWorld/SettingsMenu")
+	if settings_menu and settings_menu.has_method("show_settings"):
+		hide_pause_menu()
+		settings_menu.show_settings("pause_menu")
+	else:
+		print("Settings menu not found in scene tree")
 
 
 func _on_main_menu_pressed() -> void:

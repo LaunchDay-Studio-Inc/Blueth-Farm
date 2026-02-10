@@ -1,0 +1,125 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8qzf7ng3m4vh"]
+
+[ext_resource type="Script" path="res://scripts/ui/quest_log_controller.gd" id="1_quest"]
+
+[node name="QuestLog" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_quest")
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="MainPanel" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Quest Log"
+
+[node name="QuestCount" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/Header"]
+layout_mode = 2
+text = "Active: 0 | Completed: 0"
+
+[node name="CloseButton" type="Button" parent="MainPanel/MarginContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+text = "X"
+
+[node name="Content" type="HSplitContainer" parent="MainPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftSide" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/Content"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="ActiveQuestsLabel" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/Content/LeftSide"]
+layout_mode = 2
+text = "Active Quests"
+theme_override_font_sizes/font_size = 16
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainPanel/MarginContainer/VBoxContainer/Content/LeftSide"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActiveQuestsVBox" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/Content/LeftSide/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CompletedToggle" type="CheckBox" parent="MainPanel/MarginContainer/VBoxContainer/Content/LeftSide"]
+layout_mode = 2
+text = "Show Completed"
+
+[node name="CompletedScrollContainer" type="ScrollContainer" parent="MainPanel/MarginContainer/VBoxContainer/Content/LeftSide"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CompletedQuestsVBox" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/Content/LeftSide/CompletedScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightSide" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainPanel/MarginContainer/VBoxContainer/Content/RightSide"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DetailVBox" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/Content/RightSide/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuestTitle" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/Content/RightSide/ScrollContainer/DetailVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Select a quest"
+
+[node name="QuestDescription" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/Content/RightSide/ScrollContainer/DetailVBox"]
+layout_mode = 2
+text = "Quest details will appear here."
+autowrap_mode = 3
+
+[node name="ObjectivesHeader" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/Content/RightSide/ScrollContainer/DetailVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Objectives:"
+
+[node name="ObjectivesContainer" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/Content/RightSide/ScrollContainer/DetailVBox"]
+layout_mode = 2
+
+[node name="RewardsLabel" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/Content/RightSide/ScrollContainer/DetailVBox"]
+layout_mode = 2
+text = "Rewards: None"
