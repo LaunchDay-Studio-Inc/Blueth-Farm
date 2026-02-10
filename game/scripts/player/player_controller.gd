@@ -115,11 +115,16 @@ func _can_move_to_target() -> bool:
 	if not tile:
 		return false
 	
-	# Check tile type - block deep water unless boat is unlocked
+	# Check tile type - block certain tiles based on conditions
+	# Block LAND tiles - player can't walk on land
+	if tile.tile_type == TileMapManager.TileType.LAND:
+		return false
+
+	# Block deep water unless boat is unlocked
 	if tile.tile_type == TileMapManager.TileType.DEEP_WATER and not boat_unlocked:
 		return false
-	
-	# Allow movement on all other tile types
+
+	# Allow movement on all other tile types (shallow water, tidal zone, etc.)
 	return true
 
 
