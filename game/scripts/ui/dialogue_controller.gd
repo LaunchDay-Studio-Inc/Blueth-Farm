@@ -24,6 +24,9 @@ var choice_buttons: Array = []
 
 
 func _ready() -> void:
+	# Set process mode to always run (even when game is paused)
+	process_mode = PROCESS_MODE_ALWAYS
+
 	# Hide initially
 	$DialoguePanel.visible = false
 	

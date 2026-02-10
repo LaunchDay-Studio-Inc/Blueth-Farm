@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dialogue_box_ui_001"]
+[gd_scene load_steps=3 format=3 uid="uid://dialogue_box_ui_001"]
 
 [ext_resource type="Script" path="res://scripts/ui/dialogue_controller.gd" id="1_controller"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_speaker"]
+font_size = 18
 
 [node name="DialogueBox" type="CanvasLayer" groups=["dialogue_box"]]
 layer = 10
@@ -66,9 +69,6 @@ theme_override_constants/separation = 5
 layout_mode = 2
 text = "Press E to continue ▼"
 horizontal_alignment = 2
-
-[sub_resource type="LabelSettings" id="LabelSettings_speaker"]
-font_size = 18
 
 [node name="FriendshipChangeLabel" type="Label" parent="."]
 visible = false
