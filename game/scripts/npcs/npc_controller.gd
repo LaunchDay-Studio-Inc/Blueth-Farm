@@ -72,6 +72,11 @@ func _start_interaction() -> void:
 	# Notify interaction started
 	interaction_started.emit(npc_data.npc_id)
 	
+	# Notify QuestEventBridge about this interaction
+	var quest_bridge = _get_quest_bridge()
+	if quest_bridge and quest_bridge.has_method("set_last_npc_talked_to"):
+		quest_bridge.set_last_npc_talked_to(npc_data.npc_id)
+	
 	# Face the player
 	if player_ref:
 		_face_target(player_ref.global_position)
@@ -121,7 +126,9 @@ func _get_current_dialogue() -> Dictionary:
 					return npc_data.dialogue_trees["tutorial_meet_at_dock"]
 
 	# Check for quest-specific dialogue
-	# TODO: Check active quests and return quest dialogue if available
+	var quest_dialogue = _check_quest_dialogue()
+	if not quest_dialogue.is_empty():
+		return quest_dialogue
 
 	# Check for friendship-level dialogue
 	var friendship = 0
@@ -252,3 +259,39 @@ func _on_animation_timer_timeout() -> void:
 	"""Timer for periodic animation updates"""
 	# Could be used for random movements, expressions, etc.
 	pass
+
+
+func _check_quest_dialogue() -> Dictionary:
+	"""Check if this NPC has quest-specific dialogue for active quests"""
+	if not npc_data:
+		return {}
+	
+	# Find QuestSystem
+	var quest_system = get_tree().get_first_node_in_group("quest_system")
+	if not quest_system:
+		quest_system = get_node_or_null("/root/GameWorld/QuestSystem")
+	
+	if not quest_system:
+		return {}
+	
+	# Check active quests for ones given by this NPC
+	for quest_id in quest_system.active_quests.keys():
+		var quest = quest_system.active_quests[quest_id]
+		var quest_def = quest_system.quest_definitions.get(quest_id, {})
+		var given_by = quest_def.get("given_by_npc", "")
+		
+		if given_by == npc_data.npc_id:
+			# Look for quest-specific dialogue tree
+			var dialogue_key = "quest_" + quest_id
+			if dialogue_key in npc_data.dialogue_trees:
+				return npc_data.dialogue_trees[dialogue_key]
+	
+	return {}
+
+
+func _get_quest_bridge() -> Node:
+	"""Helper to get QuestEventBridge node"""
+	var quest_bridge = get_tree().get_first_node_in_group("quest_event_bridge")
+	if not quest_bridge:
+		quest_bridge = get_node_or_null("/root/GameWorld/QuestEventBridge")
+	return quest_bridge
