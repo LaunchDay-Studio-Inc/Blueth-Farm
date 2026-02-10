@@ -73,6 +73,8 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_quest_log"):
 		toggle_quest_log()
+	elif event.is_action_pressed("ui_cancel") and visible:
+		hide_quest_log()
 
 
 ## Toggle quest log visibility

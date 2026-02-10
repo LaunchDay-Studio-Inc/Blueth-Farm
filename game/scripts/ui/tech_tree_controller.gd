@@ -81,6 +81,19 @@ const BRANCH_NODE_IDS := {
 
 
 func _ready() -> void:
+	# Set process mode for pause handling
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	# Hide initially
+	hide()
+	
+	# Hide detail popup
+	if detail_popup:
+		detail_popup.hide()
+	
+	# Wait for scene tree
+	await get_tree().process_frame
+	
 	# Get system references
 	tech_tree = get_node_or_null("/root/TechTree")
 	
@@ -107,14 +120,38 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_tech_tree"):
 		toggle_visibility()
+	elif event.is_action_pressed("ui_cancel") and visible:
+		hide_tech_tree()
 
 
 func toggle_visibility() -> void:
-	visible = not visible
+	"""Toggle tech tree visibility - shows if hidden, hides if shown"""
 	if visible:
-		update_research_points_display()
-		update_all_nodes()
-		update_branch_statuses()
+		hide_tech_tree()
+	else:
+		show_tech_tree()
+
+
+func show_tech_tree() -> void:
+	"""Show the tech tree UI"""
+	visible = true
+	
+	# Notify UI State Manager
+	if has_node("/root/UIStateManager"):
+		get_node("/root/UIStateManager").open_panel("tech_tree")
+	
+	update_research_points_display()
+	update_all_nodes()
+	update_branch_statuses()
+
+
+func hide_tech_tree() -> void:
+	"""Hide the tech tree UI"""
+	visible = false
+	
+	# Notify UI State Manager
+	if has_node("/root/UIStateManager"):
+		get_node("/root/UIStateManager").close_panel()
 
 
 func setup_branch_nodes() -> void:
@@ -439,7 +476,7 @@ func _on_popup_close_pressed() -> void:
 
 func _on_close_pressed() -> void:
 	"""Close the tech tree UI"""
-	visible = false
+	hide_tech_tree()
 
 
 func _on_research_points_changed(new_total: int, delta: int) -> void:

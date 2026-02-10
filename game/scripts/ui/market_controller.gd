@@ -55,6 +55,9 @@ const ITEM_DISPLAY_NAMES := {
 
 
 func _ready() -> void:
+	# Set process mode for pause handling
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	# Hide initially
 	hide()
 	
@@ -123,34 +126,31 @@ func show_market() -> void:
 		# Show market closed overlay
 		visible = true
 		market_closed_overlay.visible = true
-		_close_other_uis()
+		
+		# Notify UI State Manager
+		if has_node("/root/UIStateManager"):
+			get_node("/root/UIStateManager").open_panel("market")
+		
 		_refresh_display()  # Refresh even when closed to show current state
 		return
 	
 	visible = true
 	market_closed_overlay.visible = false
-	_close_other_uis()
+	
+	# Notify UI State Manager
+	if has_node("/root/UIStateManager"):
+		get_node("/root/UIStateManager").open_panel("market")
+	
 	_refresh_display()
 
 
 ## Hides the market
 func hide_market() -> void:
 	visible = false
-
-
-## Closes other UI panels for mutual exclusion
-func _close_other_uis() -> void:
-	# Close inventory if open
-	var inventory = get_node_or_null("/root/GameWorld/InventoryUI")
-	if inventory and inventory.visible:
-		if inventory.has_method("hide_inventory"):
-			inventory.hide_inventory()
 	
-	# Close pause menu if open
-	var pause_menu = get_node_or_null("/root/GameWorld/PauseMenu")
-	if pause_menu and pause_menu.visible:
-		if pause_menu.has_method("hide_pause_menu"):
-			pause_menu.hide_pause_menu()
+	# Notify UI State Manager
+	if has_node("/root/UIStateManager"):
+		get_node("/root/UIStateManager").close_panel()
 
 
 ## Applies art direction styling to UI elements

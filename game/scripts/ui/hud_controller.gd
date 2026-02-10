@@ -9,6 +9,7 @@ extends CanvasLayer
 @onready var carbon_label = $MarginContainer/HBoxContainer/RightPanel/CarbonLabel
 @onready var gold_label = $MarginContainer/HBoxContainer/RightPanel/GoldLabel
 @onready var tide_label = $MarginContainer/HBoxContainer/RightPanel/TideLabel
+@onready var keybind_hints = $KeybindHints
 
 
 func _ready() -> void:
@@ -18,8 +19,17 @@ func _ready() -> void:
 	TimeManager.season_changed.connect(_on_season_changed)
 	CarbonManager.carbon_updated.connect(_on_carbon_updated)
 	
+	# Setup keybind hints
+	_setup_keybind_hints()
+	
 	# Initial update
 	_update_all()
+
+
+func _setup_keybind_hints() -> void:
+	"""Setup keybinding hints display"""
+	if keybind_hints:
+		keybind_hints.text = "[I] Inventory  [J] Quests  [R] Research  [M] Market  [Tab] Carbon"
 
 
 func _process(_delta: float) -> void:
