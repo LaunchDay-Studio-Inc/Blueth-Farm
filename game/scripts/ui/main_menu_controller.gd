@@ -32,8 +32,15 @@ func _on_load_game_pressed() -> void:
 
 
 func _on_settings_pressed() -> void:
-	print("Settings menu not yet implemented")
-	# TODO: Open settings menu
+	# Open settings menu
+	var settings_menu = get_node_or_null("/root/SettingsMenu")
+	if not settings_menu:
+		settings_menu = get_tree().get_first_node_in_group("settings_menu")
+	
+	if settings_menu and settings_menu.has_method("show_settings"):
+		settings_menu.show_settings("main_menu")
+	else:
+		print("Settings menu not found")
 
 
 func _on_quit_pressed() -> void:
