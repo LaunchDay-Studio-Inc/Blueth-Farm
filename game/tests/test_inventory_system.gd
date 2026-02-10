@@ -143,8 +143,9 @@ func test_inventory_full() -> void:
 	
 	inventory.clear_inventory()
 	
-	# Fill all 40 slots with different items
-	for i in range(40):
+	# Fill all slots with different items
+	var total_slots = inventory.TOTAL_SLOTS
+	for i in range(total_slots):
 		inventory.add_item("item_%d" % i, 1)
 	
 	# Try to add one more item

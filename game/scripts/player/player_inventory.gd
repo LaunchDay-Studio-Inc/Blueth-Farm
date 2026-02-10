@@ -219,7 +219,7 @@ func swap_slots(index_a: int, index_b: int) -> bool:
 ## Gets all items and their quantities as a dictionary
 ## Returns: Dictionary with item types as keys and quantities as values
 func get_all_items() -> Dictionary:
-	var items := {}
+	var items: Dictionary = {}
 	
 	for slot in _inventory:
 		if not slot.is_empty():
