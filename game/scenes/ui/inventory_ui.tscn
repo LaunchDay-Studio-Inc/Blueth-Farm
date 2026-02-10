@@ -1,0 +1,143 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvt8h5kn2x9wp"]
+
+[ext_resource type="Script" path="res://scripts/ui/inventory_controller.gd" id="1_inventory"]
+
+[node name="InventoryUI" type="CanvasLayer"]
+layer = 5
+visible = false
+script = ExtResource("1_inventory")
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HeaderContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Inventory"
+
+[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HeaderContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "X"
+
+[node name="CategoryContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="AllButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CategoryContainer"]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "All"
+
+[node name="SeedsButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CategoryContainer"]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Seeds"
+
+[node name="HarvestButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CategoryContainer"]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Harvest"
+
+[node name="ToolsButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CategoryContainer"]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Tools"
+
+[node name="SpecialButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CategoryContainer"]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Special"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 360)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 10
+
+[node name="QuickslotLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Quickslots"
+
+[node name="QuickslotContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="TooltipPanel" type="PanelContainer" parent="."]
+visible = false
+offset_right = 200.0
+offset_bottom = 100.0
+
+[node name="TooltipMargin" type="MarginContainer" parent="TooltipPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TooltipVBox" type="VBoxContainer" parent="TooltipPanel/TooltipMargin"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="ItemNameLabel" type="Label" parent="TooltipPanel/TooltipMargin/TooltipVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Item Name"
+
+[node name="ItemDescLabel" type="Label" parent="TooltipPanel/TooltipMargin/TooltipVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Item description goes here"
+autowrap_mode = 3
+
+[node name="ItemQuantityLabel" type="Label" parent="TooltipPanel/TooltipMargin/TooltipVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Quantity: 1"

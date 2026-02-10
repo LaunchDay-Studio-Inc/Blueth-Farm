@@ -1,0 +1,141 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqw8x5y9z4abc"]
+
+[ext_resource type="Script" path="res://scripts/ui/codex_controller.gd" id="1_codex"]
+
+[node name="CodexUI" type="CanvasLayer"]
+layer = 7
+visible = false
+script = ExtResource("1_codex")
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="MainPanel" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -450.0
+offset_right = 600.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Header" type="HBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CodexTitle" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "📚 Blue Carbon Codex"
+
+[node name="SpeciesCounter" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "0/9 Species Discovered"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="MainPanel/MarginContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "X"
+
+[node name="Separator1" type="HSeparator" parent="MainPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="MainPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 16
+
+[node name="Species" type="MarginContainer" parent="MainPanel/MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SpeciesScroll" type="ScrollContainer" parent="MainPanel/MarginContainer/VBoxContainer/TabContainer/Species"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="SpeciesList" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TabContainer/Species/SpeciesScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="Wildlife" type="MarginContainer" parent="MainPanel/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="WildlifeScroll" type="ScrollContainer" parent="MainPanel/MarginContainer/VBoxContainer/TabContainer/Wildlife"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="WildlifeList" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TabContainer/Wildlife/WildlifeScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="Ecosystem Services" type="MarginContainer" parent="MainPanel/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ServicesScroll" type="ScrollContainer" parent="MainPanel/MarginContainer/VBoxContainer/TabContainer/Ecosystem Services"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="ServicesList" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TabContainer/Ecosystem Services/ServicesScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="Science Facts" type="MarginContainer" parent="MainPanel/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="FactsScroll" type="ScrollContainer" parent="MainPanel/MarginContainer/VBoxContainer/TabContainer/Science Facts"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="FactsList" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer/TabContainer/Science Facts/FactsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 5

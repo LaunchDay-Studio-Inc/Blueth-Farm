@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://notification_popup_001"]
+
+[ext_resource type="Script" path="res://scripts/ui/notification_popup_controller.gd" id="1_controller"]
+
+[node name="NotificationPopup" type="PanelContainer"]
+offset_right = 300.0
+offset_bottom = 80.0
+script = ExtResource("1_controller")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="IconLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "📖"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Notification message here"
+autowrap_mode = 2

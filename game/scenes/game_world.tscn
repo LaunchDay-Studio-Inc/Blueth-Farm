@@ -1,13 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7j8k3lm4npqr"]
+[gd_scene load_steps=11 format=3 uid="uid://c7j8k3lm4npqr"]
 
 [ext_resource type="PackedScene" uid="uid://byvmfjh5xnbcq" path="res://scenes/entities/player.tscn" id="1_player"]
 [ext_resource type="Script" path="res://scripts/world/tile_map_manager.gd" id="2_tilemap"]
 [ext_resource type="PackedScene" uid="uid://cq8rm4tn5uvwx" path="res://scenes/ui/hud.tscn" id="3_hud"]
 [ext_resource type="PackedScene" uid="uid://bx9cy8dz0e1fg" path="res://scenes/ui/pause_menu.tscn" id="4_pause"]
-[ext_resource type="Script" path="res://scripts/world/game_world_controller.gd" id="5_controller"]
+[ext_resource type="PackedScene" uid="uid://cvt8h5kn2x9wp" path="res://scenes/ui/inventory_ui.tscn" id="5_inventory"]
+[ext_resource type="PackedScene" uid="uid://bs5jd8h3m9k2p" path="res://scenes/ui/market_ui.tscn" id="6_market"]
+[ext_resource type="Script" path="res://scripts/world/game_world_controller.gd" id="7_controller"]
+[ext_resource type="Script" path="res://scripts/npcs/journal_system.gd" id="8_journal_system"]
+[ext_resource type="PackedScene" uid="uid://b8k3m7n2p5qvj" path="res://scenes/ui/journal_ui.tscn" id="9_journal_ui"]
+[ext_resource type="PackedScene" uid="uid://cqw8x5y9z4abc" path="res://scenes/ui/codex_ui.tscn" id="10_codex_ui"]
+[ext_resource type="PackedScene" uid="uid://tech_tree_ui_blueth" path="res://scenes/ui/tech_tree_ui.tscn" id="11_tech_tree_ui"]
 
 [node name="GameWorld" type="Node2D"]
-script = ExtResource("5_controller")
+script = ExtResource("7_controller")
 
 [node name="TileMapManager" type="Node" parent="."]
 script = ExtResource("2_tilemap")
@@ -53,6 +59,19 @@ zoom = Vector2(1.5, 1.5)
 [node name="HUD" parent="." instance=ExtResource("3_hud")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("4_pause")]
+
+[node name="InventoryUI" parent="." instance=ExtResource("5_inventory")]
+
+[node name="MarketUI" parent="." instance=ExtResource("6_market")]
+
+[node name="JournalSystem" type="Node" parent="." groups=["journal_system"]]
+script = ExtResource("8_journal_system")
+
+[node name="JournalUI" parent="." instance=ExtResource("9_journal_ui")]
+
+[node name="CodexUI" parent="." instance=ExtResource("10_codex_ui")]
+
+[node name="TechTreeUI" parent="." instance=ExtResource("11_tech_tree_ui")]
 
 [node name="WeatherSystem" type="Node" parent="."]
 script = preload("res://scripts/world/weather_system.gd")

@@ -50,12 +50,20 @@ var current_season: String = "spring"
 
 func _ready() -> void:
 	# Connect to TimeManager for hour/season updates
-	if TimeManager:
-		TimeManager.hour_changed.connect(_on_hour_changed)
+	if TimeManager and TimeManager.has_signal("time_tick"):
+		TimeManager.time_tick.connect(_on_time_tick)
+	if TimeManager and TimeManager.has_signal("season_changed"):
 		TimeManager.season_changed.connect(_on_season_changed)
+	
+	# Initialize market state based on current time
+	if TimeManager:
+		var current_hour = TimeManager.current_hour
+		is_market_open = current_hour >= MARKET_OPEN_HOUR and current_hour < MARKET_CLOSE_HOUR
+		# Initialize season
+		current_season = _get_season_name(TimeManager.current_season)
 
 
-func _on_hour_changed(hour: int) -> void:
+func _on_time_tick(hour: int, _minute: int) -> void:
 	"""Check if market should open/close"""
 	var was_open = is_market_open
 	is_market_open = hour >= MARKET_OPEN_HOUR and hour < MARKET_CLOSE_HOUR
@@ -66,9 +74,19 @@ func _on_hour_changed(hour: int) -> void:
 		market_closed.emit()
 
 
-func _on_season_changed(season: String) -> void:
+func _on_season_changed(season: int) -> void:
 	"""Update current season for pricing"""
-	current_season = season
+	current_season = _get_season_name(season)
+
+
+func _get_season_name(season_enum: int) -> String:
+	"""Convert season enum to string"""
+	match season_enum:
+		0: return "spring"
+		1: return "summer"
+		2: return "fall"
+		3: return "winter"
+		_: return "spring"
 
 
 func get_buy_price(item_id: String, quantity: int = 1) -> int:

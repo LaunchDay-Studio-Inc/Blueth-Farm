@@ -1,0 +1,252 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxh3j8km5p2dn"]
+
+[ext_resource type="Script" path="res://scripts/ui/carbon_dashboard_controller.gd" id="1_carbon_dashboard"]
+
+[node name="CarbonDashboard" type="CanvasLayer"]
+layer = 7
+visible = false
+script = ExtResource("1_carbon_dashboard")
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(900, 700)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HeaderContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "📊 Carbon Dashboard"
+
+[node name="CloseButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderContainer"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "X"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TopSection" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TotalCarbonPanel" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TopSection"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TopSection/TotalCarbonPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TopSection/TotalCarbonPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Total CO₂ Sequestered"
+horizontal_alignment = 1
+
+[node name="TotalCarbonLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TopSection/TotalCarbonPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "0.0"
+horizontal_alignment = 1
+
+[node name="TonnesLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TopSection/TotalCarbonPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "tonnes"
+horizontal_alignment = 1
+
+[node name="DailyRatePanel" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TopSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TopSection/DailyRatePanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TopSection/DailyRatePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Daily Rate"
+horizontal_alignment = 1
+
+[node name="DailyRateLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TopSection/DailyRatePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "0.0"
+horizontal_alignment = 1
+
+[node name="TrendLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TopSection/DailyRatePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "tonnes/day"
+horizontal_alignment = 1
+
+[node name="BreakdownSection" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BreakdownLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BreakdownSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Carbon Storage Breakdown"
+
+[node name="BiomassContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BreakdownSection"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="BiomassLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BreakdownSection/BiomassContainer"]
+layout_mode = 2
+text = "🌱 Biomass: 0.0 tonnes (0%)"
+
+[node name="BiomassProgressBar" type="ProgressBar" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BreakdownSection/BiomassContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+max_value = 100.0
+show_percentage = false
+
+[node name="SedimentContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BreakdownSection"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="SedimentLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BreakdownSection/SedimentContainer"]
+layout_mode = 2
+text = "🪨 Sediment: 0.0 tonnes (0%)"
+
+[node name="SedimentProgressBar" type="ProgressBar" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BreakdownSection/SedimentContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+max_value = 100.0
+show_percentage = false
+
+[node name="GraphSection" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="GraphLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GraphSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Historical Carbon Sequestration (Last 28 Days)"
+
+[node name="GraphContainer" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GraphSection"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="GraphCanvas" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GraphSection/GraphContainer"]
+layout_mode = 2
+
+[node name="EquivalenciesSection" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="EquivalenciesLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/EquivalenciesSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Real-World Equivalencies"
+
+[node name="EquivalenciesPanel" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/EquivalenciesSection"]
+layout_mode = 2
+
+[node name="EquivalenciesContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/EquivalenciesSection/EquivalenciesPanel"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="CarsLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/EquivalenciesSection/EquivalenciesPanel/EquivalenciesContainer"]
+layout_mode = 2
+text = "🚗 Equal to 0 cars off the road for a year"
+
+[node name="FlightsLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/EquivalenciesSection/EquivalenciesPanel/EquivalenciesContainer"]
+layout_mode = 2
+text = "✈️ Equal to 0 transatlantic flights offset"
+
+[node name="TreesLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/EquivalenciesSection/EquivalenciesPanel/EquivalenciesContainer"]
+layout_mode = 2
+text = "🌳 Equal to 0 trees grown for 10 years"
+
+[node name="BottomSection" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CarbonCreditsPanel" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BottomSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BottomSection/CarbonCreditsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CreditsTitleLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BottomSection/CarbonCreditsPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "💰 Carbon Credits"
+
+[node name="CreditsAvailableLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BottomSection/CarbonCreditsPanel/VBoxContainer"]
+layout_mode = 2
+text = "Available: 0.0 credits"
+
+[node name="CreditsPriceLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BottomSection/CarbonCreditsPanel/VBoxContainer"]
+layout_mode = 2
+text = "Price: 25 gold/credit"
+
+[node name="SellCreditsButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BottomSection/CarbonCreditsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Sell All Credits"
+
+[node name="EcosystemHealthPanel" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BottomSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BottomSection/EcosystemHealthPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HealthTitleLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BottomSection/EcosystemHealthPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "🌊 Ecosystem Health"
+
+[node name="HealthValueLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BottomSection/EcosystemHealthPanel/VBoxContainer"]
+layout_mode = 2
+text = "Health: 0%"
+
+[node name="EcosystemHealthBar" type="ProgressBar" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BottomSection/EcosystemHealthPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+max_value = 100.0
+show_percentage = false
+
+[node name="HintLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Press Tab to close"
+horizontal_alignment = 1
