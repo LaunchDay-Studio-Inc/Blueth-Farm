@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="SpeciesData" load_steps=2 format=3 uid="uid://d7k5l6m8n9pqx"]
+
+[ext_resource type="Script" path="res://scripts/species_data.gd" id="1_species_data"]
+
+[resource]
+script = ExtResource("1_species_data")
+species_name = "Giant Kelp"
+scientific_name = "Macrocystis pyrifera"
+description = "Fast-growing marine algae that forms underwater forests. Can grow up to 60cm per day in ideal conditions."
+codex_entry = "Kelp forests are among the most productive ecosystems on Earth. They provide habitat for hundreds of species, from sea otters to rockfish. While kelp doesn't store carbon in sediment like other blue carbon species, it exports carbon to the deep ocean and supports complex food webs."
+zone = "reef_edge"
+preferred_depth_min = 3.0
+preferred_depth_max = 20.0
+preferred_salinity = 35.0
+salinity_tolerance = 3.0
+preferred_substrate = "rocky"
+growth_stages = 5
+days_per_stage = Array[int]([5, 10, 15, 21, 28])
+carbon_per_day = Array[float]([0.0002, 0.0012, 0.0022, 0.003, 0.0035])
+sediment_carbon_rate = 0.0001
+biodiversity_bonus = 1.4
+coastal_protection = 0.5
+base_color = Color(0.19, 0.32, 0.2)
+can_spread = false
+spread_chance = 0.0
