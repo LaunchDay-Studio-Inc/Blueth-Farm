@@ -1,0 +1,165 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs5jd8h3m9k2p"]
+
+[ext_resource type="Script" path="res://scripts/ui/market_controller.gd" id="1_market"]
+
+[node name="MarketUI" type="CanvasLayer"]
+layer = 6
+visible = false
+script = ExtResource("1_market")
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(900, 650)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HeaderContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "🏪 Town Market"
+
+[node name="CloseButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "X"
+
+[node name="InfoContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MarketHoursLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/InfoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Open 8 AM - 6 PM"
+
+[node name="GoldLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/InfoContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "💰 Gold: 0"
+
+[node name="TabContainer" type="TabContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Buy Seeds" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Buy Seeds"]
+layout_mode = 2
+
+[node name="BuyItemsContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Buy Seeds/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Sell Goods" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sell Goods"]
+layout_mode = 2
+
+[node name="SellItemsContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sell Goods/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="CarbonSection" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SeparatorLine" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CarbonSection"]
+layout_mode = 2
+
+[node name="CarbonHeader" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CarbonSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "🌱 Carbon Credits Trading"
+
+[node name="CarbonInfoContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CarbonSection"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="CreditsLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CarbonSection/CarbonInfoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "Available Credits: 0"
+
+[node name="PriceLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CarbonSection/CarbonInfoContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Price: 25 gold/credit"
+
+[node name="SellCarbonButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CarbonSection/CarbonInfoContainer"]
+custom_minimum_size = Vector2(120, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Sell All"
+
+[node name="MarketClosedOverlay" type="ColorRect" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/MarketClosedOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarketClosedOverlay/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ClosedLabel" type="Label" parent="CenterContainer/MarketClosedOverlay/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "🔒 Market Closed"
+horizontal_alignment = 1
+
+[node name="HoursLabel" type="Label" parent="CenterContainer/MarketClosedOverlay/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Opens at 8 AM - Closes at 6 PM"
+horizontal_alignment = 1
