@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="SpeciesData" load_steps=2 format=3 uid="uid://b6n8m9p0q1rsw"]
+
+[ext_resource type="Script" path="res://scripts/species_data.gd" id="1_species_data"]
+
+[resource]
+script = ExtResource("1_species_data")
+species_name = "Red Mangrove"
+scientific_name = "Rhizophora mangle"
+description = "Iconic coastal tree with distinctive prop roots. Thrives in brackish estuarine waters."
+codex_entry = "Red mangroves are the guardians of tropical and subtropical coasts. Their aerial roots create a labyrinth that shelters fish, filters water, and builds land. Mangrove forests sequester more carbon per hectare than almost any other ecosystem on Earth."
+zone = "estuary"
+preferred_depth_min = 0.0
+preferred_depth_max = 2.0
+preferred_salinity = 20.0
+salinity_tolerance = 15.0
+preferred_substrate = "mud"
+growth_stages = 5
+days_per_stage = Array[int]([14, 28, 42, 60, 90])
+carbon_per_day = Array[float]([0.0002, 0.001, 0.002, 0.003, 0.0035])
+sediment_carbon_rate = 0.0005
+biodiversity_bonus = 1.5
+coastal_protection = 0.9
+base_color = Color(0.29, 0.49, 0.35)
+can_spread = false
+spread_chance = 0.0

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="SpeciesData" load_steps=2 format=3 uid="uid://dqt8vm3n5owxy"]
+
+[ext_resource type="Script" path="res://scripts/species_data.gd" id="1_species_data"]
+
+[resource]
+script = ExtResource("1_species_data")
+species_name = "Eelgrass"
+scientific_name = "Zostera marina"
+description = "Common seagrass species found in temperate coastal waters. Forms dense meadows that provide habitat for juvenile fish and invertebrates."
+codex_entry = "Eelgrass meadows are underwater nurseries, supporting a rich ecosystem while sequestering carbon at rates 35x faster than tropical rainforests. Each blade of eelgrass photosynthesizes, producing oxygen and trapping sediment."
+zone = "shallows"
+preferred_depth_min = 0.5
+preferred_depth_max = 3.0
+preferred_salinity = 30.0
+salinity_tolerance = 8.0
+preferred_substrate = "sand"
+growth_stages = 5
+days_per_stage = Array[int]([7, 14, 21, 28, 35])
+carbon_per_day = Array[float]([0.0001, 0.0005, 0.001, 0.0015, 0.0019])
+sediment_carbon_rate = 0.0002
+biodiversity_bonus = 1.2
+coastal_protection = 0.3
+base_color = Color(0.42, 0.6, 0.43)
+can_spread = true
+spread_chance = 0.05
