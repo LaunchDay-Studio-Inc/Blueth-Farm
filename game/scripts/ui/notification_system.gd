@@ -46,11 +46,18 @@ func _connect_signals() -> void:
 	if EcosystemManager.has_signal("wildlife_first_sighting"):
 		EcosystemManager.wildlife_first_sighting.connect(_on_wildlife_sighting)
 	
+	# Weather System - Storm events
+	if has_node("/root/GameWorld/WeatherSystem"):
+		var weather_system = get_node("/root/GameWorld/WeatherSystem")
+		if weather_system.has_signal("storm_started"):
+			weather_system.storm_started.connect(_on_storm_started)
+		if weather_system.has_signal("storm_ended"):
+			weather_system.storm_ended.connect(_on_storm_ended)
+	
 	# TODO: Connect to other signals when available:
 	# - TechTree.research_completed
 	# - TownInvestment.building_completed
 	# - CarbonManager.milestone_reached
-	# - WeatherSystem.storm_approaching
 
 
 func show_notification(message: String, type: NotificationType, icon: String = "") -> void:
@@ -146,6 +153,19 @@ func _on_gold_changed(amount: int, reason: String) -> void:
 
 func _on_growth_milestone(milestone_text: String) -> void:
 	show_notification("🌱 " + milestone_text, NotificationType.GROWTH)
+
+
+func _on_storm_started() -> void:
+	"""Called when a storm begins"""
+	show_notification("⚠️ Storm has started! Protect your crops!", NotificationType.WARNING)
+
+
+func _on_storm_ended(damage_prevented: float) -> void:
+	"""Called when a storm ends"""
+	if damage_prevented > 0:
+		show_notification("🌊 Storm ended. Ecosystem protection prevented %.0f%% damage!" % damage_prevented, NotificationType.GROWTH)
+	else:
+		show_notification("🌊 Storm has passed.", NotificationType.GROWTH)
 
 
 func _on_storm_approaching(days_until: int) -> void:
