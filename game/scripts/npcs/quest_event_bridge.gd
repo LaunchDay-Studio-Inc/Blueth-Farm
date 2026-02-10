@@ -166,8 +166,9 @@ func _connect_signals() -> void:
 			print("  Connected to tile_harvested signal")
 	
 	# CarbonManager signals for carbon goals
-	if CarbonManager and CarbonManager.has_signal("carbon_updated"):
-		CarbonManager.carbon_updated.connect(_on_carbon_updated)
+	var carbon_manager = get_node_or_null("/root/CarbonManager")
+	if carbon_manager and carbon_manager.has_signal("carbon_updated"):
+		carbon_manager.carbon_updated.connect(_on_carbon_updated)
 		print("  Connected to carbon_updated signal")
 	
 	# WeatherSystem signals for storm survival
@@ -204,7 +205,8 @@ func _auto_start_quests() -> void:
 	if not quest_system:
 		return
 	
-	var current_year = GameManager.current_year if GameManager else 1
+	var game_manager = get_node_or_null("/root/GameManager")
+	var current_year = game_manager.current_year if game_manager else 1
 	
 	for quest_id in quest_system.quest_definitions.keys():
 		var quest_def = quest_system.quest_definitions[quest_id]
@@ -396,7 +398,8 @@ func _on_quest_completed(quest_id: String) -> void:
 	
 	print("Quest completed: ", quest_id, " - checking for next quests in chain...")
 	
-	var current_year = GameManager.current_year if GameManager else 1
+	var game_manager = get_node_or_null("/root/GameManager")
+	var current_year = game_manager.current_year if game_manager else 1
 	
 	# Check all quest definitions for quests that can now be started
 	for check_quest_id in quest_system.quest_definitions.keys():

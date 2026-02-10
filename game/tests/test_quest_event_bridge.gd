@@ -42,8 +42,9 @@ signal storm_ended(damage_prevented: float)
 	mock_weather_system.set_script(weather_script)
 	add_child_autofree(mock_weather_system)
 	
-	# Create mock CarbonManager as autoload (if not already present)
-	if not Engine.has_singleton("CarbonManager"):
+	# Create mock CarbonManager (if not already present as autoload)
+	var existing_carbon = get_node_or_null("/root/CarbonManager")
+	if not existing_carbon:
 		mock_carbon_manager = Node.new()
 		mock_carbon_manager.name = "CarbonManager"
 		var carbon_script = GDScript.new()
