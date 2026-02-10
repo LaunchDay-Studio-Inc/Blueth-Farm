@@ -19,6 +19,38 @@ dialogue_trees = {
 		"text": "Well now, you must be Dr. Voss's grandkid. She talked about you. Said you'd come here to carry on her work. I'm Old Salt—been fishing these waters longer than you've been alive. Your grandmother was a good woman, had big dreams for this coastline. Maybe you can make 'em real.",
 		"choices": []
 	},
+	"tutorial_welcome": {
+		"text": "So you're finally here! Your grandmother left you this coastal property—these shallows used to be full of life. Fish, birds, crabs... all gone now. But you can bring it back, just like she dreamed.",
+		"choices": []
+	},
+	"tutorial_after_movement": {
+		"text": "Good, you know how to get around. Now, your grandmother kept a journal—it's in your things. Press J to open it. That journal's got everything she learned about these waters.",
+		"choices": []
+	},
+	"tutorial_meet_at_dock": {
+		"text": "Ah, there you are! I've been waiting for you. Let me tell you about these waters. When I was young, you couldn't walk ten feet without stepping on a crab. Now? Lucky if you see one all day. Your grandmother understood what needed to be done—plant the seagrass, rebuild the ecosystem, and the fish will return.",
+		"choices": []
+	},
+	"tutorial_give_seeds": {
+		"text": "Here, take these. Eelgrass seeds—Zostera marina if you want to get technical about it. Your grandmother saved these before she passed. Plant them in the shallow water, and they'll start bringing life back to this bay. Press I to check your inventory.",
+		"choices": []
+	},
+	"tutorial_about_planting": {
+		"text": "Alright, here's how it works: Press 2 to equip your Seed Bag, then click on any shallow water tile to plant. The seagrass will grow over time—give it a few days. Once it's established, you'll start seeing the difference.",
+		"choices": []
+	},
+	"tutorial_first_plant_complete": {
+		"text": "There you go! Your first planting. I can already feel the change. Keep at it, and soon we'll have fish swimming through those meadows again. Your grandmother would be proud.",
+		"choices": []
+	},
+	"tutorial_about_dashboard": {
+		"text": "You should know—every bit of seagrass you plant captures carbon from the water and air. Press Tab to check your Carbon Dashboard. It'll show you how much you're helping fight climate change while restoring the bay.",
+		"choices": []
+	},
+	"tutorial_complete": {
+		"text": "You're getting the hang of it! Keep planting, keep learning. This bay needs you. And if you ever need advice, you know where to find me. Good luck out there!",
+		"choices": []
+	},
 	"daily_spring": {
 		"text": "Good morning! Spring's the best time for planting seagrass. The water's warming up, and everything's coming back to life. Just like the old days.",
 		"choices": []

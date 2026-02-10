@@ -105,39 +105,53 @@ func _get_current_dialogue() -> Dictionary:
 	"""Get the appropriate dialogue tree for current context"""
 	if not npc_data:
 		return {}
-	
+
+	# Check if tutorial is active and this is Old Salt
+	if npc_data.npc_id == "old_salt":
+		var tutorial_system = get_tree().get_first_node_in_group("tutorial_system")
+		if not tutorial_system:
+			tutorial_system = get_node_or_null("/root/GameWorld/TutorialSystem")
+
+		if tutorial_system and tutorial_system.tutorial_active:
+			# Check current tutorial step
+			var current_step = tutorial_system.current_step
+			if current_step == tutorial_system.TutorialStep.TALK_TO_OLD_SALT:
+				# Return tutorial dialogue for meeting at dock
+				if "tutorial_meet_at_dock" in npc_data.dialogue_trees:
+					return npc_data.dialogue_trees["tutorial_meet_at_dock"]
+
 	# Check for quest-specific dialogue
 	# TODO: Check active quests and return quest dialogue if available
-	
+
 	# Check for friendship-level dialogue
 	var friendship = 0
 	if has_node("/root/RelationshipSystem"):
 		var rel_system = get_node("/root/RelationshipSystem")
 		if rel_system.has_method("get_friendship"):
 			friendship = rel_system.get_friendship(npc_data.npc_id)
-	
+
 	# Try friendship-specific dialogue at thresholds
 	for threshold in [80, 60, 40, 20]:
 		if friendship >= threshold:
 			var key = "friendship_" + str(threshold)
 			if key in npc_data.dialogue_trees:
 				return npc_data.dialogue_trees[key]
-	
+
 	# Try season-specific daily dialogue
 	var season = "spring"
 	if TimeManager:
 		season = TimeManager.get_season_name().to_lower()
-	
+
 	var season_key = "daily_" + season
 	if season_key in npc_data.dialogue_trees:
 		return npc_data.dialogue_trees[season_key]
-	
+
 	# Fall back to intro or generic daily
 	if "daily" in npc_data.dialogue_trees:
 		return npc_data.dialogue_trees["daily"]
 	if "intro" in npc_data.dialogue_trees:
 		return npc_data.dialogue_trees["intro"]
-	
+
 	return {}
 
 

@@ -131,13 +131,24 @@ func _check_step_completion() -> void:
 func _complete_current_step() -> void:
 	"""Complete the current tutorial step"""
 	tutorial_step_completed.emit(current_step)
-	
+
+	# Trigger Old Salt reactions to completed steps
+	match current_step:
+		TutorialStep.EQUIP_AND_PLANT:
+			# Player planted their first plant, Old Salt congratulates
+			await get_tree().create_timer(1.0).timeout
+			_trigger_old_salt_dialogue("tutorial_first_plant_complete")
+		TutorialStep.CHECK_DASHBOARD:
+			# Tutorial complete, Old Salt gives final words
+			await get_tree().create_timer(1.0).timeout
+			_trigger_old_salt_dialogue("tutorial_complete")
+
 	# Hide current step tooltip
 	_hide_tutorial_tooltip()
-	
+
 	# Move to next step
 	current_step += 1
-	
+
 	if current_step >= TutorialStep.COMPLETE:
 		_complete_tutorial()
 	else:
@@ -149,24 +160,42 @@ func _complete_current_step() -> void:
 func _show_current_step() -> void:
 	"""Display the current tutorial step"""
 	var step_data = step_objectives.get(current_step, {})
-	
+
 	var title = step_data.get("title", "")
 	var message = step_data.get("message", "")
 	var icon = step_data.get("icon", "")
-	
+
 	# Show tutorial tooltip
 	_show_tutorial_tooltip(title, message, icon)
-	
+
 	# Show objective marker if needed
 	if step_data.get("show_marker", false):
 		var marker_pos = step_data.get("marker_position", Vector2.ZERO)
 		_show_objective_marker(marker_pos)
-	
-	# Perform step-specific actions
+
+	# Perform step-specific actions including Old Salt dialogue
 	match current_step:
+		TutorialStep.WELCOME:
+			# Trigger Old Salt welcome dialogue
+			_trigger_old_salt_dialogue("tutorial_welcome")
+		TutorialStep.OPEN_JOURNAL:
+			# After movement, Old Salt explains the journal
+			_trigger_old_salt_dialogue("tutorial_after_movement")
+		TutorialStep.TALK_TO_OLD_SALT:
+			# This step is triggered when player talks to Old Salt at dock
+			# Old Salt's "tutorial_meet_at_dock" dialogue will be triggered by NPC interaction
+			pass
 		TutorialStep.OPEN_INVENTORY:
 			# Give player eelgrass seeds
 			_give_starting_items()
+			# Old Salt explains about the seeds
+			_trigger_old_salt_dialogue("tutorial_give_seeds")
+		TutorialStep.EQUIP_AND_PLANT:
+			# Old Salt explains how to plant
+			_trigger_old_salt_dialogue("tutorial_about_planting")
+		TutorialStep.CHECK_DASHBOARD:
+			# Old Salt explains the carbon dashboard
+			_trigger_old_salt_dialogue("tutorial_about_dashboard")
 
 
 func _show_tutorial_tooltip(title: String, message: String, icon: String) -> void:
@@ -195,6 +224,49 @@ func _show_objective_marker(position: Vector2) -> void:
 	"""Show an arrow or marker pointing to objective"""
 	# TODO: Implement objective marker
 	pass
+
+
+func _trigger_old_salt_dialogue(dialogue_key: String) -> void:
+	"""Trigger specific Old Salt dialogue for tutorial"""
+	# Find Old Salt NPC
+	var npc_manager = get_tree().get_first_node_in_group("npc_manager")
+	if not npc_manager:
+		npc_manager = get_node_or_null("/root/GameWorld/NPCManager")
+
+	if not npc_manager or not npc_manager.has_method("get_npc_by_id"):
+		push_warning("NPCManager not found, cannot trigger Old Salt dialogue")
+		return
+
+	var old_salt = npc_manager.get_npc_by_id("old_salt")
+	if not old_salt or not old_salt.npc_data:
+		push_warning("Old Salt NPC not found")
+		return
+
+	# Get the tutorial dialogue
+	var dialogue_tree = old_salt.npc_data.dialogue_trees.get(dialogue_key, {})
+	if dialogue_tree.is_empty():
+		push_warning("Tutorial dialogue key not found: " + dialogue_key)
+		return
+
+	# Format and start dialogue
+	var formatted_dialogue = {
+		"start": {
+			"speaker": old_salt.npc_data.display_name,
+			"text": dialogue_tree.get("text", "..."),
+			"choices": dialogue_tree.get("choices", []),
+			"next": "end"
+		}
+	}
+
+	# Find dialogue box
+	var dialogue_box = get_tree().get_first_node_in_group("dialogue_box")
+	if not dialogue_box:
+		dialogue_box = get_node_or_null("/root/GameWorld/DialogueBox")
+
+	if dialogue_box and dialogue_box.has_method("start_dialogue"):
+		dialogue_box.start_dialogue("old_salt", formatted_dialogue)
+	else:
+		push_warning("DialogueBox not found")
 
 
 func _give_starting_items() -> void:
