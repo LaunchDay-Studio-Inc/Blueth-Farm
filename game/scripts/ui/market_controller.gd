@@ -55,6 +55,9 @@ const ITEM_DISPLAY_NAMES := {
 
 
 func _ready() -> void:
+	# Set process mode for pause handling
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	# Hide initially
 	hide()
 	

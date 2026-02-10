@@ -81,6 +81,19 @@ const BRANCH_NODE_IDS := {
 
 
 func _ready() -> void:
+	# Set process mode for pause handling
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	# Hide initially
+	hide()
+	
+	# Hide detail popup
+	if detail_popup:
+		detail_popup.hide()
+	
+	# Wait for scene tree
+	await get_tree().process_frame
+	
 	# Get system references
 	tech_tree = get_node_or_null("/root/TechTree")
 	
@@ -107,6 +120,8 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_tech_tree"):
 		toggle_visibility()
+	elif event.is_action_pressed("ui_cancel") and visible:
+		hide_tech_tree()
 
 
 func toggle_visibility() -> void:
