@@ -26,20 +26,29 @@ var species_resources: Dictionary = {}
 
 func _ready() -> void:
 	print("GameWorld initialized")
-	
+
 	# Load species resources
 	_load_species()
-	
+
 	# Connect all system signals
 	_connect_signals()
-	
-	# Give player some starting seeds
+
+	# Give player some starting seeds (will be replaced by tutorial)
 	if player and player.has_node("PlayerInventory"):
 		var inventory = player.get_node("PlayerInventory")
-		inventory.add_item("seed_eelgrass", 10)
-		inventory.add_item("seed_cordgrass", 5)
-		inventory.add_item("seed_red_mangrove", 3)
-		print("Starting inventory: 10 eelgrass seeds, 5 cordgrass seeds, 3 red mangrove seeds")
+		# Don't give starting seeds if tutorial is active - tutorial will give them
+		if GameManager and GameManager.tutorial_completed:
+			inventory.add_item("seed_eelgrass", 10)
+			inventory.add_item("seed_cordgrass", 5)
+			inventory.add_item("seed_red_mangrove", 3)
+			print("Starting inventory: 10 eelgrass seeds, 5 cordgrass seeds, 3 red mangrove seeds")
+
+	# Start tutorial for new players
+	await get_tree().create_timer(0.5).timeout
+	if tutorial_system and GameManager:
+		if not GameManager.tutorial_completed:
+			tutorial_system.start_tutorial()
+			print("Tutorial started for new player")
 
 
 func _load_species() -> void:

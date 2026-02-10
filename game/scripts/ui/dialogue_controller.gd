@@ -24,6 +24,9 @@ var choice_buttons: Array = []
 
 
 func _ready() -> void:
+	# Set process mode to ALWAYS so dialogue works during DIALOGUE game state
+	process_mode = PROCESS_MODE_ALWAYS
+
 	# Hide initially
 	$DialoguePanel.visible = false
 	

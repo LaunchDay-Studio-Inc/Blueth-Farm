@@ -21,6 +21,9 @@
 [ext_resource type="Script" path="res://scripts/progression/tutorial_system.gd" id="19_tutorial"]
 [ext_resource type="Script" path="res://scripts/progression/year_progression.gd" id="20_year"]
 [ext_resource type="Script" path="res://scripts/ui/notification_system.gd" id="21_notification"]
+[ext_resource type="PackedScene" uid="uid://dialogue_box_ui_001" path="res://scenes/ui/dialogue_box.tscn" id="22_dialogue"]
+[ext_resource type="Script" path="res://scripts/npcs/npc_manager.gd" id="23_npc_manager"]
+[ext_resource type="PackedScene" uid="uid://tutorial_tooltip_ui_001" path="res://scenes/ui/tutorial_tooltip.tscn" id="24_tutorial_tooltip"]
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("7_controller")
@@ -94,7 +97,7 @@ script = ExtResource("17_nursery")
 [node name="QuestSystem" type="Node" parent="." groups=["quest_system"]]
 script = ExtResource("18_quest")
 
-[node name="TutorialSystem" type="Node" parent="."]
+[node name="TutorialSystem" type="Node" parent="." groups=["tutorial_system"]]
 script = ExtResource("19_tutorial")
 
 [node name="YearProgressionSystem" type="Node" parent="."]
@@ -122,3 +125,10 @@ script = preload("res://scripts/research/tech_tree.gd")
 [node name="TownInvestmentUI" parent="." instance=ExtResource("15_town_ui")]
 
 [node name="CarbonDashboard" parent="." instance=ExtResource("16_carbon_ui")]
+
+[node name="DialogueBox" parent="." instance=ExtResource("22_dialogue")]
+
+[node name="NPCManager" type="Node" parent="." groups=["npc_manager"]]
+script = ExtResource("23_npc_manager")
+
+[node name="TutorialTooltip" parent="." instance=ExtResource("24_tutorial_tooltip")]
