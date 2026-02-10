@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3 uid="uid://b4m9k7n8p3qvw"]
+
+[ext_resource type="Script" path="res://scripts/npcs/quest_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+quest_id = "meet_scientist"
+title = "Lab Partners"
+description = "Meet Dr. Marina Chen and deliver water quality samples to help her research."
+objectives = [
+	{"type": "visit_npc", "npc_id": "dr_marina", "complete": false},
+	{"type": "deliver_item", "item": "water_sample", "count": 3, "complete": false}
+]
+reward_gold = 0
+reward_research_points = 15
+reward_unlocks = "ecology_research"
+is_story_quest = true
+required_year = 1
+given_by_npc = "dr_marina"
+prerequisite_quests = ["water_quality"]

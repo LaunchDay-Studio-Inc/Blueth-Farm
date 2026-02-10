@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3 uid="uid://b8k7m3n9p4qwx"]
+
+[ext_resource type="Script" path="res://scripts/npcs/quest_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+quest_id = "big_storm"
+title = "The Big One"
+description = "A major storm is hitting the coast. Your restored ecosystems will be put to the ultimate test—can they protect the town?"
+objectives = [
+	{"type": "survive_major_storm", "complete": false}
+]
+reward_gold = 1000
+reward_research_points = 50
+reward_journal_entry = "life_returns"
+reward_unlocks = "mayor_supporter"
+is_story_quest = true
+required_year = 3
+auto_triggered = true

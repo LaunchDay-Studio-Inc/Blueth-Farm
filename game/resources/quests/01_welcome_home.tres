@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3 uid="uid://c4n7m8k9p2qwx"]
+
+[ext_resource type="Script" path="res://scripts/npcs/quest_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+quest_id = "welcome_home"
+title = "Welcome Home"
+description = "Explore your grandmother's property and find her journal to begin your journey."
+objectives = [
+	{"type": "explore", "location": "property", "complete": false},
+	{"type": "discover", "item": "journal", "complete": false}
+]
+reward_gold = 50
+reward_research_points = 10
+reward_journal_entry = "welcome_home"
+is_story_quest = true
+required_year = 1
+auto_triggered = true

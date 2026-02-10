@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3 uid="uid://c7m8n4k9p3qvt"]
+
+[ext_resource type="Script" path="res://scripts/npcs/quest_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+quest_id = "water_quality"
+title = "Testing the Waters"
+description = "Use the Water Tester tool to check water quality on 3 different tiles. Understanding your environment is key to successful restoration."
+objectives = [
+	{"type": "test_water", "count": 3, "current": 0, "complete": false}
+]
+reward_gold = 50
+reward_research_points = 10
+is_story_quest = true
+required_year = 1
+given_by_npc = "old_salt"
+prerequisite_quests = ["first_planting"]

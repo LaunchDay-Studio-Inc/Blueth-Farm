@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3 uid="uid://c5m9k3n7p8qvt"]
+
+[ext_resource type="Script" path="res://scripts/npcs/quest_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+quest_id = "final_journal"
+title = "Dear Grandchild"
+description = "Discover your grandmother's final journal entry, a deeply personal letter left for you."
+objectives = [
+	{"type": "discover_journal", "entry_id": "dear_grandchild", "complete": false}
+]
+reward_gold = 0
+reward_research_points = 100
+reward_journal_entry = "dear_grandchild"
+is_story_quest = true
+required_year = 5
+auto_triggered = true
