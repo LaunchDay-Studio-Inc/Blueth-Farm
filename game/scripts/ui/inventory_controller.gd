@@ -503,7 +503,6 @@ func _on_slot_clicked(slot_ui: PanelContainer) -> void:
 	if _selected_slot_index == -1:
 		# Select this slot
 		_selected_slot_index = slot_index
-		print("Selected slot: ", slot_index)
 	else:
 		# Swap with previously selected slot
 		if not is_quickslot and _player_inventory:
