@@ -125,6 +125,7 @@ func _input(event: InputEvent) -> void:
 
 
 func toggle_visibility() -> void:
+	"""Toggle tech tree visibility - shows if hidden, hides if shown"""
 	if visible:
 		hide_tech_tree()
 	else:

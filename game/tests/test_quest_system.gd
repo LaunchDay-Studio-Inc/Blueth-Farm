@@ -82,6 +82,18 @@ func _ready() -> void:
 	assert(quest.get("title") == "Test Quest", "Should still have quest data after completion")
 	print("  ✓ PASSED")
 	
+	# Test 6: Verify internal Dictionary storage
+	print("\nTest 6: Verify internal Dictionary storage")
+	print("  completed_quests type: ", typeof(quest_system.completed_quests))
+	assert(typeof(quest_system.completed_quests) == TYPE_DICTIONARY, "completed_quests should be Dictionary")
+	assert(quest_system.completed_quests.has("test_quest_1"), "Should have quest_id as key")
+	var stored_quest = quest_system.completed_quests["test_quest_1"]
+	print("  Stored quest title: ", stored_quest.get("title"))
+	print("  Stored quest objectives count: ", stored_quest.get("objectives", []).size())
+	assert(stored_quest.get("title") == "Test Quest", "Stored quest should have complete data")
+	assert(stored_quest.get("objectives", []).size() == 2, "Should preserve objectives")
+	print("  ✓ PASSED")
+	
 	print("\n=== All QuestSystem tests PASSED! ===\n")
 	
 	# Clean up
