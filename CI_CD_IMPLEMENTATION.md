@@ -421,7 +421,7 @@ Uses `barichello/godot-ci:4.3` which includes:
 
 ### GUT Framework
 
-- Version: 9.5.1
+- Version: 9.3.0 (stable for Godot 4.3 CI)
 - Compatible with: Godot 4.3+
 - Test syntax: GDScript with assert methods
 - Output formats: Console, JUnit XML
@@ -479,5 +479,5 @@ The infrastructure is production-ready and will scale as the project grows. All 
 
 **Implementation Date:** February 10, 2026
 **Godot Version:** 4.3
-**Testing Framework:** GUT 9.5.1
+**Testing Framework:** GUT 9.3.0
 **CI/CD Platform:** GitHub Actions

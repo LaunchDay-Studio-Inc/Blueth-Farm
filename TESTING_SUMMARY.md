@@ -6,7 +6,7 @@
 - **Total Test Files:** 6
 - **Total Test Cases:** 68+
 - **Lines of Test Code:** ~1,400
-- **Testing Framework:** GUT 9.5.1
+- **Testing Framework:** GUT 9.3.0 (stable for Godot 4.3 CI)
 
 ### Test Breakdown by System
 
@@ -216,4 +216,4 @@ Before submitting a PR:
 **Infrastructure Status:** ✅ Production Ready
 **Last Updated:** February 10, 2026
 **Godot Version:** 4.3
-**Testing Framework:** GUT 9.5.1
+**Testing Framework:** GUT 9.3.0
