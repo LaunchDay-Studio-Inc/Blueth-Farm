@@ -70,33 +70,20 @@ func _connect_signals() -> void:
 	
 	# PlantingSystem signals
 	if planting_system:
-		# Connect to QuestSystem for plant objectives
-		if quest_system and planting_system.has_signal("plant_placed"):
+		# Connect to QuestSystem for plant objectives (quests will connect when active)
+		if planting_system.has_signal("plant_placed"):
 			planting_system.plant_placed.connect(_on_plant_placed)
-		
-		# Connect to JournalSystem for unlock conditions
-		if journal_system and planting_system.has_signal("plant_placed"):
-			planting_system.plant_placed.connect(journal_system._check_unlock_conditions)
 	
 	# HarvestSystem signals
 	if harvest_system:
-		# Connect to QuestSystem for harvest objectives
-		if quest_system and harvest_system.has_signal("plant_harvested"):
+		# Connect to QuestSystem for harvest objectives (quests will connect when active)
+		if harvest_system.has_signal("plant_harvested"):
 			harvest_system.plant_harvested.connect(_on_plant_harvested)
-		
-		# Connect to JournalSystem for unlock conditions
-		if journal_system and harvest_system.has_signal("plant_harvested"):
-			harvest_system.plant_harvested.connect(journal_system._check_unlock_conditions)
 	
 	# CarbonManager signals
 	if CarbonManager.has_signal("carbon_updated"):
-		# Connect to QuestSystem for carbon objectives
-		if quest_system:
-			CarbonManager.carbon_updated.connect(_on_carbon_updated)
-		
-		# Connect to JournalSystem for carbon milestones
-		if journal_system:
-			CarbonManager.carbon_updated.connect(journal_system._check_unlock_conditions)
+		# Quest and journal systems check conditions internally
+		CarbonManager.carbon_updated.connect(_on_carbon_updated)
 	
 	# WeatherSystem signals
 	if weather_system:
@@ -137,20 +124,23 @@ func _connect_signals() -> void:
 # Signal handlers
 func _on_plant_placed(tile_pos: Vector2i, species: String) -> void:
 	"""Handle plant placed for quest updates"""
-	if quest_system:
-		quest_system.update_objective("plant", species, 1)
+	# Quest system will need to track specific quest objectives
+	# This can be connected by individual quests when they become active
+	pass
 
 
 func _on_plant_harvested(tile_pos: Vector2i, species: String, growth_stage: int) -> void:
 	"""Handle plant harvested for quest updates"""
-	if quest_system:
-		quest_system.update_objective("harvest", species, 1)
+	# Quest system will need to track specific quest objectives
+	# This can be connected by individual quests when they become active
+	pass
 
 
 func _on_carbon_updated(total_carbon: float) -> void:
 	"""Handle carbon updates for quest objectives"""
-	if quest_system:
-		quest_system.update_objective("carbon", "total", total_carbon)
+	# Quest system will need to track specific quest objectives
+	# This can be connected by individual quests when they become active
+	pass
 
 
 func _on_storm_started() -> void:
