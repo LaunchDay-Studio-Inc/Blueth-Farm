@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ui/journal_controller.gd" id="1_journal"]
 
-[node name="JournalUI" type="CanvasLayer"]
+[node name="JournalUI" type="CanvasLayer" groups=["journal_ui"]]
 layer = 8
 visible = false
 script = ExtResource("1_journal")

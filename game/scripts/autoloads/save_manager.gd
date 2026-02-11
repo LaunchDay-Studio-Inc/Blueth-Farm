@@ -139,6 +139,16 @@ func _collect_save_data() -> Dictionary:
 	if tile_map_manager and tile_map_manager.has_method("get_save_data"):
 		data["tile_map_manager"] = tile_map_manager.get_save_data()
 
+	# Get JournalSystem data if it exists in the scene tree
+	var journal_system = get_tree().get_first_node_in_group("journal_system")
+	if journal_system and journal_system.has_method("get_save_data"):
+		data["journal_system"] = journal_system.get_save_data()
+
+	# Get JournalUI data if it exists in the scene tree
+	var journal_ui = get_tree().get_first_node_in_group("journal_ui")
+	if journal_ui and journal_ui.has_method("get_save_data"):
+		data["journal_ui"] = journal_ui.get_save_data()
+
 	return data
 
 
@@ -187,6 +197,18 @@ func _apply_save_data(data: Dictionary) -> void:
 		var tile_map_manager = get_tree().get_first_node_in_group("tile_map_manager")
 		if tile_map_manager and tile_map_manager.has_method("load_save_data"):
 			tile_map_manager.load_save_data(data.tile_map_manager)
+
+	# Apply JournalSystem data if it exists in the scene tree
+	if "journal_system" in data:
+		var journal_system = get_tree().get_first_node_in_group("journal_system")
+		if journal_system and journal_system.has_method("load_save_data"):
+			journal_system.load_save_data(data.journal_system)
+
+	# Apply JournalUI data if it exists in the scene tree
+	if "journal_ui" in data:
+		var journal_ui = get_tree().get_first_node_in_group("journal_ui")
+		if journal_ui and journal_ui.has_method("load_save_data"):
+			journal_ui.load_save_data(data.journal_ui)
 
 
 func _get_save_file_path(slot: int) -> String:
