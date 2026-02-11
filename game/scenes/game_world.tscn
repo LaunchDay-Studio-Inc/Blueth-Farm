@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c7j8k3lm4npqr"]
+[gd_scene load_steps=23 format=3 uid="uid://c7j8k3lm4npqr"]
 
 [ext_resource type="PackedScene" uid="uid://byvmfjh5xnbcq" path="res://scenes/entities/player.tscn" id="1_player"]
 [ext_resource type="Script" path="res://scripts/world/tile_map_manager.gd" id="2_tilemap"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://scripts/npcs/npc_manager.gd" id="23_npc_manager"]
 [ext_resource type="PackedScene" uid="uid://tutorial_tooltip_ui_001" path="res://scenes/ui/tutorial_tooltip.tscn" id="24_tutorial_tooltip"]
 [ext_resource type="Script" path="res://scripts/npcs/quest_event_bridge.gd" id="25_quest_bridge"]
+[ext_resource type="Script" path="res://scripts/npcs/relationship_system.gd" id="26_relationship"]
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("7_controller")
@@ -97,6 +98,9 @@ script = ExtResource("17_nursery")
 
 [node name="QuestSystem" type="Node" parent="." groups=["quest_system"]]
 script = ExtResource("18_quest")
+
+[node name="RelationshipSystem" type="Node" parent="." groups=["relationship_system"]]
+script = ExtResource("26_relationship")
 
 [node name="TutorialSystem" type="Node" parent="." groups=["tutorial_system"]]
 script = ExtResource("19_tutorial")
