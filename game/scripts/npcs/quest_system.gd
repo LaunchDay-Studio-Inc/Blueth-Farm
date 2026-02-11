@@ -183,13 +183,29 @@ func _all_objectives_completed(quest_id: String) -> bool:
 func _grant_rewards(rewards: Dictionary) -> void:
 	var gold = rewards.get("gold", 0)
 	var research_points = rewards.get("research_points", 0)
-	
+
 	if gold > 0 and GameManager:
 		GameManager.add_money(gold)
-	
+
 	if research_points > 0 and GameManager and GameManager.has_method("add_research_points"):
 		GameManager.add_research_points(research_points)
-	
+
 	var items = rewards.get("items", [])
 	for item in items:
 		print("Rewarding item: %s" % item)
+
+
+func get_save_data() -> Dictionary:
+	"""Get quest data for saving"""
+	return {
+		"active_quests": active_quests,
+		"completed_quests": completed_quests,
+		"failed_quests": failed_quests
+	}
+
+
+func load_save_data(data: Dictionary) -> void:
+	"""Load quest data from save"""
+	active_quests = data.get("active_quests", {})
+	completed_quests = data.get("completed_quests", {})
+	failed_quests = data.get("failed_quests", [])
