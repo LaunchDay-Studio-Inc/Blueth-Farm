@@ -115,9 +115,14 @@ func _collect_save_data() -> Dictionary:
 		# Player data would go here when player exists
 		# World/tilemap data would go here
 		# NPC relationship data would go here
-		# Quest progress would go here
 		# Research progress would go here
 	}
+
+	# Get QuestSystem data if it exists in the scene tree
+	var quest_system = get_tree().get_first_node_in_group("quest_system")
+	if quest_system and quest_system.has_method("get_save_data"):
+		data["quest_system"] = quest_system.get_save_data()
+
 	return data
 
 
@@ -125,20 +130,25 @@ func _apply_save_data(data: Dictionary) -> void:
 	"""Apply loaded data to all managers"""
 	if "game_manager" in data:
 		GameManager.load_save_data(data.game_manager)
-	
+
 	if "time_manager" in data:
 		TimeManager.load_save_data(data.time_manager)
-	
+
 	if "carbon_manager" in data:
 		CarbonManager.load_save_data(data.carbon_manager)
-	
+
 	if "ecosystem_manager" in data:
 		EcosystemManager.load_save_data(data.ecosystem_manager)
-	
+
+	# Apply QuestSystem data if it exists in the scene tree
+	if "quest_system" in data:
+		var quest_system = get_tree().get_first_node_in_group("quest_system")
+		if quest_system and quest_system.has_method("load_save_data"):
+			quest_system.load_save_data(data.quest_system)
+
 	# Apply player data when player exists
 	# Apply world data when world exists
 	# Apply NPC data when NPCs exist
-	# Apply quest data when quests exist
 	# Apply research data when research exists
 
 
