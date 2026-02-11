@@ -30,7 +30,7 @@
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("7_controller")
 
-[node name="TileMapManager" type="Node" parent="."]
+[node name="TileMapManager" type="Node" parent="." groups=["tile_map_manager"]]
 script = ExtResource("2_tilemap")
 
 [node name="WorldRenderer" type="Node2D" parent="."]
