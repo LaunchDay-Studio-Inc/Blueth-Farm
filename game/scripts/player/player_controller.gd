@@ -202,4 +202,26 @@ func stop_movement() -> void:
 	_target_velocity = Vector2.ZERO
 
 
+## Gets save data for the player controller
+func get_save_data() -> Dictionary:
+	return {
+		"position": {
+			"x": global_position.x,
+			"y": global_position.y
+		},
+		"boat_unlocked": boat_unlocked
+	}
+
+
+## Loads save data for the player controller
+func load_save_data(data: Dictionary) -> void:
+	if "position" in data:
+		var pos = data["position"]
+		global_position = Vector2(pos.get("x", 0.0), pos.get("y", 0.0))
+		_previous_position = global_position
+
+	if "boat_unlocked" in data:
+		boat_unlocked = data["boat_unlocked"]
+
+
 

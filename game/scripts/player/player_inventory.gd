@@ -236,10 +236,77 @@ func get_all_items() -> Dictionary:
 func load_inventory(data: Dictionary) -> void:
 	# Clear existing inventory
 	clear_inventory()
-	
+
 	# Add items from data
 	for item_type in data.keys():
 		var quantity: int = data[item_type]
 		add_item(item_type, quantity)
-	
+
+	inventory_changed.emit()
+
+
+## Gets save data for the inventory system
+func get_save_data() -> Dictionary:
+	var inventory_data = {}
+
+	# Save main inventory slots with their complete state
+	var slots_data = []
+	for slot in _inventory:
+		if not slot.is_empty():
+			slots_data.append({
+				"item_type": slot.item_type,
+				"quantity": slot.quantity,
+				"max_stack": slot.max_stack
+			})
+		else:
+			slots_data.append({})
+
+	# Save quickslots with their complete state
+	var quickslots_data = []
+	for slot in _quickslots:
+		if not slot.is_empty():
+			quickslots_data.append({
+				"item_type": slot.item_type,
+				"quantity": slot.quantity,
+				"max_stack": slot.max_stack
+			})
+		else:
+			quickslots_data.append({})
+
+	return {
+		"inventory_slots": slots_data,
+		"quickslots": quickslots_data
+	}
+
+
+## Loads save data for the inventory system
+func load_save_data(data: Dictionary) -> void:
+	# Load main inventory slots
+	if "inventory_slots" in data:
+		var slots_data = data["inventory_slots"]
+		for i in range(min(slots_data.size(), _inventory.size())):
+			var slot_data = slots_data[i]
+			if slot_data.is_empty():
+				_inventory[i].clear()
+			else:
+				_inventory[i].set_item(
+					slot_data.get("item_type", ""),
+					slot_data.get("quantity", 0),
+					slot_data.get("max_stack", 99)
+				)
+
+	# Load quickslots
+	if "quickslots" in data:
+		var quickslots_data = data["quickslots"]
+		for i in range(min(quickslots_data.size(), _quickslots.size())):
+			var slot_data = quickslots_data[i]
+			if slot_data.is_empty():
+				_quickslots[i].clear()
+			else:
+				_quickslots[i].set_item(
+					slot_data.get("item_type", ""),
+					slot_data.get("quantity", 0),
+					slot_data.get("max_stack", 99)
+				)
+
 	inventory_changed.emit()

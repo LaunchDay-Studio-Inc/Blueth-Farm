@@ -112,9 +112,17 @@ func _collect_save_data() -> Dictionary:
 		"time_manager": TimeManager.get_save_data(),
 		"carbon_manager": CarbonManager.get_save_data(),
 		"ecosystem_manager": EcosystemManager.get_save_data(),
-		# Player data would go here when player exists
-		# Research progress would go here
 	}
+
+	# Get Player data if it exists in the scene tree
+	var player = get_tree().get_first_node_in_group("player")
+	if player and player.has_method("get_save_data"):
+		data["player"] = player.get_save_data()
+
+		# Also get player inventory data
+		var player_inventory = player.get_node_or_null("PlayerInventory")
+		if player_inventory and player_inventory.has_method("get_save_data"):
+			data["player_inventory"] = player_inventory.get_save_data()
 
 	# Get QuestSystem data if it exists in the scene tree
 	var quest_system = get_tree().get_first_node_in_group("quest_system")
@@ -148,6 +156,20 @@ func _apply_save_data(data: Dictionary) -> void:
 	if "ecosystem_manager" in data:
 		EcosystemManager.load_save_data(data.ecosystem_manager)
 
+	# Apply Player data if it exists in the scene tree
+	if "player" in data:
+		var player = get_tree().get_first_node_in_group("player")
+		if player and player.has_method("load_save_data"):
+			player.load_save_data(data.player)
+
+	# Apply Player Inventory data if it exists in the scene tree
+	if "player_inventory" in data:
+		var player = get_tree().get_first_node_in_group("player")
+		if player:
+			var player_inventory = player.get_node_or_null("PlayerInventory")
+			if player_inventory and player_inventory.has_method("load_save_data"):
+				player_inventory.load_save_data(data.player_inventory)
+
 	# Apply QuestSystem data if it exists in the scene tree
 	if "quest_system" in data:
 		var quest_system = get_tree().get_first_node_in_group("quest_system")
@@ -165,9 +187,6 @@ func _apply_save_data(data: Dictionary) -> void:
 		var tile_map_manager = get_tree().get_first_node_in_group("tile_map_manager")
 		if tile_map_manager and tile_map_manager.has_method("load_save_data"):
 			tile_map_manager.load_save_data(data.tile_map_manager)
-
-	# Apply player data when player exists
-	# Apply research data when research exists
 
 
 func _get_save_file_path(slot: int) -> String:
