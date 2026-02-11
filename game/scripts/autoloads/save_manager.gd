@@ -139,6 +139,11 @@ func _collect_save_data() -> Dictionary:
 	if tile_map_manager and tile_map_manager.has_method("get_save_data"):
 		data["tile_map_manager"] = tile_map_manager.get_save_data()
 
+	# Get TutorialSystem data if it exists in the scene tree
+	var tutorial_system = get_tree().get_first_node_in_group("tutorial_system")
+	if tutorial_system and tutorial_system.has_method("get_save_data"):
+		data["tutorial_system"] = tutorial_system.get_save_data()
+
 	return data
 
 
@@ -187,6 +192,12 @@ func _apply_save_data(data: Dictionary) -> void:
 		var tile_map_manager = get_tree().get_first_node_in_group("tile_map_manager")
 		if tile_map_manager and tile_map_manager.has_method("load_save_data"):
 			tile_map_manager.load_save_data(data.tile_map_manager)
+
+	# Apply TutorialSystem data if it exists in the scene tree
+	if "tutorial_system" in data:
+		var tutorial_system = get_tree().get_first_node_in_group("tutorial_system")
+		if tutorial_system and tutorial_system.has_method("load_save_data"):
+			tutorial_system.load_save_data(data.tutorial_system)
 
 
 func _get_save_file_path(slot: int) -> String:
