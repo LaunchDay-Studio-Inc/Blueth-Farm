@@ -62,3 +62,13 @@ func reset_relationship(npc_name: String) -> void:
 	if relationships.has(npc_name):
 		relationships.erase(npc_name)
 		relationship_changed.emit(npc_name, 0, TIER_STRANGER)
+
+func get_save_data() -> Dictionary:
+	"""Get relationship data for saving"""
+	return {
+		"relationships": relationships
+	}
+
+func load_save_data(data: Dictionary) -> void:
+	"""Load relationship data from save"""
+	relationships = data.get("relationships", {})

@@ -114,7 +114,6 @@ func _collect_save_data() -> Dictionary:
 		"ecosystem_manager": EcosystemManager.get_save_data(),
 		# Player data would go here when player exists
 		# World/tilemap data would go here
-		# NPC relationship data would go here
 		# Research progress would go here
 	}
 
@@ -122,6 +121,11 @@ func _collect_save_data() -> Dictionary:
 	var quest_system = get_tree().get_first_node_in_group("quest_system")
 	if quest_system and quest_system.has_method("get_save_data"):
 		data["quest_system"] = quest_system.get_save_data()
+
+	# Get RelationshipSystem data if it exists in the scene tree
+	var relationship_system = get_tree().get_first_node_in_group("relationship_system")
+	if relationship_system and relationship_system.has_method("get_save_data"):
+		data["relationship_system"] = relationship_system.get_save_data()
 
 	return data
 
@@ -146,9 +150,14 @@ func _apply_save_data(data: Dictionary) -> void:
 		if quest_system and quest_system.has_method("load_save_data"):
 			quest_system.load_save_data(data.quest_system)
 
+	# Apply RelationshipSystem data if it exists in the scene tree
+	if "relationship_system" in data:
+		var relationship_system = get_tree().get_first_node_in_group("relationship_system")
+		if relationship_system and relationship_system.has_method("load_save_data"):
+			relationship_system.load_save_data(data.relationship_system)
+
 	# Apply player data when player exists
 	# Apply world data when world exists
-	# Apply NPC data when NPCs exist
 	# Apply research data when research exists
 
 
