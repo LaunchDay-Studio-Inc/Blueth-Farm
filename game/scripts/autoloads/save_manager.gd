@@ -113,7 +113,6 @@ func _collect_save_data() -> Dictionary:
 		"carbon_manager": CarbonManager.get_save_data(),
 		"ecosystem_manager": EcosystemManager.get_save_data(),
 		# Player data would go here when player exists
-		# World/tilemap data would go here
 		# Research progress would go here
 	}
 
@@ -126,6 +125,11 @@ func _collect_save_data() -> Dictionary:
 	var relationship_system = get_tree().get_first_node_in_group("relationship_system")
 	if relationship_system and relationship_system.has_method("get_save_data"):
 		data["relationship_system"] = relationship_system.get_save_data()
+
+	# Get TileMapManager data if it exists in the scene tree
+	var tile_map_manager = get_tree().get_first_node_in_group("tile_map_manager")
+	if tile_map_manager and tile_map_manager.has_method("get_save_data"):
+		data["tile_map_manager"] = tile_map_manager.get_save_data()
 
 	return data
 
@@ -156,8 +160,13 @@ func _apply_save_data(data: Dictionary) -> void:
 		if relationship_system and relationship_system.has_method("load_save_data"):
 			relationship_system.load_save_data(data.relationship_system)
 
+	# Apply TileMapManager data if it exists in the scene tree
+	if "tile_map_manager" in data:
+		var tile_map_manager = get_tree().get_first_node_in_group("tile_map_manager")
+		if tile_map_manager and tile_map_manager.has_method("load_save_data"):
+			tile_map_manager.load_save_data(data.tile_map_manager)
+
 	# Apply player data when player exists
-	# Apply world data when world exists
 	# Apply research data when research exists
 
 
